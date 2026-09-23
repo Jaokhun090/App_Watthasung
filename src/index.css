@@ -331,7 +331,7 @@ body {
 }
 
 .place-card--expanded .place-card__details {
-  max-height: 500px;
+  max-height: 1200px;
   opacity: 1;
   margin-top: var(--space-md);
 }
@@ -364,6 +364,27 @@ body {
   font-weight: 600;
   color: var(--brown-deep);
   line-height: 1.3;
+}
+
+.place-card__altname {
+  font-size: 0.75rem;
+  color: var(--brown-light);
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.place-card__altname-badge {
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  background: rgba(212, 168, 67, 0.12);
+  color: var(--gold-dark);
+  font-weight: 600;
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  white-space: nowrap;
 }
 
 .place-card__status {
@@ -440,6 +461,149 @@ body {
 .place-card__actions {
   display: flex;
   gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* ===== Photo Gallery Lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 10, 5, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: lightboxFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox__inner {
+  position: relative;
+  max-width: 540px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #1e1710;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.lightbox__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightbox__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lightbox__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lightbox__close:hover {
+  background: rgba(239, 68, 68, 0.85);
+  transform: scale(1.05);
+}
+
+.lightbox__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 52vh;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #120e0a;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: var(--space-xs) 0;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 52vh;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.2s ease;
+}
+
+.lightbox__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  width: 100%;
+}
+
+.lightbox__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  background: rgba(212, 168, 67, 0.15);
+  color: var(--gold-light);
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox__btn:hover {
+  background: var(--gold);
+  color: var(--brown-deep);
+  transform: scale(1.1);
+}
+
+.lightbox__counter {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
 }
 
 /* ===== Buttons ===== */
@@ -847,6 +1011,18 @@ body {
 .monk-card__emoji {
   font-size: 3rem;
   margin-bottom: var(--space-md);
+}
+
+.monk-card__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.35);
+  margin: 0 auto var(--space-md);
+  display: block;
+  background: var(--cream);
 }
 
 .monk-card__name {

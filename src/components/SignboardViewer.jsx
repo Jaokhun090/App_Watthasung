@@ -15,7 +15,7 @@ export default function SignboardViewer({ onOpenLightbox }) {
         <div>
           <div className="signboard-viewer__title">
             <Icon name="gallery" size={16} color="var(--gold-dark)" />
-            ภาพถ่ายป้ายผังวัดทางการ (39 จุด)
+            ภาพถ่ายป้ายผังวัดทางการ
           </div>
           <div className="signboard-viewer__subtitle">
             ถ่ายจากป้ายผังวัดจริง สามารถซูมดูรายละเอียดได้

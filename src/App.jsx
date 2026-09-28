@@ -16,6 +16,8 @@ import { useUserLocation } from "./hooks/useUserLocation";
 import DigitalTwin3D from "./components/DigitalTwin3D";
 import InteractiveMasterMap from "./components/InteractiveMasterMap";
 import SideDetailDrawer from "./components/SideDetailDrawer";
+import { getPhotosForFolder, folderPhotosMap } from "./utils/imageLoader";
+console.log("DISCOVERED_PHOTOS:", folderPhotosMap);
 
 // ===== Bottom Navigation (4 Tabs: หน้าแรก, เที่ยวชม, ธรรมะ, ข้อมูล) =====
 function BottomNav({ activeTab, onTabChange }) {
@@ -142,12 +144,16 @@ function PhotoLightbox({ photos, placeName, onClose }) {
 }
 
 // ===== Place Card Component =====
-function PlaceCard({ place, distanceFormatted }) {
+function PlaceCard({ place, displayNumber, distanceFormatted }) {
   const [expanded, setExpanded] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
   const status = getOpenStatus(place.openingHours);
   const iconName = placeIcons[place.id] || "navTemple";
-  const hasPhotos = place.photos && place.photos.length > 0;
+  
+  // Dynamically load all numbered photos from folder (including 01, 02, 03... newly added)
+  const dynamicPhotos = getPhotosForFolder(place.name);
+  const photos = dynamicPhotos && dynamicPhotos.length > 0 ? dynamicPhotos : (place.photos || []);
+  const hasPhotos = photos.length > 0;
 
   const formatHours = (hours) => {
     if (!hours) return null;
@@ -191,7 +197,7 @@ function PlaceCard({ place, distanceFormatted }) {
           <div className="place-card__info">
             <div className="place-card__name">
               <span style={{ color: "var(--gold-dark)", marginRight: 5, fontSize: "0.85em", fontWeight: 700 }}>
-                {place.id}.
+                {displayNumber != null ? displayNumber : place.id}.
               </span>
               {place.name}
             </div>
@@ -231,7 +237,7 @@ function PlaceCard({ place, distanceFormatted }) {
               </span>
             )}
             {status.isOpen === null && (
-              <span className="place-card__status place-card__status--na">เปิดตลอด</span>
+              <span className="place-card__status place-card__status--na">เวลาตามสถานที่</span>
             )}
           </div>
           <span className="place-card__chevron">{expanded ? "▲" : "▼"}</span>
@@ -256,7 +262,7 @@ function PlaceCard({ place, distanceFormatted }) {
                 className="btn btn--secondary"
                 onClick={(e) => { e.stopPropagation(); setShowGallery(true); }}
               >
-                <Icon name="gallery" size={14} /> ดูรูป ({place.photos.length})
+                <Icon name="gallery" size={14} /> ดูรูป ({photos.length})
               </button>
             )}
           </div>
@@ -264,7 +270,7 @@ function PlaceCard({ place, distanceFormatted }) {
       </div>
       {showGallery && (
         <PhotoLightbox
-          photos={place.photos}
+          photos={photos}
           placeName={place.name}
           onClose={() => setShowGallery(false)}
         />
@@ -348,7 +354,7 @@ function HomePage({ onNavigate, locationService }) {
           <div className="shortcut-card__icon">
             <Icon name="navTemple" size={20} />
           </div>
-          <span className="shortcut-card__label">39 สถานที่</span>
+          <span className="shortcut-card__label">{places.length} สถานที่</span>
         </div>
 
         <div className="shortcut-card" onClick={() => onNavigate("explore", "map")}>
@@ -385,14 +391,15 @@ function HomePage({ onNavigate, locationService }) {
             className="home-section__more-btn"
             onClick={() => onNavigate("explore", "places")}
           >
-            ดูทั้งหมด 39 จุด <Icon name="arrowRight" size={12} />
+            ดูทั้งหมด {places.length} จุด <Icon name="arrowRight" size={12} />
           </button>
         </div>
 
-        {featuredPlaces.map((place) => (
+        {featuredPlaces.map((place, index) => (
           <PlaceCard
             key={place.id}
             place={place}
+            displayNumber={index + 1}
             distanceFormatted={locationService.getFormattedDistanceTo(place.gps.lat, place.gps.lng)}
           />
         ))}
@@ -403,7 +410,7 @@ function HomePage({ onNavigate, locationService }) {
           style={{ width: "100%", marginTop: "var(--space-xs)", justifyContent: "center" }}
           onClick={() => onNavigate("explore", "places")}
         >
-          <Icon name="compass" size={16} /> ดูสถานที่ทั้งหมดตามผังวัด (39 จุด)
+          <Icon name="compass" size={16} /> ดูสถานที่ทั้งหมดตามผังวัด ({places.length} จุด)
         </button>
       </section>
 
@@ -440,7 +447,7 @@ function HomePage({ onNavigate, locationService }) {
           </div>
           <div className="map-signboard-card__footer">
             <div className="map-signboard-card__desc">
-              เลือกดูได้ 2 รูปแบบ: ผังวัดดิจิทัล (วาดใหม่ตามป้ายจริง 39 จุด) และโมเดล 3D Digital Twin สไตล์สถาปัตยกรรม
+              เลือกดูได้ 2 รูปแบบ: ผังวัดดิจิทัล (วาดใหม่ตามป้ายจริง {places.length} จุด) และโมเดล 3D Digital Twin สไตล์สถาปัตยกรรม
             </div>
             <button
               type="button"
@@ -581,7 +588,7 @@ function HomePage({ onNavigate, locationService }) {
   );
 }
 
-// ===== 2. EXPLORE PAGE (เที่ยวชม: รวม สถานที่ 39 จุด + แผนที่ผังวัด + เส้นทางแนะนำ) =====
+// ===== 2. EXPLORE PAGE (เที่ยวชม: รวม สถานที่ 40 จุด + แผนที่ผังวัด + เส้นทางแนะนำ) =====
 function ExplorePage({
   subView,
   onSubViewChange,
@@ -617,14 +624,14 @@ function ExplorePage({
 
   return (
     <div className="page">
-      {/* เมนูแท็บย่อยด้านบน: สถานที่ (39 จุด) | แผนที่ผังวัด | เส้นทางแนะนำ */}
+      {/* เมนูแท็บย่อยด้านบน: สถานที่ (40 จุด) | แผนที่ผังวัด | เส้นทางแนะนำ */}
       <div className="explore-tabs">
         <button
           type="button"
           className={`explore-tab ${subView === "places" ? "explore-tab--active" : ""}`}
           onClick={() => onSubViewChange("places")}
         >
-          <Icon name="navTemple" size={16} /> สถานที่ (39 จุด)
+          <Icon name="navTemple" size={16} /> สถานที่ ({places.length} จุด)
         </button>
 
         <button
@@ -644,7 +651,7 @@ function ExplorePage({
         </button>
       </div>
 
-      {/* ===== แท็บย่อย 1: สถานที่ (39 จุด) ===== */}
+      {/* ===== แท็บย่อย 1: สถานที่ (40 จุด) ===== */}
       {subView === "places" && (
         <div>
           {/* แถบค้นหา */}
@@ -708,10 +715,11 @@ function ExplorePage({
 
           {/* รายการการ์ดสถานที่ */}
           {filteredPlaces.length > 0 ? (
-            filteredPlaces.map((place) => (
+            filteredPlaces.map((place, index) => (
               <PlaceCard
                 key={place.id}
                 place={place}
+                displayNumber={index + 1}
                 distanceFormatted={locationService.getFormattedDistanceTo(place.gps.lat, place.gps.lng)}
               />
             ))
@@ -1089,13 +1097,34 @@ function InfoPage() {
               <td>13:00-16:00</td>
             </tr>
             <tr>
-              <td><strong>ตึกสมบัติพ่อให้</strong></td>
-              <td colSpan="2" style={{ textAlign: "center" }}>09:00-16:00</td>
+              <td><strong>มณฑปพระศรีอาริยเมตไตรย</strong></td>
+              <td>09:00-10:30</td>
+              <td>13:00-16:00</td>
+            </tr>
+            <tr>
+              <td><strong>พิพิธภัณฑ์สมบัติพ่อให้</strong></td>
+              <td>09:00-12:00</td>
+              <td>13:00-16:00</td>
+            </tr>
+            <tr>
+              <td><strong>ตึกรับแขก (บูชาวัตถุมงคล/หนังสือ)</strong></td>
+              <td>09:00-10:30</td>
+              <td>13:00-16:00</td>
+            </tr>
+            <tr>
+              <td><strong>ศาลา 12 ไร่ (ทำบุญ/สังฆทาน)</strong></td>
+              <td colSpan="2" style={{ textAlign: "center" }}>08:00-17:00 (ทำวัตรเช้า 08:30 / เย็น 17:00)</td>
+            </tr>
+            <tr>
+              <td><strong>ศาลานวราช (ติดต่อที่พัก)</strong></td>
+              <td colSpan="2" style={{ textAlign: "center" }}>08:00-17:00</td>
             </tr>
           </tbody>
         </table>
-        <div style={{ fontSize: "0.7rem", color: "var(--gray)", marginTop: "var(--space-sm)" }}>
-          * เสาร์-อาทิตย์ และวันหยุดนักขัตฤกษ์ วิหารสมเด็จฯ เปิดต่อเนื่อง 09:00-16:00 น.
+        <div style={{ fontSize: "0.7rem", color: "var(--gray)", marginTop: "var(--space-sm)", lineHeight: 1.5 }}>
+          * วันเสาร์-อาทิตย์ และวันหยุดนักขัตฤกษ์ วิหารสมเด็จองค์ปฐม และมณฑปพระศรีอาริยเมตไตรย เปิดต่อเนื่อง 09:00-16:00 น.
+          <br />
+          * ติดต่อลงทะเบียนฝึกมโนมยิทธิ ณ มหาวิหารแก้ว 100 เมตร เวลา 11:00-11:30 น. (ฝึกสมาธิช่วง 11:30-14:00 น.)
         </div>
       </div>
 
@@ -1140,39 +1169,58 @@ function InfoPage() {
         </div>
       </div>
 
-      {/* ร้านอาหาร */}
+      {/* ข้อมูลร้านอาหารและร้านค้าชุมชนรอบวัด */}
       <h2 className="page__section-title">
-        <Icon name="utensils" size={18} color="var(--gold-dark)" /> ร้านอาหารแนะนำใกล้วัด
+        <Icon name="utensils" size={18} color="var(--gold-dark)" /> ร้านอาหารและร้านค้าชุมชนรอบวัด
       </h2>
-      {restaurants.map((r, i) => (
-        <div key={i} className="venue-card">
-          <span className="venue-card__emoji">
-            <Icon name="utensils" size={24} color="var(--saffron)" />
-          </span>
-          <div className="venue-card__info">
-            <div className="venue-card__name">{r.name}</div>
-            <div className="venue-card__highlight"><Icon name="pin" size={11} style={{ verticalAlign: "middle" }} /> {r.distance} | แนะนำ: {r.recommend}</div>
-            <div className="venue-card__desc">{r.desc}</div>
+      <div className="venue-card" style={{ marginBottom: "var(--space-md)" }}>
+        <span className="venue-card__emoji">
+          <Icon name="utensils" size={24} color="var(--saffron)" />
+        </span>
+        <div className="venue-card__info">
+          <div className="venue-card__name">ร้านอาหารและร้านค้าชุมชนรอบวัด</div>
+          <div className="venue-card__highlight">
+            <Icon name="pin" size={11} style={{ verticalAlign: "middle" }} /> รอบบริเวณวัดและริมแม่น้ำสะแกกรัง
+          </div>
+          <div className="venue-card__desc">
+            บริเวณโดยรอบวัดท่าซุงและริมแม่น้ำสะแกกรัง มีร้านอาหารตามสั่ง ร้านก๋วยเตี๋ยว ร้านอาหารพื้นบ้านปลาแม่น้ำ และร้านค้าชุมชนของชาวบ้านเปิดให้บริการเป็นจำนวนมาก ทั้งฝั่งวัดใหม่และฝั่งวัดเดิม ผู้มาเยือนสามารถแวะรับประทานได้ตามความสะดวก หรือเลือกใช้บริการร้านอิ่มบุญ (ครัวร้อยเมตร) และร้านค้าสวัสดิการของทางวัด
           </div>
         </div>
-      ))}
+      </div>
 
-      {/* ที่พัก */}
+      {/* ข้อมูลที่พัก */}
       <h2 className="page__section-title">
-        <Icon name="house" size={18} color="var(--gold-dark)" /> ที่พักใกล้วัด
+        <Icon name="house" size={18} color="var(--gold-dark)" /> ข้อมูลที่พักและรีสอร์ทรอบวัด
       </h2>
-      {accommodations.map((a, i) => (
-        <div key={i} className="venue-card">
-          <span className="venue-card__emoji">
-            <Icon name="house" size={24} color="var(--brown)" />
-          </span>
-          <div className="venue-card__info">
-            <div className="venue-card__name">{a.name}</div>
-            <div className="venue-card__highlight"><Icon name="pin" size={11} style={{ verticalAlign: "middle" }} /> {a.distance} | {a.price}</div>
-            <div className="venue-card__desc">{a.desc}</div>
+      <div className="venue-card" style={{ marginBottom: "var(--space-sm)" }}>
+        <span className="venue-card__emoji">
+          <Icon name="house" size={24} color="var(--brown)" />
+        </span>
+        <div className="venue-card__info">
+          <div className="venue-card__name">ที่พักและรีสอร์ทโดยรอบวัดและตัวเมือง</div>
+          <div className="venue-card__highlight">
+            <Icon name="pin" size={11} style={{ verticalAlign: "middle" }} /> ราคาเริ่มต้นตั้งแต่ 500 บาทขึ้นไป
+          </div>
+          <div className="venue-card__desc">
+            บริเวณรอบวัดท่าซุงและในตัวอำเภอเมืองอุทัยธานี มีโรงแรม รีสอร์ท และโฮมสเตย์เปิดให้บริการผู้มาทำบุญและปฏิบัติธรรมเป็นจำนวนมาก ในระดับราคาหลากหลายเริ่มต้นตั้งแต่ 500 บาทขึ้นไป ทางวัดไม่ได้มีการรับรองหรือสนับสนุนสถานประกอบการแห่งใดแห่งหนึ่งเป็นพิเศษ ผู้มาเยือนสามารถค้นหาและเลือกจองที่พักได้ตามอัธยาศัยและความพึงพอใจ
           </div>
         </div>
-      ))}
+      </div>
+
+      <div className="venue-card" style={{ marginBottom: "var(--space-md)" }}>
+        <span className="venue-card__emoji">
+          <Icon name="meditation" size={24} color="var(--gold-dark)" />
+        </span>
+        <div className="venue-card__info">
+          <div className="venue-card__name">การพักค้างปฏิบัติธรรมภายในวัดท่าซุง</div>
+          <div className="venue-card__highlight">
+            <Icon name="pin" size={11} style={{ verticalAlign: "middle" }} /> ศาลานวราช และ อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร
+          </div>
+          <div className="venue-card__desc">
+            สำหรับผู้ที่ตั้งใจมาบวชเนกขัมมะ ถือศีล 8 และเจริญพระกรรมฐาน สามารถติดต่อลงทะเบียนเข้าพักในเขตที่พักผู้ปฏิบัติธรรมของวัดได้ที่ ศาลานวราช และ อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร (กรุณาเตรียมชุดขาวและปฏิบัติตามกฎระเบียบของทางวัดอย่างเคร่งครัด)
+          </div>
+        </div>
+      </div>
 
       {/* ช่องทางติดต่อ */}
       <h2 className="page__section-title">
@@ -1292,7 +1340,7 @@ function App() {
       case "explore":
         if (exploreSubView === "map") return "ผังวัดดิจิทัล & 3D Twin";
         if (exploreSubView === "tour") return "เส้นทางแนะนำ (3 ชม.)";
-        return "เที่ยวชมสถานที่ (39 จุด)";
+        return `เที่ยวชมสถานที่ (${places.length} จุด)`;
       case "dharma":
         return "ธรรมะ & ประวัติ";
       case "info":

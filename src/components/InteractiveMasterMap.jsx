@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { places } from "../data/places";
 import Icon, { placeIcons } from "./Icons";
 
-// พิกัดและการจัดวางของสถานที่ทั้ง 39 จุดตามป้ายผังวัดจริง (Img/20260927_122430.jpg)
+// พิกัดและการจัดวางของสถานที่ทั้ง 40 จุดตามป้ายผังวัดจริง (Img/20260927_122430.jpg)
 const SIGNBOARD_LOCATIONS = [
   // แถวบน (ฝั่งวัดใหม่ - วิหารหลัก)
   { id: 1, x: 470, y: 155, icon: "palace", color: "#d4a843" },
@@ -52,6 +52,7 @@ const SIGNBOARD_LOCATIONS = [
   { id: 36, x: 480, y: 560, icon: "oldTemple", color: "#b91c1c" },
   { id: 37, x: 560, y: 555, icon: "house", color: "#64748b" },
   { id: 38, x: 510, y: 605, icon: "tenthBuddha", color: "#f59e0b" },
+  { id: 40, x: 260, y: 645, icon: "fish", color: "#0369a1" },
 ];
 
 export default function InteractiveMasterMap({
@@ -98,7 +99,7 @@ export default function InteractiveMasterMap({
       <div className="master-map-controls">
         <div className="master-map-title-badge">
           <Icon name="navMap" size={15} color="var(--gold-dark)" />
-          <span>ผังวัดท่าซุง ยินดีต้อนรับ (39 จุด)</span>
+          <span>ผังวัดท่าซุง ยินดีต้อนรับ ({places.length} จุด)</span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           <button type="button" className="master-map-hud-btn" onClick={handleZoomIn} title="ซูมเข้า">+</button>
@@ -256,7 +257,7 @@ export default function InteractiveMasterMap({
           <text x="140" y="475" fill="#1e293b" fontSize="12" fontWeight="700">← ไป มโนรมย์</text>
           <text x="1000" y="455" fill="#1e293b" fontSize="12" fontWeight="700">ไป อุทัยธานี →</text>
 
-          {/* 6. Illustrated Building Badges & Pins for all 39 places */}
+          {/* 6. Illustrated Building Badges & Pins for all 40 places */}
           {SIGNBOARD_LOCATIONS.map((loc) => {
             const p = places.find((item) => item.id === loc.id);
             if (!p) return null;
@@ -360,7 +361,7 @@ export default function InteractiveMasterMap({
       </div>
 
       <div className="master-map-footer-hint">
-        <span>💡 แตะที่อาคารหรือตัวเลข 1-39 เพื่อดูข้อมูลและเปิดแผนที่นำทาง Google Maps</span>
+        <span>💡 แตะที่อาคารหรือตัวเลขเพื่อดูข้อมูลและเปิดแผนที่นำทาง Google Maps</span>
       </div>
     </div>
   );

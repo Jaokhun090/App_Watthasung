@@ -6,49 +6,48 @@ import Icon from "./Icons";
 import SideDetailDrawer from "./SideDetailDrawer";
 
 // ตำแหน่ง 3D บนผังจำลอง (X = ตะวันออก/แม่น้ำ, Z = เหนือ/ใต้, Y = ความสูง)
-// ครอบคลุมจุดสำคัญตามผังวัดจริง
+// ครอบคลุมจุดสำคัญตามพิกัดดาวเทียมจริงของวัดท่าซุง
 const BUILDING_POSITIONS = {
-  // ฝั่งวัดใหม่ (ทิศเหนือ / ด้านบน)
-  1: { x: -35, z: -30, label: "ปราสาททองคำ", height: 16, highlight: true },
-  2: { x: -38, z: -10, label: "ตึกสมบัติพ่อให้", height: 10, highlight: true },
-  3: { x: -22, z: -35, label: "พระยืน 30 ศอก", height: 18, highlight: true },
-  4: { x: -20, z: -20, label: "วิหารสมเด็จองค์ปฐม", height: 14, highlight: true },
-  5: { x: -52, z: 0, label: "ศาลา 24 ไร่", height: 8 },
-  6: { x: -26, z: -18, label: "พระยืน 8 ศอก", height: 9 },
-  7: { x: -22, z: -8, label: "ตึกขาว", height: 9 },
-  8: { x: -14, z: -20, label: "วิหารพระศรีอาริยฯ", height: 11 },
-  9: { x: -8, z: -25, label: "สวนสมเด็จฯ", height: 3 },
-  10: { x: -4, z: -15, label: "พระบรมธาตุเจดีย์", height: 12 },
-  11: { x: -15, z: 12, label: "ตึกกลางน้ำ", height: 7 },
-  12: { x: -30, z: 25, label: "มหาวิหารแก้ว 100 เมตร", height: 13, highlight: true },
-  13: { x: -15, z: 25, label: "ศาลามิตรสรัทธา", height: 6 },
-  14: { x: -10, z: 32, label: "โรงครัวใหญ่", height: 6 },
-  15: { x: -22, z: 36, label: "ศาลา 4 ไร่", height: 7 },
-  16: { x: -15, z: 42, label: "ศาลา 2 ไร่", height: 6 },
-  17: { x: -45, z: 25, label: "ศาลา 12 ไร่", height: 7 },
-  18: { x: -48, z: 12, label: "กุฏิสงฆ์สายกลาง", height: 6 },
-  19: { x: -55, z: 30, label: "อาคาร 3 ก.ค.", height: 7 },
-  // ฝั่งวัดเก่า & ริมน้ำสะแกกรัง (ทิศใต้ / ด้านล่าง)
-  20: { x: 22, z: -15, label: "โบสถ์เก่า", height: 11, highlight: true },
-  21: { x: 18, z: -25, label: "วิหารหลวงพ่อปาน", height: 9 },
-  22: { x: 12, z: -30, label: "มณฑปพระอสีติ", height: 9 },
-  23: { x: 10, z: -18, label: "ศาลาหลวงพ่อปาน", height: 7 },
-  24: { x: 12, z: -8, label: "ศาลาพระพินิจอักษร", height: 7 },
-  25: { x: 35, z: 20, label: "สวนป่าไผ่", height: 6 },
-  26: { x: 25, z: -32, label: "พระเจ้าพรหมมหาราช", height: 8 },
-  27: { x: 32, z: -25, label: "วิหารหลวงพ่อศักดิ์สิทธิ์", height: 10 },
-  28: { x: 22, z: -40, label: "พระจุฬามณี", height: 12 },
-  29: { x: 28, z: -42, label: "อนุสาวรีย์", height: 7 },
-  30: { x: 18, z: -2, label: "วิหารหลวงพ่อ 5 พระองค์", height: 10 },
-  31: { x: 32, z: -8, label: "โรงครัวฝั่งวัดเก่า", height: 6 },
-  32: { x: 28, z: 5, label: "แพโบสถ์น้ำเดิม", height: 5 },
-  33: { x: 48, z: -5, label: "วังมัจฉา (ริมน้ำ)", height: 6, highlight: true },
-  34: { x: 30, z: 0, label: "มณฑปแก้ว", height: 9 },
-  35: { x: 28, z: 8, label: "มณฑปท้าวมหาราช", height: 9 },
-  36: { x: 25, z: -10, label: "วิหารหลวงพ่อศักดิ์สิทธิ์", height: 12, highlight: true },
-  37: { x: 12, z: 10, label: "ตึกรับแขก", height: 8 },
-  38: { x: 28, z: -18, label: "วิหารพระองค์ที่ 10-11", height: 9 },
-  39: { x: -40, z: 42, label: "โรงเรียนพระสุธรรมยานฯ", height: 8 },
+  1: { x: -59, z: 35.7, label: "ปราสาททองคำ", height: 16, highlight: true },
+  2: { x: -66.9, z: -6.9, label: "สมบัติพ่อให้", height: 10, highlight: true },
+  3: { x: -62.8, z: -26.1, label: "พระยืน 30 ศอก", height: 18, highlight: true },
+  4: { x: -51.9, z: -31.7, label: "สมเด็จองค์ปฐม", height: 14, highlight: true },
+  5: { x: -39.9, z: 12.8, label: "ลาน 25 ไร่", height: 8 },
+  6: { x: -60.5, z: -36.3, label: "วิหารพระวิสุทธิเทพ", height: 10, highlight: true },
+  7: { x: -21.6, z: 10.6, label: "ตึกขาว", height: 8 },
+  8: { x: -44.8, z: -23, label: "พระศรีอาริยเมตไตรย", height: 9 },
+  9: { x: -5.3, z: -52.2, label: "สวนสมเด็จฯ", height: 6 },
+  10: { x: 10.1, z: -64.9, label: "ตึกพระเถระ", height: 8 },
+  11: { x: 19.8, z: -25.3, label: "ร้านอิ่มบุญ", height: 8 },
+  12: { x: 11.3, z: -31.2, label: "วิหารแก้ว 100 เมตร", height: 14, highlight: true },
+  13: { x: 35.2, z: -47.3, label: "กาแฟท่าซุง", height: 7 },
+  14: { x: 40.6, z: -45.1, label: "ร้านค้าสวัสดิการ", height: 7 },
+  15: { x: 50.5, z: -3.7, label: "ห้องสมุดประชาชน", height: 8 },
+  16: { x: 43.3, z: -6.7, label: "ที่พักพระพินิจอักษร", height: 8 },
+  17: { x: -37.5, z: 70.4, label: "ศาลา 12 ไร่", height: 10, highlight: true },
+  18: { x: -28.6, z: 57.2, label: "หอประชุมพระสุธรรมยานเถระ", height: 9 },
+  19: { x: -22.9, z: 77, label: "โรงเรียนพระพินิจอักษร", height: 8 },
+  20: { x: -16.7, z: 68.5, label: "พระอุโบสถ", height: 11, highlight: true },
+  21: { x: -8.8, z: 59.4, label: "ศาลาบูรพาจารย์", height: 8 },
+  22: { x: -2.9, z: 69.1, label: "ศาลานวราช", height: 8 },
+  23: { x: -35.9, z: 37.8, label: "ศาลา 2 ไร่", height: 8 },
+  24: { x: -19.8, z: 40.1, label: "ศาลา 3 ไร่", height: 8 },
+  25: { x: 17.6, z: -16.5, label: "อาคารธรรมวิโมกข์", height: 8 },
+  26: { x: 56.1, z: -46.2, label: "พระเจ้าพรหมมหาราช", height: 8 },
+  27: { x: 47.3, z: -11, label: "อาคารเสริมศรี", height: 8 },
+  28: { x: 51.7, z: -58.3, label: "เจดีย์พุดตาน", height: 9 },
+  29: { x: 52.8, z: -52.8, label: "วิหารพระมหากัสสป", height: 9 },
+  30: { x: 38.5, z: -68.2, label: "วิหาร 5 พระองค์", height: 10, highlight: true },
+  31: { x: 34.1, z: -73.7, label: "หอฉัน", height: 8 },
+  32: { x: 46.2, z: -60.5, label: "โบสถ์เก่า", height: 11, highlight: true },
+  33: { x: 61.6, z: -82.5, label: "แพเลี้ยงปลา", height: 6, highlight: true },
+  34: { x: 53.9, z: -45.1, label: "มณฑปแก้วพระองค์ที่ 10-11", height: 9 },
+  35: { x: 58.3, z: -38.5, label: "มณฑปท้าวมหาราช", height: 9 },
+  36: { x: 48.4, z: -56.1, label: "วิหารหลวงพ่อศักดิ์สิทธิ์", height: 12, highlight: true },
+  37: { x: 62.7, z: -29.7, label: "ตึกรับแขก", height: 8 },
+  38: { x: 51.7, z: -49.5, label: "วิหารใต้ต้นโพธิ์", height: 9 },
+  39: { x: 73.7, z: -18, label: "โรงเรียนพระสุธรรมยานฯ", height: 8 },
+  40: { x: 67.1, z: -79.2, label: "เรือคนึงหา", height: 6 },
 };
 
 export default function DigitalTwin3D({
@@ -191,11 +190,11 @@ export default function DigitalTwin3D({
 
     // Point lights for Night glow
     const goldGlowLight = new THREE.PointLight(0xffd700, 0, 90);
-    goldGlowLight.position.set(-35, 16, -30);
+    goldGlowLight.position.set(BUILDING_POSITIONS[1]?.x || -59, 16, BUILDING_POSITIONS[1]?.z || 35.7);
     scene.add(goldGlowLight);
 
     const glassGlowLight = new THREE.PointLight(0x7dd3fc, 0, 90);
-    glassGlowLight.position.set(-30, 14, 25);
+    glassGlowLight.position.set(BUILDING_POSITIONS[12]?.x || 11.3, 14, BUILDING_POSITIONS[12]?.z || -31.2);
     scene.add(glassGlowLight);
 
     lightsRef.current = { ambientLight, sunLight, goldGlowLight, glassGlowLight };
@@ -256,18 +255,18 @@ export default function DigitalTwin3D({
     scene.add(ground);
 
     // Temple Courtyard Platforms (ฝั่งวัดใหม่ & วัดเก่า)
-    const newCourtGeo = new THREE.PlaneGeometry(86, 145);
+    const newCourtGeo = new THREE.PlaneGeometry(80, 160);
     const courtMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.75 });
     const newCourt = new THREE.Mesh(newCourtGeo, courtMat);
     newCourt.rotation.x = -Math.PI / 2;
-    newCourt.position.set(-30, 0.05, 0);
+    newCourt.position.set(-38, 0.05, 20);
     newCourt.receiveShadow = true;
     scene.add(newCourt);
 
-    const oldCourtGeo = new THREE.PlaneGeometry(50, 95);
+    const oldCourtGeo = new THREE.PlaneGeometry(50, 90);
     const oldCourt = new THREE.Mesh(oldCourtGeo, courtMat);
     oldCourt.rotation.x = -Math.PI / 2;
-    oldCourt.position.set(22, 0.05, -10);
+    oldCourt.position.set(48, 0.05, -50);
     oldCourt.receiveShadow = true;
     scene.add(oldCourt);
 
@@ -331,7 +330,7 @@ export default function DigitalTwin3D({
 
     // 1. ปราสาททองคำ (Place 1)
     const castleGroup = new THREE.Group();
-    castleGroup.position.set(-35, 0, -30);
+    castleGroup.position.set(BUILDING_POSITIONS[1].x, 0, BUILDING_POSITIONS[1].z);
     const c1 = new THREE.Mesh(new THREE.BoxGeometry(22, 6, 22), clayWallMat);
     c1.position.y = 3;
     castleGroup.add(c1);
@@ -353,11 +352,11 @@ export default function DigitalTwin3D({
 
     // 2. มหาวิหารแก้ว 100 เมตร (Place 12)
     const glassGroup = new THREE.Group();
-    glassGroup.position.set(-30, 0, 25);
-    const glassBody = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 44), glassMat);
+    glassGroup.position.set(BUILDING_POSITIONS[12].x, 0, BUILDING_POSITIONS[12].z);
+    const glassBody = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 36), glassMat);
     glassBody.position.y = 4.5;
     glassGroup.add(glassBody);
-    const glassRoof = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 8, 44, 4), clayRoofMat);
+    const glassRoof = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 8, 36, 4), clayRoofMat);
     glassRoof.rotation.x = Math.PI / 2;
     glassRoof.rotation.y = Math.PI / 4;
     glassRoof.position.y = 10;
@@ -366,7 +365,7 @@ export default function DigitalTwin3D({
 
     // 3. พระยืน 30 ศอก (Place 3)
     const standingBuddhaGroup = new THREE.Group();
-    standingBuddhaGroup.position.set(-22, 0, -35);
+    standingBuddhaGroup.position.set(BUILDING_POSITIONS[3].x, 0, BUILDING_POSITIONS[3].z);
     const pBase = new THREE.Mesh(new THREE.CylinderGeometry(4, 5, 3, 16), clayWallMat);
     pBase.position.y = 1.5;
     standingBuddhaGroup.add(pBase);
@@ -380,7 +379,7 @@ export default function DigitalTwin3D({
 
     // 4. วิหารสมเด็จองค์ปฐม (Place 4)
     const somdejGroup = new THREE.Group();
-    somdejGroup.position.set(-20, 0, -20);
+    somdejGroup.position.set(BUILDING_POSITIONS[4].x, 0, BUILDING_POSITIONS[4].z);
     const sBody = new THREE.Mesh(new THREE.BoxGeometry(13, 7, 13), clayWallMat);
     sBody.position.y = 3.5;
     somdejGroup.add(sBody);
@@ -395,7 +394,7 @@ export default function DigitalTwin3D({
 
     // 5. ตึกสมบัติพ่อให้ (Place 2)
     const museumGroup = new THREE.Group();
-    museumGroup.position.set(-38, 0, -10);
+    museumGroup.position.set(BUILDING_POSITIONS[2].x, 0, BUILDING_POSITIONS[2].z);
     const mBody = new THREE.Mesh(new THREE.BoxGeometry(18, 7, 12), clayWallMat);
     mBody.position.y = 3.5;
     museumGroup.add(mBody);
@@ -405,9 +404,9 @@ export default function DigitalTwin3D({
     museumGroup.add(mRoof);
     registerBuilding(museumGroup, 2);
 
-    // 6. โบสถ์เก่า (Place 20) & วิหารหลวงพ่อศักดิ์สิทธิ์ (Place 36)
+    // 6. โบสถ์เก่า & วิหารหลวงพ่อศักดิ์สิทธิ์ (Place 36)
     const oldTempleGroup = new THREE.Group();
-    oldTempleGroup.position.set(25, 0, -10);
+    oldTempleGroup.position.set(BUILDING_POSITIONS[36].x, 0, BUILDING_POSITIONS[36].z);
     const otBody = new THREE.Mesh(new THREE.BoxGeometry(11, 6, 17), clayWallMat);
     otBody.position.y = 3;
     oldTempleGroup.add(otBody);
@@ -417,9 +416,9 @@ export default function DigitalTwin3D({
     oldTempleGroup.add(otRoof);
     registerBuilding(oldTempleGroup, 36);
 
-    // 7. วังมัจฉา (Place 33)
+    // 7. แพเลี้ยงปลา / วังมัจฉา (Place 33)
     const pierGroup = new THREE.Group();
-    pierGroup.position.set(45, 0, -5);
+    pierGroup.position.set(BUILDING_POSITIONS[33].x, 0, BUILDING_POSITIONS[33].z);
     const pierPlank = new THREE.Mesh(new THREE.BoxGeometry(12, 1, 8), clayRoofMat);
     pierPlank.position.set(3, 1, 0);
     pierGroup.add(pierPlank);
@@ -428,36 +427,20 @@ export default function DigitalTwin3D({
     pierGroup.add(pierPav);
     registerBuilding(pierGroup, 33);
 
-    // 8. ศาลา 24 ไร่ (Place 5)
+    // 8. ลาน 25 ไร่ (Place 5)
     const salaa24Group = new THREE.Group();
-    salaa24Group.position.set(-52, 0, 0);
-    const salaaBody = new THREE.Mesh(new THREE.BoxGeometry(22, 5, 28), clayWallMat);
+    salaa24Group.position.set(BUILDING_POSITIONS[5].x, 0, BUILDING_POSITIONS[5].z);
+    const salaaBody = new THREE.Mesh(new THREE.BoxGeometry(20, 5, 20), clayWallMat);
     salaaBody.position.y = 2.5;
     salaa24Group.add(salaaBody);
-    const salaaRoof = new THREE.Mesh(new THREE.ConeGeometry(17, 3.5, 4), clayRoofMat);
+    const salaaRoof = new THREE.Mesh(new THREE.ConeGeometry(15, 3.5, 4), clayRoofMat);
     salaaRoof.rotation.y = Math.PI / 4;
     salaaRoof.position.y = 6.5;
     salaa24Group.add(salaaRoof);
     registerBuilding(salaa24Group, 5);
 
-    // 9. สวนป่าไผ่ (Place 25)
-    const bambooGroup = new THREE.Group();
-    bambooGroup.position.set(35, 0, 20);
-    const bambooMat = new THREE.MeshStandardMaterial({ color: 0x4d7c0f, roughness: 0.6 });
-    for (let i = 0; i < 9; i++) {
-      const bx = (Math.random() - 0.5) * 14;
-      const bz = (Math.random() - 0.5) * 14;
-      const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 7, 6), bambooMat);
-      stalk.position.set(bx, 3.5, bz);
-      bambooGroup.add(stalk);
-      const canopy = new THREE.Mesh(new THREE.SphereGeometry(1.8, 6, 6), bambooMat);
-      canopy.position.set(bx, 7.5, bz);
-      bambooGroup.add(canopy);
-    }
-    registerBuilding(bambooGroup, 25);
-
-    // 10. Generate standard clay massing for other buildings in BUILDING_POSITIONS
-    const modeledIds = [1, 2, 3, 4, 5, 12, 25, 33, 36];
+    // 9. Generate standard clay massing for other buildings in BUILDING_POSITIONS
+    const modeledIds = [1, 2, 3, 4, 5, 12, 33, 36];
     Object.entries(BUILDING_POSITIONS).forEach(([idStr, bInfo]) => {
       const id = parseInt(idStr, 10);
       if (modeledIds.includes(id)) return;
@@ -711,7 +694,7 @@ export default function DigitalTwin3D({
           onClick={() => setIsDrawerOpen(!isDrawerOpen)}
           title="เปิด/ปิด แถบข้อมูลด้านข้าง"
         >
-          <span>{isDrawerOpen ? "◀ ซ่อนแถบข้อมูล" : "▶ ข้อมูลสถานที่ (39 จุด)"}</span>
+          <span>{isDrawerOpen ? "◀ ซ่อนแถบข้อมูล" : `▶ ข้อมูลสถานที่ (${places.length} จุด)`}</span>
         </button>
       </div>
 

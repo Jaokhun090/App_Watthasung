@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { places, templeInfo } from "../data/places";
 import { getOpenStatus, getGoogleMapsUrl } from "../utils";
+import { getPhotosForFolder } from "../utils/imageLoader";
 import Icon, { placeIcons } from "./Icons";
 
 export default function SideDetailDrawer({
@@ -35,7 +36,7 @@ export default function SideDetailDrawer({
           <span className="bdt-badge-icon">🏛️</span>
           <div>
             <div className="bdt-header-main">ข้อมูลสถานที่ดิจิทัล</div>
-            <div className="bdt-header-sub">วัดจันทาราม (ท่าซุง) 39 จุด</div>
+            <div className="bdt-header-sub">วัดจันทาราม (ท่าซุง) {places.length} จุด</div>
           </div>
         </div>
 
@@ -44,9 +45,9 @@ export default function SideDetailDrawer({
             type="button"
             className={`bdt-toggle-list-btn ${showPlacesList ? "bdt-toggle-list-btn--active" : ""}`}
             onClick={() => setShowPlacesList(!showPlacesList)}
-            title="สลับดูรายชื่อสถานที่ 1-39"
+            title="สลับดูรายชื่อสถานที่"
           >
-            {showPlacesList ? "ดูข้อมูล ❯" : "☰ รายชื่อ 39 จุด"}
+            {showPlacesList ? "ดูข้อมูล ❯" : `☰ รายชื่อ ${places.length} จุด`}
           </button>
           <button
             type="button"
@@ -69,7 +70,7 @@ export default function SideDetailDrawer({
               <Icon name="search" size={14} color="#64748b" />
               <input
                 type="text"
-                placeholder="ค้นหาชื่อหรือเลขจุด 1-39..."
+                placeholder="ค้นหาชื่อหรือเลขจุด..."
                 value={filterQuery}
                 onChange={(e) => setFilterQuery(e.target.value)}
                 className="bdt-search-input"
@@ -126,28 +127,35 @@ export default function SideDetailDrawer({
             </div>
 
             {/* Photo Thumbnail if available */}
-            {activePlace.photos && activePlace.photos.length > 0 && (
-              <div className="bdt-place-photo-card">
-                <img
-                  src={activePlace.photos[0]}
-                  alt={activePlace.name}
-                  className="bdt-place-photo"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-                {onOpenPhoto && (
-                  <button
-                    type="button"
-                    className="bdt-photo-btn"
-                    onClick={() => onOpenPhoto(activePlace.photos, activePlace.name)}
-                  >
-                    <Icon name="gallery" size={13} /> ดูรูปขนาดใหญ่ ({activePlace.photos.length})
-                  </button>
-                )}
-              </div>
-            )}
+            {(() => {
+              const placePhotos =
+                getPhotosForFolder(activePlace.name)?.length > 0
+                  ? getPhotosForFolder(activePlace.name)
+                  : activePlace.photos || [];
+              if (placePhotos.length === 0) return null;
+              return (
+                <div className="bdt-place-photo-card">
+                  <img
+                    src={placePhotos[0]}
+                    alt={activePlace.name}
+                    className="bdt-place-photo"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                  {onOpenPhoto && (
+                    <button
+                      type="button"
+                      className="bdt-photo-btn"
+                      onClick={() => onOpenPhoto(placePhotos, activePlace.name)}
+                    >
+                      <Icon name="gallery" size={13} /> ดูรูปขนาดใหญ่ ({placePhotos.length})
+                    </button>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Badges Bar (Status, Distance, Zone) */}
             <div className="bdt-badges-row">
@@ -232,7 +240,7 @@ export default function SideDetailDrawer({
             <div className="bdt-empty-title">แตะที่อาคารหรือหมุด 3D</div>
             <div className="bdt-empty-sub">
               คลิกที่ตัวอาคารหรือหมุดสีแดงบนแบบจำลองเพื่อดูข้อมูล หรือกดปุ่ม
-              "รายชื่อ 39 จุด" ด้านบน
+              "รายชื่อ {places.length} จุด" ด้านบน
             </div>
             <button
               type="button"
@@ -240,7 +248,7 @@ export default function SideDetailDrawer({
               style={{ fontSize: "0.78rem", marginTop: 12 }}
               onClick={() => setShowPlacesList(true)}
             >
-              เปิดดูรายชื่อสถานที่ทั้งหมด 39 จุด
+              เปิดดูรายชื่อสถานที่ทั้งหมด {places.length} จุด
             </button>
           </div>
         )}

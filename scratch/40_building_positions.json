@@ -1,0 +1,282 @@
+{
+  "1": {
+    "x": -59,
+    "z": 35.7,
+    "label": "ปราสาททองคำ",
+    "height": 16,
+    "highlight": true
+  },
+  "2": {
+    "x": -66.9,
+    "z": -6.9,
+    "label": "สมบัติพ่อให้",
+    "height": 8,
+    "highlight": true
+  },
+  "3": {
+    "x": -62.8,
+    "z": -26.1,
+    "label": "พระยืน 30 ศอก",
+    "height": 18,
+    "highlight": true
+  },
+  "4": {
+    "x": -51.9,
+    "z": -31.7,
+    "label": "สมเด็จองค์ปฐม",
+    "height": 13,
+    "highlight": true
+  },
+  "5": {
+    "x": -39.9,
+    "z": 12.8,
+    "label": "ลาน 25 ไร่",
+    "height": 8,
+    "highlight": false
+  },
+  "6": {
+    "x": -60.5,
+    "z": -36.3,
+    "label": "วิหารพระวิสุทธิเทพ",
+    "height": 8,
+    "highlight": true
+  },
+  "7": {
+    "x": -21.6,
+    "z": 10.6,
+    "label": "ตึกขาว",
+    "height": 8,
+    "highlight": false
+  },
+  "8": {
+    "x": -44.8,
+    "z": -23,
+    "label": "พระศรีอาริยเมตไตรย",
+    "height": 8,
+    "highlight": false
+  },
+  "9": {
+    "x": -5.3,
+    "z": -52.2,
+    "label": "สวนสมเด็จฯ",
+    "height": 8,
+    "highlight": false
+  },
+  "10": {
+    "x": 10.1,
+    "z": -64.9,
+    "label": "ตึกพระเถระ",
+    "height": 8,
+    "highlight": false
+  },
+  "11": {
+    "x": 19.8,
+    "z": -25.3,
+    "label": "ร้านอิ่มบุญ",
+    "height": 8,
+    "highlight": false
+  },
+  "12": {
+    "x": 11.3,
+    "z": -31.2,
+    "label": "วิหารแก้ว 100 เมตร",
+    "height": 14,
+    "highlight": true
+  },
+  "13": {
+    "x": 35.2,
+    "z": -47.3,
+    "label": "กาแฟท่าซุง",
+    "height": 8,
+    "highlight": false
+  },
+  "14": {
+    "x": 40.6,
+    "z": -45.1,
+    "label": "ร้านค้าสวัสดิการ",
+    "height": 8,
+    "highlight": false
+  },
+  "15": {
+    "x": 50.5,
+    "z": -3.7,
+    "label": "ห้องสมุดประชาชน",
+    "height": 8,
+    "highlight": false
+  },
+  "16": {
+    "x": 43.3,
+    "z": -6.7,
+    "label": "ที่พักพระพินิจอักษร",
+    "height": 8,
+    "highlight": false
+  },
+  "17": {
+    "x": -37.5,
+    "z": 70.4,
+    "label": "ศาลา 12 ไร่",
+    "height": 8,
+    "highlight": true
+  },
+  "18": {
+    "x": -28.6,
+    "z": 57.2,
+    "label": "หอประชุมพระสุธรรมยานเถระ",
+    "height": 8,
+    "highlight": false
+  },
+  "19": {
+    "x": -22.9,
+    "z": 77,
+    "label": "โรงเรียนพระพินิจอักษร",
+    "height": 8,
+    "highlight": false
+  },
+  "20": {
+    "x": -16.7,
+    "z": 68.5,
+    "label": "พระอุโบสถ",
+    "height": 8,
+    "highlight": true
+  },
+  "21": {
+    "x": -8.8,
+    "z": 59.4,
+    "label": "ศาลาบูรพาจารย์",
+    "height": 8,
+    "highlight": false
+  },
+  "22": {
+    "x": -2.9,
+    "z": 69.1,
+    "label": "ศาลานวราช",
+    "height": 8,
+    "highlight": false
+  },
+  "23": {
+    "x": -35.9,
+    "z": 37.8,
+    "label": "ศาลา 2 ไร่",
+    "height": 8,
+    "highlight": false
+  },
+  "24": {
+    "x": -19.8,
+    "z": 40.1,
+    "label": "ศาลา 3 ไร่",
+    "height": 8,
+    "highlight": false
+  },
+  "25": {
+    "x": 17.6,
+    "z": -16.5,
+    "label": "อาคารธรรมวิโมกข์",
+    "height": 8,
+    "highlight": false
+  },
+  "26": {
+    "x": 56.1,
+    "z": -46.2,
+    "label": "พระเจ้าพรหมมหาราช",
+    "height": 8,
+    "highlight": false
+  },
+  "27": {
+    "x": 47.3,
+    "z": -11,
+    "label": "อาคารเสริมศรี",
+    "height": 8,
+    "highlight": false
+  },
+  "28": {
+    "x": 51.7,
+    "z": -58.3,
+    "label": "เจดีย์พุดตาน",
+    "height": 8,
+    "highlight": false
+  },
+  "29": {
+    "x": 52.8,
+    "z": -52.8,
+    "label": "วิหารพระมหากัสสป",
+    "height": 8,
+    "highlight": false
+  },
+  "30": {
+    "x": 38.5,
+    "z": -68.2,
+    "label": "วิหาร 5 พระองค์",
+    "height": 8,
+    "highlight": true
+  },
+  "31": {
+    "x": 34.1,
+    "z": -73.7,
+    "label": "หอฉัน",
+    "height": 8,
+    "highlight": false
+  },
+  "32": {
+    "x": 46.2,
+    "z": -60.5,
+    "label": "โบสถ์เก่า",
+    "height": 8,
+    "highlight": true
+  },
+  "33": {
+    "x": 61.6,
+    "z": -82.5,
+    "label": "แพเลี้ยงปลา",
+    "height": 8,
+    "highlight": true
+  },
+  "34": {
+    "x": 53.9,
+    "z": -45.1,
+    "label": "มณฑปแก้วพระองค์ที่ 10-11",
+    "height": 8,
+    "highlight": false
+  },
+  "35": {
+    "x": 58.3,
+    "z": -38.5,
+    "label": "มณฑปท้าวมหาราช",
+    "height": 8,
+    "highlight": false
+  },
+  "36": {
+    "x": 48.4,
+    "z": -56.1,
+    "label": "วิหารหลวงพ่อศักดิ์สิทธิ์",
+    "height": 12,
+    "highlight": true
+  },
+  "37": {
+    "x": 62.7,
+    "z": -29.7,
+    "label": "ตึกรับแขก",
+    "height": 8,
+    "highlight": false
+  },
+  "38": {
+    "x": 51.7,
+    "z": -49.5,
+    "label": "วิหารใต้ต้นโพธิ์",
+    "height": 8,
+    "highlight": false
+  },
+  "39": {
+    "x": 73.7,
+    "z": -18,
+    "label": "โรงเรียนพระสุธรรมยานฯ",
+    "height": 8,
+    "highlight": false
+  },
+  "40": {
+    "x": 67.1,
+    "z": -79.2,
+    "label": "เรือคนึงหา",
+    "height": 8,
+    "highlight": false
+  }
+}

@@ -192,6 +192,26 @@ const icons = {
       <path d="M14 4V6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
     </g>
   ),
+  home: (
+    <g>
+      <path d="M3 10.5L12 3L21 10.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M5 9.5V20C5 20.6 5.4 21 6 21H18C18.6 21 19 20.6 19 20V9.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M10 21V14H14V21" fill="none" stroke="currentColor" strokeWidth="1.4"/>
+    </g>
+  ),
+  compass: (
+    <g>
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      <polygon points="12,6 15,12 12,18 9,12" fill="none" stroke="currentColor" strokeWidth="1.4"/>
+      <polygon points="12,6 15,12 12,12" fill="currentColor"/>
+    </g>
+  ),
+  search: (
+    <g>
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="1.6"/>
+      <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+    </g>
+  ),
   house: (
     <g>
       <path d="M3 11L12 4L21 11" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -397,30 +417,52 @@ export default function Icon({ name, size = 24, color, className = "", style = {
   );
 }
 
-// Icon name mapping for data files
+// Icon name mapping for data files (ทั้ง 39 สถานที่ตามผังวัด)
 export const placeIcons = {
-  1: "crystal",
-  2: "palace",
-  3: "pray",
-  4: "mondop",
-  5: "lotusSun",
-  6: "scripture",
-  7: "stupa",
-  8: "oldTemple",
-  9: "lotus",
-  10: "footprint",
-  11: "fish",
-  12: "coinFlow",
-  13: "fourKings",
-  14: "museum",
-  15: "tenthBuddha",
-  16: "fiveBuddhas",
+  1: "palace",       // 1 ปราสาททองคำ
+  2: "museum",       // 2 ตึกสมบัติพ่อให้
+  3: "coinFlow",     // 3 พระยืน 30 ศอก
+  4: "mondop",       // 4 วิหารสมเด็จองค์ปฐม
+  5: "scripture",    // 5 ศาลา 24 ไร่
+  6: "pray",         // 6 พระยืน 8 ศอก
+  7: "stupa",        // 7 ตึกขาว
+  8: "lotusSun",     // 8 วิหารพระศรีอาริยเมตไตรย
+  9: "lotus",        // 9 สวนสมเด็จฯ
+  10: "stupa",       // 10 ตึกพระเถระ
+  11: "fish",        // 11 ตึกกลางน้ำ
+  12: "crystal",     // 12 มหาวิหารแก้ว 100 เมตร
+  13: "scripture",   // 13 ศาลามิตรสรัทธา
+  14: "utensils",    // 14 ร้านค้าสวัสดิการ
+  15: "scripture",   // 15 ห้องสมุดประชาชนเฉลิมราชกุมารีฯ
+  16: "meditation",  // 16 ที่พักปฏิบัติธรรมพระพินิจอักษร
+  17: "scripture",   // 17 ศาลา 12 ไร่
+  18: "house",       // 18 ที่พักผู้ปฏิบัติธรรมชาย
+  19: "scripture",   // 19 ศาลาพระพินิจอักษร ทองดี
+  20: "navTemple",   // 20 โบสถ์
+  21: "scripture",   // 21 ศาลาธรรมสถิต
+  22: "scripture",   // 22 ศาลา นวราช
+  23: "scripture",   // 23 ศาลา 2.4 ไร่
+  24: "scripture",   // 24 ศาลา 3 ไร่
+  25: "lotus",       // 25 สวนป่าไผ่
+  26: "stupa",       // 26 อนุสาวรีย์พระเจ้าพรหมมหาราช
+  27: "pray",        // 27 พระนอน 8 ศอก
+  28: "stupa",       // 28 พระจุฬามณี
+  29: "stupa",       // 29 กรมหลวงชุมพร
+  30: "fiveBuddhas", // 30 วิหารหลวงพ่อ 5 พระองค์
+  31: "utensils",    // 31 หอฉัน
+  32: "oldTemple",   // 32 ศาลาเก่า
+  33: "fish",        // 33 วังมัจฉา
+  34: "mondop",      // 34 มณฑปแก้ว
+  35: "fourKings",   // 35 มณฑปท้าวมหาราช
+  36: "oldTemple",   // 36 วิหารหลวงพ่อศักดิ์สิทธิ์ และ โบสถ์เก่า
+  37: "house",       // 37 ตึกรับแขก
+  38: "tenthBuddha", // 38 วิหารพระองค์ที่ 10 และ 11
+  39: "scripture",   // 39 โรงเรียนพระสุธรรมยานเถระวิทยา
 };
 
 export const navIcons = {
-  home: "navTemple",
-  map: "navMap",
-  tour: "navRoute",
+  home: "home",
+  explore: "compass",
   dharma: "navDharma",
   info: "navInfo",
 };

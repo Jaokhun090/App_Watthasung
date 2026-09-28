@@ -127,3 +127,34 @@ export function getGoogleMapsPointUrl(lat, lng, name) {
 export function getTelUrl(phone) {
   return `tel:${phone.replace(/-/g, "")}`;
 }
+
+/**
+ * คำนวณระยะทางระหว่างพิกัด 2 จุดด้วย Haversine Formula (หน่วยเป็นเมตร)
+ */
+export function calculateDistance(lat1, lon1, lat2, lon2) {
+  if (lat1 == null || lon1 == null || lat2 == null || lon2 == null) return null;
+  const R = 6371e3; // รัศมีโลกเป็นเมตร
+  const φ1 = (lat1 * Math.PI) / 180;
+  const φ2 = (lat2 * Math.PI) / 180;
+  const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+  const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // ระยะทางเป็นเมตร
+}
+
+/**
+ * จัดรูปแบบระยะทางให้อ่านง่าย (ม. หรือ กม.)
+ */
+export function formatDistance(meters) {
+  if (meters == null || isNaN(meters)) return null;
+  if (meters < 1000) {
+    return `${Math.round(meters)} ม.`;
+  }
+  return `${(meters / 1000).toFixed(1)} กม.`;
+}
+

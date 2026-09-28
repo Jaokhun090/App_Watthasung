@@ -498,7 +498,7 @@ export const places = [
     "id": 18,
     "name": "หอประชุมพระสุธรรมยานเถระ (โรงทานศาลา 4 ไร่)",
     "altName": "",
-    "shortName": "หอประชุมพระสุธรรมยานเถระ",
+    "shortName": "ศาลา 4 ไร่ (หอประชุม)",
     "zone": "pavilion",
     "category": "pavilion",
     "highlight": false,

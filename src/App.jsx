@@ -433,13 +433,13 @@ function HomePage({ onNavigate, locationService }) {
         <div className="map-signboard-card" onClick={() => onNavigate("explore", "map")}>
           <div className="map-signboard-card__img-wrap">
             <img
-              src={templeInfo.mapSignboardImg}
-              alt="แผนที่ผังวัดท่าซุง"
+              src="/master-3d-plan.jpg"
+              alt="แผนผังภาพ 3D ทัศนียภาพ วัดท่าซุง"
               className="map-signboard-card__img"
               loading="lazy"
             />
             <div className="map-signboard-card__badge">
-              <Icon name="navMap" size={14} color="#38bdf8" /> ผังวัดดิจิทัล & โมเดล 3D Twin
+              <Icon name="sparkle" size={14} color="#f59e0b" /> แผนผังภาพ 3D ทัศนียภาพ & ดิจิทัลทวิน
             </div>
             <div className="map-signboard-card__zoom-hint">
               <Icon name="navMap" size={13} /> แตะเพื่อเข้าสู่ระบบแผนที่
@@ -447,7 +447,7 @@ function HomePage({ onNavigate, locationService }) {
           </div>
           <div className="map-signboard-card__footer">
             <div className="map-signboard-card__desc">
-              เลือกดูได้ 2 รูปแบบ: ผังวัดดิจิทัล (วาดใหม่ตามป้ายจริง {places.length} จุด) และโมเดล 3D Digital Twin สไตล์สถาปัตยกรรม
+              เลือกดูได้ 2 รูปแบบ: แผนผังภาพวาด 3D ทัศนียภาพสมจริง ({places.length} จุด) และผังวัดดิจิทัลตามป้ายจริง
             </div>
             <button
               type="button"
@@ -597,7 +597,7 @@ function ExplorePage({
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedZone, setSelectedZone] = useState("all");
   const [sortByNearest, setSortByNearest] = useState(false);
-  const [mapMode, setMapMode] = useState("masterMap"); // 'masterMap' | 'digitalTwin'
+  const [mapMode, setMapMode] = useState("digitalTwin"); // 'digitalTwin' | 'masterMap'
   const [selectedPlaceForMap, setSelectedPlaceForMap] = useState(null);
   const [photoModal, setPhotoModal] = useState({ isOpen: false, photos: [], placeName: "" });
 
@@ -738,20 +738,8 @@ function ExplorePage({
       {/* ===== แท็บย่อย 2: แผนที่ (ผังวัดดิจิทัล + โมเดล 3D Digital Twin สไตล์ Bangkok Digital Twin) ===== */}
       {subView === "map" && (
         <div className="map-view-section">
-          {/* สลับ 2 โหมด: ผังวัดดิจิทัล (วาดตามป้ายจริง) vs โมเดล 3D Digital Twin */}
+          {/* สลับ 2 โหมด: แผนผังภาพ 3D ทัศนียภาพ (แผนผัง01) vs ผังวัดดิจิทัล (ป้ายผังจริง) */}
           <div className="map-mode-selector">
-            <button
-              type="button"
-              className={`map-mode-btn ${mapMode === "masterMap" ? "map-mode-btn--active" : ""}`}
-              onClick={() => {
-                setMapMode("masterMap");
-                setSelectedPlaceForMap(null);
-              }}
-            >
-              <Icon name="navMap" size={15} color={mapMode === "masterMap" ? "var(--gold-dark)" : "currentColor"} />
-              <span>ผังวัดดิจิทัล (วาดตามป้ายจริง)</span>
-            </button>
-
             <button
               type="button"
               className={`map-mode-btn ${mapMode === "digitalTwin" ? "map-mode-btn--active" : ""}`}
@@ -761,7 +749,19 @@ function ExplorePage({
               }}
             >
               <Icon name="sparkle" size={15} color={mapMode === "digitalTwin" ? "var(--gold-dark)" : "currentColor"} />
-              <span>โมเดล 3D Digital Twin</span>
+              <span>แผนผังภาพ 3D ทัศนียภาพ</span>
+            </button>
+
+            <button
+              type="button"
+              className={`map-mode-btn ${mapMode === "masterMap" ? "map-mode-btn--active" : ""}`}
+              onClick={() => {
+                setMapMode("masterMap");
+                setSelectedPlaceForMap(null);
+              }}
+            >
+              <Icon name="navMap" size={15} color={mapMode === "masterMap" ? "var(--gold-dark)" : "currentColor"} />
+              <span>ผังวัดเวกเตอร์ (ตามป้ายจริง)</span>
             </button>
           </div>
 

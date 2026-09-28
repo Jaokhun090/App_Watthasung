@@ -2557,12 +2557,13 @@ body {
 .bdt-container {
   position: relative;
   width: 100%;
-  height: 540px;
-  background: #e2e8f0;
-  border-radius: var(--radius-md);
+  height: 580px;
+  min-height: 520px;
+  background: #0c1524;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid #cbd5e1;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
 }
 
 .bdt-viewport {
@@ -2574,6 +2575,32 @@ body {
 
 .bdt-viewport:active {
   cursor: grabbing;
+}
+
+.bdt-hud-bar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.bdt-hud-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.bdt-hud-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .bdt-hud-top-left {
@@ -2597,52 +2624,52 @@ body {
 .bdt-hud-pill-btn {
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(10px);
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   font-family: var(--font-primary);
   font-size: 0.74rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f8fafc;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease;
 }
 
 .bdt-hud-pill-btn:hover {
-  background: #ffffff;
-  border-color: #94a3b8;
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(212, 168, 67, 0.6);
   transform: translateY(-1px);
 }
 
 .bdt-hud-icon-btn {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(10px);
-  border: 1px solid #cbd5e1;
-  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.88rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease;
 }
 
 .bdt-hud-icon-btn:hover {
-  background: #ffffff;
-  border-color: #94a3b8;
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(212, 168, 67, 0.6);
   transform: translateY(-1px);
 }
 
 .bdt-hud-icon-btn--active {
-  background: #0f172a;
-  color: #f8fafc;
-  border-color: #334155;
+  background: var(--gold-dark);
+  color: #ffffff;
+  border-color: var(--gold);
 }
 
 /* 3. Bangkok Digital Twin Side Detail Drawer (Slide from Left with Close ✕) */
@@ -3132,6 +3159,341 @@ body {
 }
 
 
+/* ===== Panoramic Illustrated 3D Digital Twin Map Styles ===== */
+.panoramic-twin-wrapper {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  background: #0f172a;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.panoramic-hud-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.panoramic-zone-pills {
+  display: flex;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  padding: 4px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: auto;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.panoramic-zone-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.panoramic-zone-btn {
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-family: var(--font-primary);
+  font-size: 0.70rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.panoramic-zone-btn:hover {
+  color: #f8fafc;
+}
+
+.panoramic-zone-btn--active {
+  background: var(--gold-dark);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
+}
+
+.panoramic-quick-jump {
+  pointer-events: auto;
+  max-width: 250px;
+  width: 100%;
+}
+
+.panoramic-select {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 168, 67, 0.5);
+  color: #f8fafc;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.panoramic-select option {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.panoramic-hud-actions {
+  position: absolute;
+  top: 58px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.panoramic-hud-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.panoramic-hud-btn:hover {
+  background: var(--gold);
+  color: var(--brown-deep);
+  transform: scale(1.08);
+}
+
+.panoramic-hud-btn--active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #60a5fa;
+}
+
+.panoramic-hud-btn--gold {
+  background: #d97706;
+  color: #fff;
+  border-color: #fbbf24;
+}
+
+.panoramic-viewport {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.panoramic-viewport:active {
+  cursor: grabbing;
+}
+
+.panoramic-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.panoramic-canvas--sunset {
+  filter: sepia(0.22) saturate(1.25) brightness(0.96) hue-rotate(-8deg);
+}
+
+.panoramic-master-image {
+  display: block;
+  width: 3518px;
+  height: 1474px;
+  max-width: none;
+  max-height: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.panoramic-river-badge {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(2, 132, 199, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  animation: floatRiver 3s ease-in-out infinite;
+}
+
+@keyframes floatRiver {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-4px); }
+}
+
+/* 3D Hotspot Pin */
+.panoramic-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.panoramic-pin:hover {
+  transform: translate(-50%, -115%) scale(1.18);
+  z-index: 25;
+}
+
+.panoramic-pin--selected {
+  transform: translate(-50%, -120%) scale(1.25);
+  z-index: 30 !important;
+}
+
+.panoramic-pin__pulse {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(212, 168, 67, 0.55);
+  box-shadow: 0 0 14px rgba(212, 168, 67, 0.9);
+  animation: pinPulse 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pinPulse {
+  0% { transform: translate(-50%, 50%) scale(0.6); opacity: 1; }
+  100% { transform: translate(-50%, 50%) scale(2.2); opacity: 0; }
+}
+
+.panoramic-pin__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1.8px solid #cbd5e1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  font-weight: 800;
+  font-size: 0.72rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.panoramic-pin--highlight .panoramic-pin__badge {
+  box-shadow: 0 0 12px rgba(212, 168, 67, 0.8), 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.panoramic-pin__num {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.panoramic-pin__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panoramic-pin__label {
+  margin-top: 2px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(8px);
+  color: #f8fafc;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panoramic-pin__label--active {
+  background: #2563eb;
+  border-color: #60a5fa;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.panoramic-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  color: #94a3b8;
+  z-index: 15;
+}
+
+.panoramic-footer-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.panoramic-gps-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(37, 99, 235, 0.25);
+  color: #60a5fa;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
 /* ===== Media Queries ===== */
 @media (max-width: 380px) {
   .page {
@@ -3142,6 +3504,10 @@ body {
   .header {
     padding: var(--space-sm) var(--space-md);
   }
+
+  .panoramic-twin-wrapper {
+    height: 480px;
+  }
 }
 
 @media (min-width: 481px) {
@@ -3151,3 +3517,4 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
   }
 }
+

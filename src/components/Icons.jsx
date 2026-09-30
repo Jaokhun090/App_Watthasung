@@ -11,14 +11,47 @@ const icons = {
       <line x1="12" y1="2" x2="17" y2="22" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
     </g>
   ),
+  prasatThong: (
+    <g>
+      {/* Central Spire */}
+      <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <polygon points="12,1 13,3 12,4 11,3" fill="currentColor"/>
+      {/* Central Upper Roof */}
+      <path d="M10 6L12 3.5L14 6L13 8H11L10 6Z" fill="currentColor"/>
+      <rect x="9.5" y="8" width="5" height="3" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      {/* Mid Spire Tiers */}
+      <path d="M7 11L12 8L17 11L16 13H8L7 11Z" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      {/* Left Satellite Spire */}
+      <line x1="5.5" y1="8" x2="5.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      <polygon points="5.5,7 6.5,9 4.5,9" fill="currentColor"/>
+      {/* Right Satellite Spire */}
+      <line x1="18.5" y1="8" x2="18.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      <polygon points="18.5,7 19.5,9 17.5,9" fill="currentColor"/>
+      {/* Main Roof Gable */}
+      <path d="M3 15Q5 16 6 16L18 16Q19 16 21 15L19 13L5 13Z" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+      {/* Palace Body */}
+      <rect x="5" y="16" width="14" height="4" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      {/* Center Gate */}
+      <path d="M10.5 20V17Q12 15.5 13.5 17V20" fill="currentColor" opacity="0.6"/>
+      {/* Plinth Base */}
+      <rect x="3" y="20" width="18" height="2" rx="0.5" fill="currentColor"/>
+    </g>
+  ),
   palace: (
     <g>
-      <path d="M12 2L14 6H10L12 2Z" fill="currentColor"/>
-      <rect x="9" y="6" width="6" height="3" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="7" y="9" width="10" height="4" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="5" y="13" width="14" height="4" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="4" y="17" width="16" height="3" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="12" y1="6" x2="12" y2="9" stroke="currentColor" strokeWidth="1"/>
+      <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <polygon points="12,1 13,3 12,4 11,3" fill="currentColor"/>
+      <path d="M10 6L12 3.5L14 6L13 8H11L10 6Z" fill="currentColor"/>
+      <rect x="9.5" y="8" width="5" height="3" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      <path d="M7 11L12 8L17 11L16 13H8L7 11Z" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      <line x1="5.5" y1="8" x2="5.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      <polygon points="5.5,7 6.5,9 4.5,9" fill="currentColor"/>
+      <line x1="18.5" y1="8" x2="18.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      <polygon points="18.5,7 19.5,9 17.5,9" fill="currentColor"/>
+      <path d="M3 15Q5 16 6 16L18 16Q19 16 21 15L19 13L5 13Z" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+      <rect x="5" y="16" width="14" height="4" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      <path d="M10.5 20V17Q12 15.5 13.5 17V20" fill="currentColor" opacity="0.6"/>
+      <rect x="3" y="20" width="18" height="2" rx="0.5" fill="currentColor"/>
     </g>
   ),
   pray: (
@@ -72,13 +105,13 @@ const icons = {
   ),
   oldTemple: (
     <g>
-      <path d="M12 3L20 9H4L12 3Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      <rect x="4" y="9" width="16" height="2" fill="none" stroke="currentColor" strokeWidth="1.2"/>
-      <line x1="7" y1="11" x2="7" y2="19" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="11" y1="11" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="13" y1="11" x2="13" y2="19" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="17" y1="11" x2="17" y2="19" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="3" y="19" width="18" height="2" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      {/* Thai Ubosot with tiered gable roof and chofa */}
+      <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M10 5L12 3L14 5L13 7H11L10 5Z" fill="currentColor"/>
+      <path d="M3 11Q5 12 7 12L17 12Q19 12 21 11L18 8L6 8Z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+      <rect x="5.5" y="12" width="13" height="7" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.3"/>
+      <path d="M9.5 19V15Q12 13.5 14.5 15V19" fill="currentColor" opacity="0.6"/>
+      <rect x="3.5" y="19" width="17" height="2" rx="0.5" fill="currentColor"/>
     </g>
   ),
   lotus: (
@@ -113,9 +146,14 @@ const icons = {
   // ===== Bottom Navigation =====
   navTemple: (
     <g>
-      <path d="M12 3L20 10H4L12 3Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-      <rect x="6" y="10" width="12" height="10" fill="none" stroke="currentColor" strokeWidth="1.8"/>
-      <rect x="10" y="14" width="4" height="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      {/* Thai Temple Spire & Curved Eaves */}
+      <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+      <polygon points="12,1 13,3 12,4 11,3" fill="currentColor"/>
+      <path d="M10 5L12 3L14 5L13 7H11L10 5Z" fill="currentColor"/>
+      <path d="M4 11Q6 12 7 12L17 12Q18 12 20 11L18 8L6 8Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+      <rect x="6" y="12" width="12" height="7" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M10 19V15Q12 13.5 14 15V19" fill="currentColor" opacity="0.6"/>
+      <rect x="4" y="19" width="16" height="2" rx="0.5" fill="currentColor"/>
     </g>
   ),
   navMap: (
@@ -356,12 +394,13 @@ const icons = {
   ),
   museum: (
     <g>
-      <path d="M4 10L12 4L20 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      <rect x="4" y="10" width="16" height="2" fill="none" stroke="currentColor" strokeWidth="1.2"/>
-      <line x1="7" y1="12" x2="7" y2="18" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="12" y1="12" x2="12" y2="18" stroke="currentColor" strokeWidth="1.5"/>
-      <line x1="17" y1="12" x2="17" y2="18" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="3" y="18" width="18" height="3" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      {/* Thai Treasure Pavilion / Hall */}
+      <line x1="12" y1="2" x2="12" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M4 9Q6 10 7 10L17 10Q18 10 20 9L18 5L6 5Z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+      <rect x="5" y="10" width="14" height="9" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.4"/>
+      <rect x="8" y="12" width="8" height="4" rx="0.5" fill="currentColor" opacity="0.25"/>
+      <path d="M10.5 19V15Q12 14 13.5 15V19" fill="currentColor" opacity="0.7"/>
+      <rect x="3" y="19" width="18" height="2" rx="0.5" fill="currentColor"/>
     </g>
   ),
   tenthBuddha: (
@@ -437,7 +476,6 @@ export const placeIcons = {
   16: "meditation",  // 16 อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร
   17: "scripture",   // 17 พระมหาวิหาร100ปี พระราชพรหมยาน (ศาลา 12 ไร่)
   18: "house",       // 18 หอประชุมพระสุธรรมยานเถระ (โรงทานศาลา 4 ไร่)
-  19: "scripture",   // 19 โรงเรียนพระพินิจอักษร (ทองดี)
   20: "navTemple",   // 20 พระอุโบสถ
   21: "scripture",   // 21 ศาลาบูรพาจารย์
   22: "scripture",   // 22 ศาลานวราช (ติดต่อที่พัก)

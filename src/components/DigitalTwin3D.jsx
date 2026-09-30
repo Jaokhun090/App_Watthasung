@@ -27,7 +27,6 @@ export const BUILDING_LAYOUT = {
   39: { x: 75, z: 65, w: 32, d: 14, h: 11, type: "school", label: "โรงเรียนพระสุธรรมยานเถระวิทยา", zone: "pavilion" },
 
   // --- โซนศาลา & อาคารบริการฝั่งตะวันตก (Z = -60 ถึง 20, X = -140 ถึง -15) ---
-  19: { x: -130, z: 12, w: 24, d: 12, h: 9, type: "school", label: "โรงเรียนพระพินิจอักษร (ทองดี)", zone: "pavilion" },
   17: { x: -95, z: 10, w: 36, d: 24, h: 14, type: "curvedVault", label: "พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)", zone: "pavilion" },
   20: { x: -58, z: 14, w: 22, d: 14, h: 13, type: "newUbosot", label: "พระอุโบสถ (โบสถ์ใหม่)", zone: "new" },
   22: { x: -74, z: -14, w: 16, d: 12, h: 8, type: "pavilion", label: "ศาลานวราช (ติดต่อที่พัก)", zone: "pavilion" },
@@ -1346,7 +1345,7 @@ export default function DigitalTwin3D({
               if (e.target.value) handleSelectBuilding(Number(e.target.value));
             }}
           >
-            <option value="">🔎 บินไปที่อาคาร (40 จุด)...</option>
+            <option value="">🔎 ...</option>
             {places.map((p) => (
               <option key={p.id} value={p.id}>
                 {p.id}. {p.shortName || p.name}

@@ -327,7 +327,34 @@ body {
 }
 
 .place-card--highlight {
-  border-left: 4px solid var(--gold);
+  border-left: 5px solid var(--gold-dark);
+  background: linear-gradient(135deg, #fffdf8 0%, #fef9ee 60%, #fef3c7 100%);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 4px 18px rgba(217, 119, 6, 0.14), var(--shadow-sm);
+  position: relative;
+}
+
+.place-card--highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.22), transparent 70%);
+  border-top-right-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+.place-card--highlight .place-card__emoji {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.place-card--highlight .place-card__name {
+  color: var(--brown-deep);
+  font-weight: 700;
 }
 
 .place-card--expanded .place-card__details {

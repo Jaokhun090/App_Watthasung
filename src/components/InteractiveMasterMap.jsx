@@ -27,7 +27,6 @@ const SIGNBOARD_LOCATIONS = [
   // ฝั่งซ้าย (ฝั่งวัดเดิม & ศาลาปฏิบัติธรรม)
   { id: 17, x: 300, y: 275, icon: "scripture", color: "#991b1b" },
   { id: 18, x: 300, y: 330, icon: "house", color: "#78350f" },
-  { id: 19, x: 200, y: 395, icon: "scripture", color: "#475569" },
   { id: 20, x: 300, y: 415, icon: "navTemple", color: "#d4a843" },
   { id: 21, x: 375, y: 365, icon: "scripture", color: "#b45309" },
   { id: 22, x: 375, y: 415, icon: "scripture", color: "#78350f" },
@@ -330,7 +329,7 @@ export default function InteractiveMasterMap({
                   fontSize="12"
                   fill={isSelected ? "#ffffff" : isHighlight ? "#b45309" : "#334155"}
                 >
-                  {loc.id === 1 ? "🏰" : loc.id === 12 ? "✨" : loc.id === 3 ? "🙏" : loc.id === 33 ? "🐟" : loc.id === 25 ? "🎋" : "🏛️"}
+                  {loc.id === 1 ? "🏰" : loc.id === 12 ? "✨" : loc.id === 3 ? "🙏" : loc.id === 33 ? "🐟" : loc.id === 25 ? "🎋" : "🛕"}
                 </text>
 
                 {/* Place Name Label */}

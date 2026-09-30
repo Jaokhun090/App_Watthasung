@@ -33,7 +33,9 @@ export default function SideDetailDrawer({
       {/* Drawer Header */}
       <div className="bdt-side-drawer__header">
         <div className="bdt-side-drawer__header-title">
-          <span className="bdt-badge-icon">🏛️</span>
+          <span className="bdt-badge-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+            <Icon name="prasatThong" size={20} color="var(--gold-dark)" />
+          </span>
           <div>
             <div className="bdt-header-main">ข้อมูลสถานที่ดิจิทัล</div>
             <div className="bdt-header-sub">วัดจันทาราม (ท่าซุง) {places.length} จุด</div>

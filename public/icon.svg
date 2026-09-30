@@ -1,12 +1,131 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
   <defs>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#D4A843"/>
-      <stop offset="50%" style="stop-color:#F5D77A"/>
-      <stop offset="100%" style="stop-color:#D4A843"/>
+    <!-- Metallic Gold Gradients -->
+    <linearGradient id="goldSeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#F59E0B"/>
+      <stop offset="70%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
     </linearGradient>
+
+    <linearGradient id="goldBright" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="30%" stop-color="#FDE68A"/>
+      <stop offset="70%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="50%" stop-color="#FEF08A"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E1705"/>
+      <stop offset="60%" stop-color="#1A0D03"/>
+      <stop offset="100%" stop-color="#0F0701"/>
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#F59E0B" flood-opacity="0.35"/>
+    </filter>
   </defs>
-  <circle cx="50" cy="50" r="48" fill="#3D1F00"/>
-  <circle cx="50" cy="50" r="44" fill="url(#gold)" opacity="0.3"/>
-  <text x="50" y="58" font-size="42" text-anchor="middle" fill="url(#gold)">🏛️</text>
+
+  <!-- Circular Royal Seal Background -->
+  <circle cx="64" cy="64" r="62" fill="url(#bgGrad)"/>
+  <circle cx="64" cy="64" r="60.5" fill="none" stroke="url(#goldSeal)" stroke-width="2.5"/>
+  <circle cx="64" cy="64" r="56" fill="none" stroke="url(#goldAccent)" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.6"/>
+
+  <!-- Celestial Aureole Arch (ซุ้มเรือนแก้วทรงโค้ง) -->
+  <path d="M 22 93 A 44 44 0 0 1 106 93" fill="none" stroke="url(#goldSeal)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 27 93 A 39 39 0 0 1 101 93" fill="none" stroke="url(#goldBright)" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- Main Prasat Thong Silhouette Group -->
+  <g filter="url(#goldGlow)">
+    <!-- Base Tiers (ฐานบัวพระปราสาท 3 ชั้น) -->
+    <rect x="14" y="105" width="100" height="5" rx="2" fill="url(#goldSeal)"/>
+    <rect x="18" y="99" width="92" height="6" rx="1.5" fill="url(#goldBright)"/>
+    <rect x="23" y="93" width="82" height="6" rx="1" fill="url(#goldSeal)"/>
+
+    <!-- Lower Palace Hall Wall -->
+    <path d="M 26 93 L 26 77 L 102 77 L 102 93 Z" fill="url(#goldBright)"/>
+
+    <!-- Arched Windows / Gates (ซุ้มประตูหน้าต่างวิจิตร) -->
+    <!-- Center Grand Arch -->
+    <path d="M 57 93 V 81 Q 64 74 71 81 V 93 Z" fill="#1A0D03"/>
+    <path d="M 59 93 V 83 Q 64 78 69 83 V 93 Z" fill="url(#goldAccent)"/>
+    <!-- Left Arch -->
+    <path d="M 36 93 V 83 Q 41 78 46 83 V 93 Z" fill="#1A0D03"/>
+    <path d="M 38 93 V 85 Q 41 81 44 85 V 93 Z" fill="url(#goldAccent)"/>
+    <!-- Right Arch -->
+    <path d="M 82 93 V 83 Q 87 78 92 83 V 93 Z" fill="#1A0D03"/>
+    <path d="M 84 93 V 85 Q 87 81 90 85 V 93 Z" fill="url(#goldAccent)"/>
+
+    <!-- Lower Roof Tier with Upward Sweeping Chofa Eaves -->
+    <path d="M 16 75 Q 22 77 27 77 L 101 77 Q 106 77 112 75 L 103 67 L 25 67 Z" fill="url(#goldSeal)"/>
+    <path d="M 20 74 L 27 74 L 101 74 L 108 74" stroke="#FFFBEB" stroke-width="0.8" opacity="0.7"/>
+
+    <!-- Outer Left Spire (ยอดบริวารนอกซ้าย) -->
+    <path d="M 25 67 L 27 57 H 35 L 37 67 Z" fill="url(#goldBright)"/>
+    <path d="M 23 57 Q 27 59 31 59 Q 35 59 39 57 L 31 46 Z" fill="url(#goldSeal)"/>
+    <path d="M 30 46 L 31 35 L 32 46 Z" fill="url(#goldBright)"/>
+    <polygon points="31,31 32.5,35 31,37 29.5,35" fill="#FFFBEB"/>
+
+    <!-- Outer Right Spire (ยอดบริวารนอกขวา) -->
+    <path d="M 91 67 L 93 57 H 101 L 103 67 Z" fill="url(#goldBright)"/>
+    <path d="M 89 57 Q 93 59 97 59 Q 101 59 105 57 L 97 46 Z" fill="url(#goldSeal)"/>
+    <path d="M 96 46 L 97 35 L 98 46 Z" fill="url(#goldBright)"/>
+    <polygon points="97,31 98.5,35 97,37 95.5,35" fill="#FFFBEB"/>
+
+    <!-- Middle Palace Hall Wall -->
+    <path d="M 37 67 L 37 54 L 91 54 L 91 67 Z" fill="url(#goldBright)"/>
+
+    <!-- Middle Roof Tier with Chofa Wings -->
+    <path d="M 29 54 Q 35 56 40 56 L 88 56 Q 93 56 99 54 L 92 46 L 36 46 Z" fill="url(#goldSeal)"/>
+    <path d="M 34 53 L 40 53 L 88 53 L 94 53" stroke="#FFFBEB" stroke-width="0.8" opacity="0.7"/>
+
+    <!-- Inner Left Spire (ยอดบริวารในซ้าย) -->
+    <path d="M 38 46 L 41 38 H 49 L 52 46 Z" fill="url(#goldBright)"/>
+    <path d="M 37 38 Q 41 40 45 40 Q 49 40 53 38 L 45 28 Z" fill="url(#goldSeal)"/>
+    <path d="M 44 28 L 45 19 L 46 28 Z" fill="url(#goldBright)"/>
+    <polygon points="45,15 46.5,19 45,21 43.5,19" fill="#FFFBEB"/>
+
+    <!-- Inner Right Spire (ยอดบริวารในขวา) -->
+    <path d="M 76 46 L 79 38 H 87 L 90 46 Z" fill="url(#goldBright)"/>
+    <path d="M 75 38 Q 79 40 83 40 Q 87 40 91 38 L 83 28 Z" fill="url(#goldSeal)"/>
+    <path d="M 82 28 L 83 19 L 84 28 Z" fill="url(#goldBright)"/>
+    <polygon points="83,15 84.5,19 83,21 81.5,19" fill="#FFFBEB"/>
+
+    <!-- Central Grand Spire (ยอดปราสาทประธาน - บุษบกมณฑปทองคำ) -->
+    <!-- Tier 1: Spire Base -->
+    <path d="M 50 46 L 53 39 H 75 L 78 46 Z" fill="url(#goldBright)"/>
+    <path d="M 47 39 Q 54 41 64 41 Q 74 41 81 39 L 75 32 H 53 Z" fill="url(#goldSeal)"/>
+
+    <!-- Tier 2: Spire Middle Chamber -->
+    <path d="M 54 32 L 56 26 H 72 L 74 32 Z" fill="url(#goldBright)"/>
+    <path d="M 52 26 Q 57 28 64 28 Q 71 28 76 26 L 71 20 H 57 Z" fill="url(#goldSeal)"/>
+
+    <!-- Tier 3: Tapering Spire Rings (ปล้องไฉน & ปลียอด) -->
+    <path d="M 58 20 L 60 15 H 68 L 70 20 Z" fill="url(#goldBright)"/>
+    <line x1="59" y1="18" x2="69" y2="18" stroke="#FFFBEB" stroke-width="0.8"/>
+
+    <!-- Needle Finial (ยอดฉัตรสุวรรณฉัตร) -->
+    <path d="M 64 6 L 62.5 15 H 65.5 Z" fill="url(#goldBright)"/>
+    <circle cx="64" cy="11" r="1.5" fill="#FFFBEB"/>
+    <circle cx="64" cy="8" r="1.2" fill="#FFFBEB"/>
+
+    <!-- Apex Diamond Jewel (นภศูล / เพชรยอดปราสาท) -->
+    <polygon points="64,2 66.5,6 64,8.5 61.5,6" fill="#FFFFFF"/>
+    <circle cx="64" cy="5.5" r="1" fill="#FEF08A"/>
+  </g>
+
+  <!-- Sparkle Stars -->
+  <g fill="#FFFBEB" opacity="0.85">
+    <!-- Star 1 Top Right -->
+    <polygon points="102,22 103.5,26 107.5,27.5 103.5,29 102,33 100.5,29 96.5,27.5 100.5,26"/>
+    <!-- Star 2 Top Left -->
+    <polygon points="24,30 25,33 28,34 25,35 24,38 23,35 20,34 23,33"/>
+  </g>
 </svg>

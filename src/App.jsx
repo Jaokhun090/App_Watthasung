@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   places,
   zones,
+  placeCategories,
   dressCode,
   walkingTour,
   templeInfo,
@@ -9,7 +10,7 @@ import {
   restaurants,
   accommodations,
 } from "./data/places";
-import { monkHistory, prayer, manomaiyiddhi, teachings } from "./data/dharma";
+import { monkHistory, prayer, boangSuang, khamUthit, manomaiyiddhi, teachings } from "./data/dharma";
 import { getOpenStatus, getGoogleMapsUrl, getTelUrl } from "./utils";
 import Icon, { placeIcons } from "./components/Icons";
 import { useUserLocation } from "./hooks/useUserLocation";
@@ -289,61 +290,45 @@ function HomePage({ onNavigate, locationService }) {
     return () => clearInterval(timer);
   }, []);
 
-  // จุดไฮไลท์ มหาวิหารแก้ว 100 เมตร (id: 12)
-  const viharaKaew = places.find((p) => p.id === 12) || places[0];
-  const viharaStatus = getOpenStatus(viharaKaew.openingHours);
-  const isOpen = viharaStatus.isOpen;
-
-  // รายการสถานที่ไฮไลท์แนะนำสำหรับหน้า Home (5 จุดเด่น)
-  const featuredPlaces = places.filter((p) => p.highlight).slice(0, 5);
+  // รายการสถานที่ไฮไลท์แนะนำสำหรับหน้า Home (สถานที่ไหว้สำคัญที่แนะนำ)
+  const featuredPlaces = places.filter((p) => p.highlight).slice(0, 6);
 
   return (
     <div className="page">
-      {/* Status Hero - มหาวิหารแก้ว 100 เมตร */}
-      <div className="status-hero">
-        <div className="status-hero__header">
-          <div className={`status-hero__dot ${isOpen ? "status-hero__dot--open" : "status-hero__dot--closed"}`} />
-          <div>
-            <div className="status-hero__title">
-              <Icon name="crystal" size={20} color="var(--brown-deep)" style={{ verticalAlign: "middle", marginRight: 4 }} />
-              {viharaKaew.name}
-            </div>
-            <span className={`status-hero__badge ${isOpen ? "status-hero__badge--open" : "status-hero__badge--closed"}`}>
-              {isOpen ? "เปิดอยู่" : "ปิดอยู่"}
-            </span>
-          </div>
-        </div>
-
-        {viharaStatus.countdown && (
-          <div className="status-hero__countdown">
-            <Icon name="clock" size={14} style={{ verticalAlign: "middle", marginRight: 4 }} />
-            {isOpen ? `ปิดอีก ${viharaStatus.countdown}` : `เปิดอีก ${viharaStatus.countdown}`}
-          </div>
-        )}
-        {viharaStatus.session && (
-          <div className="status-hero__session">{viharaStatus.session}</div>
-        )}
-        {!viharaStatus.countdown && !isOpen && (
-          <div className="status-hero__countdown">เปิดพรุ่งนี้ รอบเช้า 09:00 น.</div>
-        )}
-
-        {/* แถบแจ้งเตือนระยะห่าง GPS จากตัวผู้ใช้ */}
-        {locationService.userLocation ? (
-          <div style={{ marginTop: 10, fontSize: "0.75rem", color: "#1d4ed8", background: "#eff6ff", padding: "4px 10px", borderRadius: 20, display: "inline-flex", alignItems: "center", gap: 5 }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#2563eb", display: "inline-block" }}></span>
-            <span>
-              {locationService.isInsideTemple
+      {/* แถบระบุตำแหน่ง GPS */}
+      <div
+        style={{
+          background: "rgba(255, 255, 255, 0.95)",
+          borderRadius: "var(--radius-md)",
+          padding: "10px 14px",
+          marginBottom: "var(--space-md)",
+          border: "1px solid rgba(212, 168, 67, 0.25)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          boxShadow: "var(--shadow-sm)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.8rem", color: "var(--brown-deep)" }}>
+          <Icon name="pin" size={16} color="#2563eb" />
+          <span>
+            {locationService.userLocation ? (
+              locationService.isInsideTemple
                 ? "คุณกำลังอยู่ในบริเวณวัดท่าซุง"
-                : `คุณอยู่ห่างจากวัดท่าซุง ~${locationService.formattedDistanceToTemple}`}
-            </span>
-          </div>
-        ) : (
+                : `คุณอยู่ห่างจากวัดท่าซุง ~${locationService.formattedDistanceToTemple}`
+            ) : (
+              "เปิด GPS เพื่อดูระยะทางไปยังแต่ละอาคาร"
+            )}
+          </span>
+        </div>
+        {!locationService.userLocation && (
           <button
             type="button"
+            className="btn btn--primary"
+            style={{ fontSize: "0.72rem", padding: "4px 10px", flexShrink: 0 }}
             onClick={locationService.toggleTracking}
-            style={{ marginTop: 8, background: "none", border: "none", color: "var(--gold-dark)", fontSize: "0.75rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "underline" }}
           >
-            <Icon name="pin" size={12} /> แตะเพื่อเปิด GPS ระบุตำแหน่งปัจจุบัน
+            เปิด GPS
           </button>
         )}
       </div>
@@ -354,7 +339,7 @@ function HomePage({ onNavigate, locationService }) {
           <div className="shortcut-card__icon">
             <Icon name="navTemple" size={20} />
           </div>
-          <span className="shortcut-card__label">{places.length} สถานที่</span>
+          <span className="shortcut-card__label">สถานที่</span>
         </div>
 
         <div className="shortcut-card" onClick={() => onNavigate("explore", "map")}>
@@ -368,18 +353,18 @@ function HomePage({ onNavigate, locationService }) {
           <div className="shortcut-card__icon">
             <Icon name="navRoute" size={20} />
           </div>
-          <span className="shortcut-card__label">เส้นทาง 3 ชม.</span>
+          <span className="shortcut-card__label">เส้นทาง 9 จุด</span>
         </div>
 
         <div className="shortcut-card" onClick={() => onNavigate("dharma")}>
           <div className="shortcut-card__icon">
             <Icon name="navDharma" size={20} />
           </div>
-          <span className="shortcut-card__label">คาถาเงินล้าน</span>
+          <span className="shortcut-card__label">พระคาถา & ธรรมะ</span>
         </div>
       </div>
 
-      {/* หมวดที่ 1: สถานที่ไฮไลท์แนะนำ */}
+      {/* หมวดที่ 1: สถานที่ไฮไลท์แนะนำ (หัวข้อไฮไลท์เดียว รวมจุดกราบไหว้สำคัญในกรอบทอง) */}
       <section className="home-section">
         <div className="home-section__header">
           <div className="home-section__title">
@@ -391,7 +376,7 @@ function HomePage({ onNavigate, locationService }) {
             className="home-section__more-btn"
             onClick={() => onNavigate("explore", "places")}
           >
-            ดูทั้งหมด {places.length} จุด <Icon name="arrowRight" size={12} />
+            ดูสถานที่ทั้งหมด <Icon name="arrowRight" size={12} />
           </button>
         </div>
 
@@ -410,7 +395,7 @@ function HomePage({ onNavigate, locationService }) {
           style={{ width: "100%", marginTop: "var(--space-xs)", justifyContent: "center" }}
           onClick={() => onNavigate("explore", "places")}
         >
-          <Icon name="compass" size={16} /> ดูสถานที่ทั้งหมดตามผังวัด ({places.length} จุด)
+          <Icon name="compass" size={16} /> ดูสถานที่ทั้งหมดตามผังวัด
         </button>
       </section>
 
@@ -434,12 +419,12 @@ function HomePage({ onNavigate, locationService }) {
           <div className="map-signboard-card__img-wrap">
             <img
               src="/master-3d-plan.jpg"
-              alt="แผนผังภาพ 3D ทัศนียภาพ วัดท่าซุง"
+              alt="แผนผัง 3D วัดท่าซุง"
               className="map-signboard-card__img"
               loading="lazy"
             />
             <div className="map-signboard-card__badge">
-              <Icon name="sparkle" size={14} color="#f59e0b" /> แผนผังภาพ 3D ทัศนียภาพ & ดิจิทัลทวิน
+              <Icon name="sparkle" size={14} color="#f59e0b" /> แผนผัง 3D & ผังดิจิทัล 2D
             </div>
             <div className="map-signboard-card__zoom-hint">
               <Icon name="navMap" size={13} /> แตะเพื่อเข้าสู่ระบบแผนที่
@@ -447,7 +432,7 @@ function HomePage({ onNavigate, locationService }) {
           </div>
           <div className="map-signboard-card__footer">
             <div className="map-signboard-card__desc">
-              เลือกดูได้ 2 รูปแบบ: แผนผังภาพวาด 3D ทัศนียภาพสมจริง ({places.length} จุด) และผังวัดดิจิทัลตามป้ายจริง
+              เลือกดูได้ 2 รูปแบบ: แผนผัง 3D ทัศนียภาพ และ แผนผัง 2D
             </div>
             <button
               type="button"
@@ -469,7 +454,7 @@ function HomePage({ onNavigate, locationService }) {
         <div className="home-section__header">
           <div className="home-section__title">
             <Icon name="navRoute" size={18} color="var(--gold-dark)" />
-            เส้นทางแนะนำ 1 วัน (3 ชม.)
+            เส้นทางแนะนำ 9 จุดสำคัญ (3 ชม.)
           </div>
           <button
             type="button"
@@ -494,7 +479,7 @@ function HomePage({ onNavigate, locationService }) {
             })}
           </div>
           <div style={{ fontSize: "0.74rem", color: "var(--brown)", borderTop: "1px dashed var(--cream-dark)", paddingTop: 8, marginTop: 4 }}>
-            รวมทั้งหมด 8 จุดท่องเที่ยวสำคัญ พร้อมจุดพักรับประทานอาหารปลาแม่น้ำสะแกกรัง
+            รวม 9 จุดไฮไลท์สำคัญที่ต้องไปให้ได้เมื่อมาถึงวัดท่าซุง พร้อมจุดพักรับประทานอาหาร
           </div>
           <button
             type="button"
@@ -595,22 +580,22 @@ function ExplorePage({
   locationService,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedZone, setSelectedZone] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortByNearest, setSortByNearest] = useState(false);
   const [mapMode, setMapMode] = useState("digitalTwin"); // 'digitalTwin' | 'masterMap'
   const [selectedPlaceForMap, setSelectedPlaceForMap] = useState(null);
   const [photoModal, setPhotoModal] = useState({ isOpen: false, photos: [], placeName: "" });
 
-  // กรองและจัดเรียงสถานที่
+  // กรองและจัดเรียงสถานที่ (เรียงตามลำดับ: สถานที่ไหว้ -> ที่พัก/ปฏิบัติธรรม -> ร้านอาหาร/ขายของ -> สถานที่จิปาถะ)
   let filteredPlaces = places.filter((place) => {
-    const matchesZone = selectedZone === "all" || place.zone === selectedZone;
+    const matchesCat = selectedCategory === "all" || place.category === selectedCategory;
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return matchesZone;
+    if (!q) return matchesCat;
     const matchesName = place.name.toLowerCase().includes(q);
     const matchesAltName = (place.altName || "").toLowerCase().includes(q);
     const matchesDesc = (place.description || "").toLowerCase().includes(q);
     const matchesTips = (place.tips || "").toLowerCase().includes(q);
-    return matchesZone && (matchesName || matchesAltName || matchesDesc || matchesTips);
+    return matchesCat && (matchesName || matchesAltName || matchesDesc || matchesTips);
   });
 
   // ถ้าเลือกเรียงตามจุดที่ใกล้ที่สุด
@@ -624,14 +609,14 @@ function ExplorePage({
 
   return (
     <div className="page">
-      {/* เมนูแท็บย่อยด้านบน: สถานที่ (40 จุด) | แผนที่ผังวัด | เส้นทางแนะนำ */}
+      {/* เมนูแท็บย่อยด้านบน: สถานที่ | แผนที่ | เส้นทางแนะนำ */}
       <div className="explore-tabs">
         <button
           type="button"
           className={`explore-tab ${subView === "places" ? "explore-tab--active" : ""}`}
           onClick={() => onSubViewChange("places")}
         >
-          <Icon name="navTemple" size={16} /> สถานที่ ({places.length} จุด)
+          <Icon name="navTemple" size={16} /> สถานที่
         </button>
 
         <button
@@ -651,7 +636,7 @@ function ExplorePage({
         </button>
       </div>
 
-      {/* ===== แท็บย่อย 1: สถานที่ (40 จุด) ===== */}
+      {/* ===== แท็บย่อย 1: สถานที่ ===== */}
       {subView === "places" && (
         <div>
           {/* แถบค้นหา */}
@@ -678,16 +663,23 @@ function ExplorePage({
             )}
           </div>
 
-          {/* ป้ายกรองโซน */}
+          {/* ป้ายกรองหมวดหมู่ (สถานที่ไหว้, อาคารพัก/ปฏิบัติธรรม, ร้านอาหาร/ขายของ, สถานที่จิปาถะ) */}
           <div className="zone-filter-scroll">
-            {zones.map((zone) => (
+            <button
+              type="button"
+              className={`zone-pill ${selectedCategory === "all" ? "zone-pill--active" : ""}`}
+              onClick={() => setSelectedCategory("all")}
+            >
+              ทั้งหมด
+            </button>
+            {placeCategories.map((cat) => (
               <button
-                key={zone.id}
+                key={cat.id}
                 type="button"
-                className={`zone-pill ${selectedZone === zone.id ? "zone-pill--active" : ""}`}
-                onClick={() => setSelectedZone(zone.id)}
+                className={`zone-pill ${selectedCategory === cat.id ? "zone-pill--active" : ""}`}
+                onClick={() => setSelectedCategory(cat.id)}
               >
-                {zone.name}
+                {cat.shortName || cat.name}
               </button>
             ))}
           </div>
@@ -735,10 +727,10 @@ function ExplorePage({
         </div>
       )}
 
-      {/* ===== แท็บย่อย 2: แผนที่ (ผังวัดดิจิทัล + โมเดล 3D Digital Twin สไตล์ Bangkok Digital Twin) ===== */}
+      {/* ===== แท็บย่อย 2: แผนที่ (ผังวัด 2D + แผนผัง 3D) ===== */}
       {subView === "map" && (
         <div className="map-view-section">
-          {/* สลับ 2 โหมด: แผนผังภาพ 3D ทัศนียภาพ (แผนผัง01) vs ผังวัดดิจิทัล (ป้ายผังจริง) */}
+          {/* สลับ 2 โหมด: แผนผัง 3D vs แผนผัง 2D */}
           <div className="map-mode-selector">
             <button
               type="button"
@@ -749,7 +741,7 @@ function ExplorePage({
               }}
             >
               <Icon name="sparkle" size={15} color={mapMode === "digitalTwin" ? "var(--gold-dark)" : "currentColor"} />
-              <span>แผนผังภาพ 3D ทัศนียภาพ</span>
+              <span>แผนผัง 3D</span>
             </button>
 
             <button
@@ -761,7 +753,7 @@ function ExplorePage({
               }}
             >
               <Icon name="navMap" size={15} color={mapMode === "masterMap" ? "var(--gold-dark)" : "currentColor"} />
-              <span>ผังวัดเวกเตอร์ (ตามป้ายจริง)</span>
+              <span>แผนผัง 2D</span>
             </button>
           </div>
 
@@ -865,7 +857,7 @@ function ExplorePage({
       {subView === "tour" && (
         <div>
           <p style={{ fontSize: "0.82rem", color: "var(--brown)", marginBottom: "var(--space-md)", lineHeight: 1.6 }}>
-            เส้นทางเดินชมวัดท่าซุงแบบจัดเต็ม ใช้เวลาประมาณ <strong>3 ชั่วโมง</strong> เรียงลำดับตามเวลาเปิดของแต่ละวิหาร
+            เส้นทางเดินชมวัดท่าซุง <strong>9 จุดแนะนำที่ต้องไปให้ได้เมื่อมาถึง</strong> ใช้เวลาประมาณ 3 ชั่วโมง เรียงลำดับตามเวลาเปิดของแต่ละวิหาร
           </p>
 
           {walkingTour.map((step) => {
@@ -917,6 +909,7 @@ function ExplorePage({
 // ===== 3. DHARMA PAGE (ธรรมะ & ประวัติ) =====
 function DharmaPage() {
   const [showFullBio, setShowFullBio] = useState(false);
+  const [activePrayer, setActivePrayer] = useState("money"); // 'money' | 'boangsuang' | 'uthit'
 
   return (
     <div className="page">
@@ -971,56 +964,202 @@ function DharmaPage() {
         {showFullBio && <p className="monk-card__bio" style={{ marginTop: "var(--space-md)" }}>{monkHistory.bio}</p>}
       </div>
 
-      {/* พระคาถาเงินล้าน */}
+      {/* หัวข้อบทสวดมนต์ศักดิ์สิทธิ์ประจำวัดท่าซุง */}
       <h2 className="page__section-title">
-        <Icon name="lotus" size={18} color="var(--gold-dark)" /> พระคาถาเงินล้าน
+        <Icon name="lotus" size={18} color="var(--gold-dark)" /> พระคาถา & บทสวดมนต์สำคัญ
       </h2>
 
-      <div className="prayer-box">
-        <div className="prayer-box__title">{prayer.name}</div>
-        <div className="prayer-box__preamble">{prayer.origin}</div>
+      {/* ตัวสลับบทสวดมนต์ 3 บทสำคัญ */}
+      <div className="explore-tabs" style={{ marginBottom: "var(--space-md)" }}>
+        <button
+          type="button"
+          className={`explore-tab ${activePrayer === "money" ? "explore-tab--active" : ""}`}
+          onClick={() => setActivePrayer("money")}
+        >
+          <Icon name="lotus" size={15} /> พระคาถาเงินล้าน
+        </button>
 
-        <div className="prayer-box__namo">
-          <strong>{prayer.preamble.title}</strong>
-          <br />
-          {prayer.preamble.text}
-          <br />
-          (สวด 3 จบ)
-        </div>
+        <button
+          type="button"
+          className={`explore-tab ${activePrayer === "boangsuang" ? "explore-tab--active" : ""}`}
+          onClick={() => setActivePrayer("boangsuang")}
+        >
+          <Icon name="sparkle" size={15} /> บทบวงสรวง & ชุมนุมเทวดา
+        </button>
 
-        <div className="prayer-box__verse">
-          {prayer.mainPrayer.map((line, i) => (
-            <div key={i}>{line}</div>
-          ))}
-        </div>
-
-        <div className="prayer-box__disclaimer">{prayer.disclaimer}</div>
+        <button
+          type="button"
+          className={`explore-tab ${activePrayer === "uthit" ? "explore-tab--active" : ""}`}
+          onClick={() => setActivePrayer("uthit")}
+        >
+          <Icon name="pray" size={15} /> คำอุทิศส่วนกุศล
+        </button>
       </div>
 
-      {/* วิธีสวด */}
-      <h2 className="page__section-title">
-        <Icon name="scripture" size={18} color="var(--gold-dark)" /> วิธีสวด
-      </h2>
-      {prayer.howToChant.map((opt, i) => (
-        <div key={i} className="chant-option">
-          <span className="chant-option__count">{opt.count}</span>
-          <span className="chant-option__desc">{opt.desc}</span>
-        </div>
-      ))}
+      {/* 1. พระคาถาเงินล้าน */}
+      {activePrayer === "money" && (
+        <div>
+          <div className="prayer-box">
+            <div className="prayer-box__title">{prayer.name}</div>
+            <div className="prayer-box__preamble">{prayer.origin}</div>
 
-      <div className="info-group" style={{ marginTop: "var(--space-md)" }}>
-        <div className="info-group__title">
-          <Icon name="check" size={16} color="var(--green)" /> หลักปฏิบัติ
+            <div className="prayer-box__namo">
+              <strong>{prayer.preamble.title}</strong>
+              <br />
+              {prayer.preamble.text}
+              <br />
+              (สวด ๓ จบ)
+            </div>
+
+            <div className="prayer-box__verse">
+              {prayer.mainPrayer.map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
+            </div>
+
+            <div className="prayer-box__disclaimer">{prayer.disclaimer}</div>
+          </div>
+
+          {/* วิธีสวด */}
+          <h2 className="page__section-title">
+            <Icon name="scripture" size={18} color="var(--gold-dark)" /> จำนวนจบและวิธีสวด
+          </h2>
+          {prayer.howToChant.map((opt, i) => (
+            <div key={i} className="chant-option">
+              <span className="chant-option__count">{opt.count}</span>
+              <span className="chant-option__desc">{opt.desc}</span>
+            </div>
+          ))}
+
+          <div className="info-group" style={{ marginTop: "var(--space-md)" }}>
+            <div className="info-group__title">
+              <Icon name="check" size={16} color="var(--green)" /> ข้อปฏิบัติในการภาวนา
+            </div>
+            {prayer.principles.map((p, i) => (
+              <div key={i} className="info-item">
+                <span className="info-item__icon"><Icon name="check" size={14} color="var(--green)" /></span>
+                <div className="info-item__content">
+                  <span className="info-item__label">{p}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        {prayer.principles.map((p, i) => (
-          <div key={i} className="info-item">
-            <span className="info-item__icon"><Icon name="check" size={14} color="var(--green)" /></span>
-            <div className="info-item__content">
-              <span className="info-item__label">{p}</span>
+      )}
+
+      {/* 2. บทบวงสรวงและชุมนุมเทวดา */}
+      {activePrayer === "boangsuang" && (
+        <div>
+          <div className="prayer-box">
+            <div className="prayer-box__title">{boangSuang.name}</div>
+            <div className="prayer-box__preamble">{boangSuang.origin}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--brown-light)", marginTop: 4, lineHeight: 1.6 }}>
+              {boangSuang.purpose}
+            </div>
+
+            <div className="prayer-box__namo">
+              <strong>{boangSuang.preamble.title}</strong>
+              <br />
+              {boangSuang.preamble.text}
+              <br />
+              (สวด ๓ จบ)
+            </div>
+
+            {/* บทชุมนุมเทวดา (สัคเค) */}
+            <div style={{ textAlign: "center", marginTop: "var(--space-md)" }}>
+              <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--gold-dark)", marginBottom: 8 }}>
+                {boangSuang.devataPreamble.title}
+              </div>
+              <div className="prayer-box__verse" style={{ fontSize: "0.86rem", lineHeight: 2.1 }}>
+                {boangSuang.devataPreamble.lines.map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))}
+              </div>
+            </div>
+
+            {/* คำกล่าวอาราธนาบารมีและบวงสรวง */}
+            <div style={{ marginTop: "var(--space-lg)", borderTop: "1px dashed rgba(212, 168, 67, 0.4)", paddingTop: "var(--space-md)" }}>
+              <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--gold-dark)", textAlign: "center", marginBottom: 10 }}>
+                {boangSuang.invocations[0].title}
+              </div>
+              <div style={{
+                background: "rgba(254, 243, 199, 0.35)",
+                padding: "14px 16px",
+                borderRadius: "var(--radius-md)",
+                fontSize: "0.82rem",
+                lineHeight: 1.9,
+                color: "var(--brown-deep)",
+                whiteSpace: "pre-line",
+                textAlign: "justify",
+                border: "1px solid rgba(245, 158, 11, 0.25)"
+              }}>
+                {boangSuang.invocations[0].text}
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+
+          <div className="info-group" style={{ marginTop: "var(--space-md)" }}>
+            <div className="info-group__title">
+              <Icon name="check" size={16} color="var(--green)" /> ข้อแนะนำในการประกอบพิธีบวงสรวง (ฉบับวัดท่าซุง)
+            </div>
+            {boangSuang.guidelines.map((g, i) => (
+              <div key={i} className="info-item">
+                <span className="info-item__icon"><Icon name="check" size={14} color="var(--green)" /></span>
+                <div className="info-item__content">
+                  <span className="info-item__label">{g}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 3. คำอุทิศส่วนกุศล (อิทัง ปุญญะผะลัง) */}
+      {activePrayer === "uthit" && (
+        <div>
+          <div className="prayer-box">
+            <div className="prayer-box__title">{khamUthit.name}</div>
+            <div className="prayer-box__preamble">{khamUthit.paliTitle} — {khamUthit.origin}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--brown-light)", marginTop: 4, lineHeight: 1.6 }}>
+              {khamUthit.purpose}
+            </div>
+
+            <div className="prayer-box__namo">
+              <strong>{khamUthit.preamble.title}</strong>
+              <br />
+              {khamUthit.preamble.text}
+              <br />
+              (สวด ๓ จบ)
+            </div>
+
+            <div style={{ marginTop: "var(--space-md)" }}>
+              {khamUthit.sections.map((sec, i) => (
+                <div
+                  key={i}
+                  style={{
+                    marginBottom: "var(--space-md)",
+                    background: "rgba(255, 255, 255, 0.7)",
+                    padding: "12px 14px",
+                    borderRadius: "var(--radius-md)",
+                    border: "1px solid rgba(212, 168, 67, 0.25)",
+                  }}
+                >
+                  <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--gold-dark)", marginBottom: 6 }}>
+                    {i + 1}. {sec.heading}
+                  </div>
+                  <div style={{ fontSize: "0.82rem", lineHeight: 1.9, color: "var(--brown-deep)", textAlign: "justify" }}>
+                    {sec.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="prayer-box__disclaimer">
+              หลวงพ่อพระราชพรหมยานสอนให้อธิษฐานและอุทิศส่วนกุศลนี้ทุกครั้งหลังจากการทำบุญ ถวายสังฆทาน ไหว้พระสวดมนต์ หรือเจริญพระกรรมฐาน
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* มโนมยิทธิ */}
       <h2 className="page__section-title">
@@ -1340,7 +1479,7 @@ function App() {
       case "explore":
         if (exploreSubView === "map") return "ผังวัดดิจิทัล & 3D Twin";
         if (exploreSubView === "tour") return "เส้นทางแนะนำ (3 ชม.)";
-        return `เที่ยวชมสถานที่ (${places.length} จุด)`;
+        return "เที่ยวชม";
       case "dharma":
         return "ธรรมะ & ประวัติ";
       case "info":
@@ -1354,7 +1493,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header__icon">
-          <Icon name="navTemple" size={22} color="var(--gold-light)" />
+          <Icon name="prasatThong" size={24} color="var(--gold-light)" />
         </div>
         <div>
           <div className="header__title">{getHeaderTitle()}</div>

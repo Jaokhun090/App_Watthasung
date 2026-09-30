@@ -569,6 +569,56 @@ function HomePage({ onNavigate, locationService }) {
           </div>
         </div>
       </section>
+
+      {/* แบบประเมินความพึงพอใจการใช้งาน */}
+      <section className="home-section" style={{ marginTop: "var(--space-md)", marginBottom: "var(--space-xl)" }}>
+        <div
+          style={{
+            background: "linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%)",
+            border: "1px solid #fde68a",
+            borderRadius: "var(--radius-lg)",
+            padding: "var(--space-md) var(--space-lg)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-sm)",
+            boxShadow: "var(--shadow-sm)"
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)" }}>
+            <span style={{ fontSize: "1.4rem" }}>📝</span>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--brown-deep)" }}>
+                แบบประเมินความพึงพอใจการใช้งาน
+              </div>
+              <div style={{ fontSize: "0.74rem", color: "var(--brown)" }}>
+                ร่วมเสนอแนะเพื่อพัฒนาเว็บแอปพลิเคชันนำเที่ยววัดท่าซุง
+              </div>
+            </div>
+          </div>
+          <div style={{ fontSize: "0.78rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>
+            ขอความอนุเคราะห์ผู้มาเยือนและพุทธศาสนิกชนทุกท่านร่วมตอบแบบประเมิน เพื่อนำข้อเสนอแนะไปปรับปรุงและพัฒนาการให้บริการให้ดียิ่งขึ้นครับ
+          </div>
+          <div style={{ display: "flex", gap: "var(--space-sm)", marginTop: 4, flexWrap: "wrap" }}>
+            <button
+              type="button"
+              className="btn btn--primary"
+              style={{ fontSize: "0.75rem", padding: "7px 14px", flex: 1, minWidth: 140, justifyContent: "center" }}
+              onClick={() => onNavigate("info")}
+            >
+              ทำแบบประเมินในแอป
+            </button>
+            <a
+              href="https://forms.gle/2gtXGwYFArZpqxsF7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--secondary"
+              style={{ fontSize: "0.75rem", padding: "7px 14px", textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 140 }}
+            >
+              เปิดผ่าน Google Forms ↗
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -1199,7 +1249,8 @@ function DharmaPage() {
 
 // ===== 4. INFO PAGE (ข้อมูลปฏิบัติ) =====
 function InfoPage() {
-  const googleFormsUrl = null; // ← เปลี่ยนเป็น URL ของ Google Forms ที่ต้องการ
+  const googleFormsUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdrKetzmloJ1GAyfjy5l4k_tpH62zRoBjtN4uAq5u3XeSbWNA/viewform?embedded=true";
+  const googleFormsDirectUrl = "https://forms.gle/2gtXGwYFArZpqxsF7";
 
   return (
     <div className="page">
@@ -1417,12 +1468,46 @@ function InfoPage() {
       </div>
 
       {/* แบบสอบถาม */}
-      <div className="form-embed">
-        <div className="form-embed__header">
-          <Icon name="scripture" size={16} color="var(--brown-deep)" /> แบบสอบถามความพึงพอใจ
+      <div className="form-embed" id="satisfaction-survey">
+        <div
+          className="form-embed__header"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "var(--space-sm)",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <Icon name="scripture" size={16} color="var(--brown-deep)" /> แบบประเมินความพึงพอใจการใช้งานเว็บแอปพลิเคชัน
+          </div>
+          <a
+            href={googleFormsDirectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontSize: "0.75rem",
+              color: "var(--gold-dark)",
+              textDecoration: "none",
+              background: "rgba(180, 83, 9, 0.08)",
+              padding: "4px 10px",
+              borderRadius: "999px",
+              fontWeight: 600,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            เปิดเต็มจอใน Google Forms ↗
+          </a>
         </div>
         {googleFormsUrl ? (
-          <iframe src={googleFormsUrl} title="แบบสอบถาม" />
+          <iframe
+            src={googleFormsUrl}
+            title="แบบประเมินความพึงพอใจการใช้งานเว็บแอปพลิเคชัน วัดท่าซุง"
+            loading="lazy"
+          />
         ) : (
           <div className="form-embed__placeholder">
             <p>ยังไม่ได้ระบุลิงก์ Google Forms</p>

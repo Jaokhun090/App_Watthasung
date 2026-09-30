@@ -3,58 +3,64 @@ import { places } from "../data/places";
 import Icon from "./Icons";
 
 // ============================================================================
-// พิกัดสถานที่ทั้ง 39 จุด อิงตามแนวถนนและภาพถ่ายดาวเทียม Google Maps 100%
-// (ทิศเหนืออยู่ด้านบน, แม่น้ำสะแกกรังอยู่ทางขวา, ถนน 3265 ผ่ากลางเฉียง)
+// พิกัดสถานที่ทั้ง 39 จุด ตรงตามภาพแผนผังลายเส้นและหมายเลขที่ผู้ใช้กำหนด 100%
+// (ทิศเหนืออยู่ด้านบน, แม่น้ำสะแกกรังแถบสีน้ำเงินทางขวา, ถ.3265 ตัดเฉียงผ่ากลาง)
 // ============================================================================
-const SATELLITE_LOCATIONS = [
-  // --- ฝั่งวัดใหม่: กลุ่มวิหารแก้ว 100 เมตร (ทิศตะวันออกเฉียงเหนือ ริม ทล.3265) ---
-  { id: 14, x: 709.9, y: 150.8, icon: "utensils", color: "#ea580c" }, // ร้านค้าสวัสดิการ
-  { id: 11, x: 725.0, y: 183.5, icon: "utensils", color: "#ea580c" }, // ร้านอิ่มบุญ (ครัวร้อยเมตร)
-  { id: 12, x: 663.7, y: 265.0, icon: "crystal", color: "#38bdf8" }, // มหาวิหารแก้ว 100 เมตร
-  { id:  6, x: 706.4, y: 365.8, icon: "pray", color: "#eab308" }, // วิหารพระวิสุทธิเทพ (พระจุฬามณี)
-  { id: 26, x: 708.8, y: 402.5, icon: "stupa", color: "#ca8a04" }, // อนุสาวรีย์พระเจ้าพรหมมหาราช
-  { id: 16, x: 733.4, y: 337.6, icon: "meditation", color: "#b45309" }, // อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร
-  { id: 15, x: 776.1, y: 355.9, icon: "scripture", color: "#d97706" }, // ห้องสมุดประชาชนเฉลิมราชกุมารี
-  { id: 39, x: 867.6, y: 473.7, icon: "scripture", color: "#b45309" }, // โรงเรียนพระสุธรรมยานเถระวิทยา
+export const SATELLITE_LOCATIONS = [
+  // --- 1. กลุ่มด้านบน (ทิศเหนือ): สวนสมเด็จฯ, ตึกพระเถระ, ร้านค้าสวัสดิการ & อิ่มบุญ ---
+  { id: 39, x: 555, y: 55,  icon: "stupa",       color: "#64748b" }, // 39. ตึกพระเถระ (ยอดสามแยกบนสุด)
+  { id: 38, x: 515, y: 95,  icon: "lotus",       color: "#10b981" }, // 38. สวนสมเด็จฯ (ใต้ 39)
+  { id: 28, x: 705, y: 115, icon: "utensils",    color: "#ea580c" }, // 28. ร้านค้าสวัสดิการ
+  { id: 26, x: 685, y: 145, icon: "utensils",    color: "#ea580c" }, // 26. ร้านอิ่มบุญ (ครัวร้อยเมตร)
+  { id:  1, x: 605, y: 165, icon: "crystal",     color: "#38bdf8" }, // 1. วิหารแก้ว 100 เมตร
 
-  // --- ฝั่งวัดใหม่: สวนสมเด็จฯ & พระยืน 30 ศอก (ทิศเหนือ) ---
-  { id:  9, x: 507.1, y: 124.9, icon: "lotus", color: "#10b981" }, // สวนสมเด็จฯ (สระน้ำ & ศาลากลางน้ำ)
-  { id: 10, x: 552.3, y: 153.6, icon: "stupa", color: "#64748b" }, // ตึกพระเถระ
-  { id:  4, x: 311.4, y: 218.0, icon: "mondop", color: "#f59e0b" }, // วิหารสมเด็จองค์ปฐม
-  { id: 28, x: 263.9, y: 224.8, icon: "stupa", color: "#94a3b8" }, // เจดีย์พุดตาน
-  { id:  3, x: 251.9, y: 258.7, icon: "coinFlow", color: "#eab308" }, // พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)
-  { id:  8, x: 340.1, y: 259.8, icon: "lotusSun", color: "#38bdf8" }, // มณฑปพระศรีอาริยเมตไตรย
-  { id:  2, x: 246.4, y: 334.2, icon: "museum", color: "#94a3b8" }, // พิพิธภัณฑ์สมบัติพ่อให้
-  { id: 29, x: 189.8, y: 401.2, icon: "stupa", color: "#0284c7" }, // วิหารหลวงพ่อพระมหากัสสป
+  // --- 2. กลุ่มทิศตะวันตกเฉียงเหนือ (ลูปสมเด็จองค์ปฐม, พระยืน, หลวงพ่อกัสสป) ---
+  { id: 11, x: 314, y: 155, icon: "stupa",       color: "#94a3b8" }, // 11. เจดีย์พุดตาน
+  { id:  3, x: 360, y: 160, icon: "mondop",      color: "#f59e0b" }, // 3. วิหารสมเด็จองค์ปฐม
+  { id:  4, x: 316, y: 198, icon: "coinFlow",    color: "#eab308" }, // 4. พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)
+  { id: 32, x: 310, y: 260, icon: "museum",      color: "#94a3b8" }, // 32. พิพิธภัณฑ์สมบัติพ่อให้
+  { id:  9, x: 405, y: 215, icon: "lotusSun",    color: "#38bdf8" }, // 9. มณฑปพระศรีอาริยเมตไตรย
+  { id: 15, x: 250, y: 325, icon: "pray",        color: "#0284c7" }, // 15. วิหารหลวงพ่อพระมหากัสสป (ริมโค้งนอก)
 
-  // --- ฝั่งวัดใหม่: กลุ่มปราสาททองคำ & ตึกขาว (ศูนย์กลาง) ---
-  { id:  7, x: 454.0, y: 418.0, icon: "stupa", color: "#94a3b8" }, // ตึกขาว
-  { id:  5, x: 373.1, y: 427.3, icon: "scripture", color: "#b45309" }, // ลาน 25 ไร่
-  { id:  1, x: 295.2, y: 533.8, icon: "palace", color: "#d4a843" }, // ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)
-  { id: 23, x: 398.6, y: 544.2, icon: "scripture", color: "#92400e" }, // ศาลา 2 ไร่
-  { id: 24, x: 471.2, y: 556.1, icon: "scripture", color: "#b45309" }, // ศาลา 3 ไร่
-  { id: 18, x: 358.5, y: 590.2, icon: "house", color: "#78350f" }, // หอประชุมพระสุธรรมยานเถระ (ศาลา 4 ไร่)
+  // --- 3. กลุ่มริมถนน 3265 ทิศตะวันออกเฉียงเหนือ (อาคารบริการ & ปูชนียสถาน) ---
+  { id: 21, x: 730, y: 230, icon: "meditation",  color: "#b45309" }, // 21. อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร
+  { id: 37, x: 735, y: 260, icon: "scripture",   color: "#d97706" }, // 37. ห้องสมุดประชาชนเฉลิมราชกุมารี
+  { id: 10, x: 665, y: 290, icon: "pray",        color: "#eab308" }, // 10. วิหารพระวิสุทธิเทพ (พระจุฬามณี)
+  { id: 33, x: 675, y: 330, icon: "stupa",       color: "#ca8a04" }, // 33. อนุสาวรีย์พระเจ้าพรหมมหาราช
 
-  // --- ฝั่งวัดใหม่: กลุ่มศาลาปฏิบัติธรรม & พระอุโบสถใหม่ (ทิศใต้) ---
-  { id: 17, x: 401.7, y: 696.9, icon: "scripture", color: "#991b1b" }, // พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)
-  { id: 25, x: 467.0, y: 656.1, icon: "lotus", color: "#16a34a" }, // อาคารธรรมวิโมกข์
-  { id: 20, x: 494.3, y: 688.4, icon: "navTemple", color: "#d4a843" }, // พระอุโบสถ (โบสถ์ใหม่)
-  { id: 22, x: 518.0, y: 685.0, icon: "scripture", color: "#78350f" }, // ศาลานวราช (ติดต่อที่พัก)
+  // --- 4. อาคารเดี่ยวฝั่งตะวันออก ถ.3265 ---
+  { id: 36, x: 795, y: 370, icon: "scripture",   color: "#b45309" }, // 36. โรงเรียนพระสุธรรมยานเถระวิทยา
 
-  // --- ฝั่งวัดเก่า & ริมแม่น้ำสะแกกรัง (ฝั่งตะวันออก / ใต้) ---
-  { id: 37, x: 578.0, y: 675.0, icon: "house", color: "#64748b" }, // ตึกรับแขก (จำหน่ายวัตถุมงคล/หนังสือ)
-  { id: 35, x: 635.0, y: 655.0, icon: "fourKings", color: "#f59e0b" }, // มณฑปท้าวจาตุมหาราช
-  { id: 34, x: 605.0, y: 680.0, icon: "crystal", color: "#0284c7" }, // มณฑปแก้วพระองค์ที่ 10-11
-  { id: 36, x: 650.0, y: 690.0, icon: "oldTemple", color: "#b91c1c" }, // วิหารหลวงพ่อศักดิ์สิทธิ์
-  { id: 32, x: 685.0, y: 705.0, icon: "oldTemple", color: "#78350f" }, // พระอุโบสถเก่า (โบสถ์เก่า)
-  { id: 13, x: 600.0, y: 720.0, icon: "scripture", color: "#78350f" }, // Tha Sung Coffee (กาแฟท่าซุง)
-  { id: 21, x: 645.0, y: 735.0, icon: "scripture", color: "#b45309" }, // ศาลาบูรพาจารย์
-  { id: 38, x: 685.0, y: 745.0, icon: "tenthBuddha", color: "#f59e0b" }, // วิหารใต้ต้นโพธิ์
-  { id: 30, x: 585.0, y: 765.0, icon: "fiveBuddhas", color: "#94a3b8" }, // วิหารหลวงพ่อ 5 พระองค์
-  { id: 31, x: 625.0, y: 775.0, icon: "utensils", color: "#b45309" }, // หอฉัน
-  { id: 27, x: 585.0, y: 810.0, icon: "pray", color: "#eab308" }, // อาคารเสริมศรี
-  { id: 33, x: 695.0, y: 785.0, icon: "fish", color: "#0284c7" }, // แพเลี้ยงปลา (วังมัจฉา)
-  { id: 40, x: 695.0, y: 825.0, icon: "fish", color: "#0369a1" }, // เรือคนึงหา (จามเทวีนาวา)
+  // --- 5. กลุ่มใจกลาง & ตะวันตก (ปราสาททองคำ, ลาน 25 ไร่, ตึกขาว) ---
+  { id:  2, x: 330, y: 425, icon: "palace",      color: "#d4a843" }, // 2. ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)
+  { id: 31, x: 400, y: 355, icon: "scripture",   color: "#b45309" }, // 31. ลาน 25 ไร่
+  { id: 34, x: 470, y: 365, icon: "stupa",       color: "#94a3b8" }, // 34. ตึกขาว
+
+  // --- 6. กลุ่มศาลาด้านล่าง & พระอุโบสถใหม่ (ทิศใต้ฝั่งวัดใหม่) ---
+  // แถวบนถนนสายใต้ (ซ้ายไปขวา: 17, 18, 19)
+  { id: 17, x: 395, y: 458, icon: "house",       color: "#78350f" }, // 17. หอประชุมพระสุธรรมยานเถระ (โรงทานศาลา 4 ไร่)
+  { id: 18, x: 438, y: 462, icon: "scripture",   color: "#92400e" }, // 18. ศาลา 2 ไร่
+  { id: 19, x: 480, y: 472, icon: "scripture",   color: "#b45309" }, // 19. ศาลา 3 ไร่
+  // แถวล่างถนนสายใต้ (16, 23, 20, 5)
+  { id: 16, x: 398, y: 528, icon: "scripture",   color: "#991b1b" }, // 16. พระมหาวิหาร100ปี พระราชพรหมยาน (ศาลา 12 ไร่)
+  { id: 23, x: 470, y: 535, icon: "scripture",   color: "#16a34a" }, // 23. อาคารธรรมวิโมกข์
+  { id: 20, x: 530, y: 548, icon: "scripture",   color: "#78350f" }, // 20. ศาลานวราช (ติดต่อที่พัก)
+  { id:  5, x: 500, y: 570, icon: "navTemple",   color: "#d4a843" }, // 5. พระอุโบสถ (โบสถ์ใหม่)
+
+  // --- 7. กลุ่มฝั่งวัดเก่า & ริมแม่น้ำสะแกกรัง (ทิศตะวันออกเฉียงใต้) ---
+  { id: 14, x: 655, y: 495, icon: "fourKings",   color: "#f59e0b" }, // 14. มณฑปท้าวจาตุมหาราช
+  { id: 13, x: 635, y: 525, icon: "mondop",      color: "#0284c7" }, // 13. มณฑปแก้วพระองค์ที่ 10 และ 11
+  { id: 29, x: 690, y: 528, icon: "house",       color: "#64748b" }, // 29. ตึกรับแขก (จำหน่ายหนังสือ/วัตถุมงคล)
+  { id: 27, x: 610, y: 545, icon: "utensils",    color: "#78350f" }, // 27. Tha Sung Coffee (กาแฟท่าซุง)
+  { id:  6, x: 650, y: 560, icon: "oldTemple",   color: "#78350f" }, // 6. พระอุโบสถเก่า
+  { id:  8, x: 680, y: 565, icon: "oldTemple",   color: "#b91c1c" }, // 8. วิหารหลวงพ่อศักดิ์สิทธิ์
+  { id:  7, x: 585, y: 595, icon: "fiveBuddhas", color: "#94a3b8" }, // 7. วิหารหลวงพ่อ 5 พระองค์
+  { id: 22, x: 650, y: 595, icon: "scripture",   color: "#b45309" }, // 22. ศาลาบูรพาจารย์
+  { id: 12, x: 690, y: 595, icon: "tenthBuddha", color: "#f59e0b" }, // 12. วิหารพระองค์ที่ 10 และ 11 ใต้ต้นโพธิ์
+  { id: 24, x: 585, y: 645, icon: "house",       color: "#eab308" }, // 24. อาคารเสริมศรี
+  { id: 25, x: 615, y: 620, icon: "utensils",    color: "#b45309" }, // 25. หอฉัน
+  { id: 35, x: 650, y: 658, icon: "fish",        color: "#0369a1" }, // 35. เรือคนึงหา (จามเทวีนาวา)
+  { id: 30, x: 695, y: 645, icon: "fish",        color: "#2563eb" }, // 30. แพเลี้ยงปลา (วังมัจฉา - ตัวเลขสีน้ำเงินริมน้ำ)
 ];
 
 export default function InteractiveMasterMap({
@@ -101,7 +107,7 @@ export default function InteractiveMasterMap({
       <div className="master-map-controls">
         <div className="master-map-title-badge">
           <Icon name="navMap" size={15} color="var(--gold-dark)" />
-          <span>ผังวัดท่าซุงตามแนวถนนจริง Google Maps ({places.length} จุด)</span>
+          <span>ผังวัดท่าซุงตามแนวถนนจริง (ครบทั้ง 39 จุด)</span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           <button type="button" className="master-map-hud-btn" onClick={handleZoomIn} title="ซูมเข้า">+</button>
@@ -121,7 +127,7 @@ export default function InteractiveMasterMap({
         onTouchEnd={onPointerUp}
       >
         <svg
-          viewBox="0 0 1200 850"
+          viewBox="0 0 1200 720"
           className="master-map-svg"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
@@ -129,361 +135,208 @@ export default function InteractiveMasterMap({
           }}
         >
           <defs>
-            {/* Gradients */}
-            <linearGradient id="groundGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#f7f3ec" />
-              <stop offset="50%" stopColor="#efe8dc" />
-              <stop offset="100%" stopColor="#e5dcce" />
+            {/* Dark background theme matching satellite map context */}
+            <linearGradient id="mapBgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#0f172a" />
+              <stop offset="50%" stopColor="#1e293b" />
+              <stop offset="100%" stopColor="#0f172a" />
             </linearGradient>
 
-            <linearGradient id="gardenGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#dcfce7" />
-              <stop offset="100%" stopColor="#bbf7d0" />
-            </linearGradient>
-
-            <linearGradient id="riverGrad" x1="0" y1="0" x2="1" y2="1">
+            <linearGradient id="riverBlueGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="#0284c7" />
-              <stop offset="40%" stopColor="#0ea5e9" />
-              <stop offset="80%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="#0369a1" />
-            </linearGradient>
-
-            <linearGradient id="pondGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="#0284c7" />
-            </linearGradient>
-
-            <linearGradient id="goldRoofGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#fef08a" />
-              <stop offset="50%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#b45309" />
+              <stop offset="50%" stopColor="#0369a1" />
+              <stop offset="100%" stopColor="#1e3a8a" />
             </linearGradient>
 
             <filter id="mapShadow" x="-10%" y="-10%" width="120%" height="120%">
-              <feDropShadow dx="1" dy="3" stdDeviation="3" floodOpacity="0.2" />
+              <feDropShadow dx="1" dy="3" stdDeviation="3" floodOpacity="0.4" />
+            </filter>
+
+            <filter id="roadGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#ffffff" floodOpacity="0.4" />
             </filter>
 
             <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#f59e0b" floodOpacity="0.9" />
+              <feDropShadow dx="0" dy="0" stdDeviation="5" floodColor="#38bdf8" floodOpacity="0.9" />
             </filter>
           </defs>
 
-          {/* 1. Base Temple Territory Island Shape */}
-          <rect x="0" y="0" width="1200" height="850" fill="url(#groundGrad)" />
+          {/* 1. Base Dark Ground Canvas */}
+          <rect x="0" y="0" width="1200" height="720" fill="url(#mapBgGrad)" />
 
-          {/* 2. Green Garden Areas (สวนสมเด็จฯ และสวนป่าไผ่เวฬุวัน) */}
-          {/* สวนสมเด็จฯ ทางทิศเหนือ */}
+          {/* 2. Sakae Krang River (แม่น้ำสะแกกรัง - แถบสีน้ำเงินทางขวาตามภาพผังผู้ใช้) */}
           <path
-            d="M 130,270 C 130,120 220,95 380,95 C 530,95 620,135 600,210 C 580,260 480,270 380,270 C 240,270 130,280 130,270 Z"
-            fill="url(#gardenGrad)"
-            stroke="#86efac"
-            strokeWidth="2"
-          />
-          {/* สวนป่าไผ่รอบวิหารกัสสป & ลานรอบปราสาททอง */}
-          <path
-            d="M 135,320 Q 220,290 260,335 Q 250,430 155,430 Q 115,385 135,320 Z"
-            fill="url(#gardenGrad)"
-            opacity="0.8"
-          />
-
-          {/* 3. สระน้ำสวนสมเด็จฯ รูปเกือกม้า (ตามภาพดาวเทียม Google Maps) */}
-          <path
-            d="M 260,165 C 300,140 420,130 480,145 C 495,155 485,185 450,190 C 390,200 310,195 270,185 C 255,175 255,168 260,165 Z"
-            fill="url(#pondGrad)"
+            d="M 1040,0 L 1200,0 L 1200,720 L 630,720 L 730,550 L 860,350 L 980,150 Z"
+            fill="url(#riverBlueGrad)"
             stroke="#0284c7"
-            strokeWidth="2"
+            strokeWidth="3"
           />
-          {/* ศาลากลางน้ำในสวนสมเด็จฯ */}
-          <circle cx="380" cy="160" r="10" fill="#fef08a" stroke="#b45309" strokeWidth="2" />
-          <line x1="380" y1="170" x2="380" y2="190" stroke="#78350f" strokeWidth="3" strokeLinecap="round" />
-
-          {/* 4. Sakae Krang River (แม่น้ำสะแกกรัง ทางทิศตะวันออก ขนาน ถ.3265 ตามภาพดาวเทียม Google Maps) */}
-          <path
-            d="M 630,850 L 670,780 L 735,680 L 800,560 L 885,420 L 960,280 L 1010,140 L 1040,0 L 1200,0 L 1200,850 Z"
-            fill="url(#riverGrad)"
-            stroke="#0284c7"
-            strokeWidth="2"
-          />
-          {/* ลอนคลื่นน้ำในแม่น้ำ */}
-          <path d="M 1060,100 Q 1080,115 1100,100" fill="none" stroke="#bae6fd" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-          <path d="M 980,260 Q 1000,275 1020,260" fill="none" stroke="#bae6fd" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-          <path d="M 870,480 Q 890,495 910,480" fill="none" stroke="#bae6fd" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-          <path d="M 760,700 Q 780,715 800,700" fill="none" stroke="#bae6fd" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-
           {/* ป้ายชื่อแม่น้ำสะแกกรัง */}
           <text
             x="960"
-            y="350"
-            fill="#ffffff"
+            y="320"
+            fill="#e0f2fe"
             fontSize="14"
             fontWeight="800"
             letterSpacing="3"
-            transform="rotate(52, 960, 350)"
+            transform="rotate(52, 960, 320)"
+            opacity="0.85"
           >
             แม่น้ำสะแกกรัง ~ วังมัจฉา
           </text>
 
-          {/* ท่าเทียบเรือ & วังมัจฉา (ทุ่นแพปลาลอยน้ำ) */}
-          <rect x="695" y="765" width="40" height="35" rx="6" fill="#f97316" stroke="#c2410c" strokeWidth="2" filter="url(#mapShadow)" />
-          {/* ลำเรือคนึงหา (จามเทวีนาวา) จอดเทียบข้างแพ */}
-          <polygon points="695,810 725,810 720,835 700,835" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
-
           {/* =============================================================== */}
-          {/* โครงข่ายถนนจริง (REAL ROAD NETWORK FROM GOOGLE MAPS 100%)       */}
+          {/* 3. โครงข่ายถนนสีขาว (WHITE ROAD NETWORK ตรงตามภาพวาดของผู้ใช้ 100%) */}
           {/* =============================================================== */}
 
-          {/* 5.1 ถนนสายหลัก ทล. 3265 (ถนนท่าซุง) - เส้นฐานสีเข้มตัดเฉียง 45 องศา */}
+          {/* 3.1 ทล. 3265 (ถนนท่าซุง) - เส้นสีขาวหนาตัดเฉียงผ่ากลาง แล้วหักขึ้นเหนือ */}
           <path
-            d="M 428,850 L 475,780 L 538,680 L 618,540 L 686,400 L 736,280 L 790,140 L 800,0"
-            fill="none"
-            stroke="#1e293b"
-            strokeWidth="22"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {/* เส้นประสีขาวแบ่งเลน ถ.3265 */}
-          <path
-            d="M 428,850 L 475,780 L 538,680 L 618,540 L 686,400 L 736,280 L 790,140 L 800,0"
+            d="M 480,720 L 790,230 L 790,0"
             fill="none"
             stroke="#ffffff"
-            strokeWidth="2.5"
+            strokeWidth="24"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#roadGlow)"
+          />
+          {/* เส้นกลางถนน 3265 */}
+          <path
+            d="M 480,720 L 790,230 L 790,0"
+            fill="none"
+            stroke="#334155"
+            strokeWidth="2"
             strokeDasharray="10,12"
           />
-
-          {/* ป้ายบอกทางบนถนน 3265 */}
-          <text x="815" y="30" fill="#334155" fontSize="11" fontWeight="700">↑ ไป อ.เมืองอุทัยธานี</text>
-          <text x="380" y="835" fill="#334155" fontSize="11" fontWeight="700">↓ ไป อ.มโนรมย์ / ชัยนาท</text>
-          <text x="700" y="360" fill="#f8fafc" fontSize="11" fontWeight="700" transform="rotate(-56, 700, 360)">
+          <text x="805" y="40" fill="#94a3b8" fontSize="11" fontWeight="700">↑ ไป อ.เมืองอุทัยธานี</text>
+          <text x="400" y="705" fill="#94a3b8" fontSize="11" fontWeight="700">↓ ไป อ.มโนรมย์ / ชัยนาท</text>
+          <text x="710" y="340" fill="#0f172a" fontSize="10" fontWeight="800" transform="rotate(-57, 710, 340)">
             ทล. 3265 (ถนนท่าซุง)
           </text>
 
-          {/* 5.2 ถนนเชื่อมเข้าวิหารแก้ว 100 เมตร (แยกจาก ถ.3265 เข้าสู่วัดใหม่) */}
+          {/* 3.2 วงรอบถนนฝั่งทิศเหนือและตะวันตก (North & West Loop) */}
+          {/* เชื่อมจาก ถ.3265 ผ่าน 28, 26 ไปยัง 38, 39 */}
           <path
-            d="M 790,155 L 750,175 L 700,195 L 640,205 L 590,205"
+            d="M 790,115 L 705,115 L 550,110 L 540,55"
             fill="none"
-            stroke="#334155"
-            strokeWidth="14"
+            stroke="#ffffff"
+            strokeWidth="11"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+          {/* ลูปนอกฝั่งตะวันตก (จากยอด 39 ผ่านยอดโค้งลงมายัง 15 และ 2) */}
           <path
-            d="M 790,155 L 750,175 L 700,195 L 640,205 L 590,205"
+            d="M 540,55 L 490,25 L 370,40 L 255,45 L 230,115 L 155,195 L 265,240 L 225,335 L 310,390"
             fill="none"
-            stroke="#f8fafc"
-            strokeWidth="1.5"
-            strokeDasharray="6,8"
+            stroke="#ffffff"
+            strokeWidth="11"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* ทางเชื่อมด้านใน (จาก 38 โค้งลงมา ผ่าน 9 ไปเชื่อมต่อกับ 11, 3, 4, 32) */}
+          <path
+            d="M 540,110 L 490,190 L 340,195 L 310,390"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
 
-          {/* 5.3 ถ.วัดท่าซุง - วนรอบสวนสมเด็จฯ ฝั่งเหนือ */}
+          {/* 3.3 ถนนแกนกลาง (Spine Road ระหว่างตึกขาวกับ ถ.3265) */}
           <path
-            d="M 590,205 L 565,175 L 525,140 L 450,135 L 350,138 L 250,145 L 180,175 L 150,215 L 145,270"
+            d="M 605,240 L 505,215 L 505,400 L 630,455"
             fill="none"
-            stroke="#475569"
+            stroke="#ffffff"
             strokeWidth="11"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* 5.4 ถ.วัดท่าซุง - แนวทางเดินระหว่างสวนสมเด็จฯ กับตึกขาว */}
+          {/* 3.4 ทางแยกสเปอร์ ริม ถ.3265 (ไปยัง 10, 33 และ 21, 37) */}
           <path
-            d="M 590,205 L 535,240 L 480,255 L 420,260 L 370,265 L 320,265 L 280,265"
+            d="M 740,240 L 785,240"
             fill="none"
-            stroke="#334155"
+            stroke="#ffffff"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 670,310 L 725,335"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+
+          {/* 3.5 ถนนสายใต้ฝั่งวัดใหม่ (ผ่าน 2, 17, 18, 19, 16, 23, 20, 5) */}
+          {/* ทางออกไปทิศตะวันตกเฉียงใต้ */}
+          <path
+            d="M 310,390 L 320,470 L 95,390"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="11"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* ถนนสายใต้ตัดขวาง (17, 18, 19) และโค้งลงสู่ ถ.3265 (16, 23, 20, 5) */}
+          <path
+            d="M 320,470 L 400,480 L 450,485 L 555,520 L 560,550 L 520,580 L 550,600"
+            fill="none"
+            stroke="#ffffff"
             strokeWidth="12"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* 5.5 ถนนเลียบตึกขาวฝั่งตะวันออก (Spine East) */}
+          {/* 3.6 ถนนฝั่งวัดเก่า (East of Highway 3265) */}
+          {/* ทางแยกจาก ถ.3265 เข้าสู่วัดเก่า */}
           <path
-            d="M 590,205 L 560,280 L 538,380 L 538,480 L 538,570 L 545,610"
+            d="M 590,565 L 660,580 L 660,510"
             fill="none"
-            stroke="#334155"
-            strokeWidth="12"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* 5.6 ถนนระหว่างตึกขาวกับปราสาททองคำ (Spine West) */}
-          <path
-            d="M 370,265 L 355,330 L 345,420 L 345,520 L 345,600"
-            fill="none"
-            stroke="#334155"
-            strokeWidth="12"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* 5.7 ถนนรอบปราสาททองกาญจนาภิเษก & ที่จอดรถฝั่งตะวันตก */}
-          <path
-            d="M 345,520 L 300,470 L 240,480 L 220,520 L 230,570 L 280,600 L 345,600"
-            fill="none"
-            stroke="#475569"
+            stroke="#ffffff"
             strokeWidth="10"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+          {/* ซอยกลางฝั่งวัดเก่า (เชื่อม 27, 6, 8, 22, 12) */}
           <path
-            d="M 220,520 L 165,530"
+            d="M 660,580 L 660,600 L 705,600"
             fill="none"
-            stroke="#475569"
-            strokeWidth="10"
-            strokeLinecap="round"
-          />
-
-          {/* 5.8 ถนนเลียบทิศตะวันตก (ผ่านวิหารกัสสป & ลานจอดรถด้านนอก) */}
-          <path
-            d="M 145,270 L 150,360 L 160,470 L 165,560 L 185,680 L 200,800 L 210,850"
-            fill="none"
-            stroke="#475569"
-            strokeWidth="12"
+            stroke="#ffffff"
+            strokeWidth="9"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-
-          {/* 5.9 ถนนเชื่อมสายใต้ (จาก ถ.3265 ข้ามไปยังปราสาททองคำ & ศาลา 2 ไร่) */}
+          {/* ซอยล่างฝั่งวัดเก่า (เชื่อม 24, 25, 35 ลงสู่ 30 วังมัจฉาริมน้ำ) */}
           <path
-            d="M 580,580 L 545,610 L 480,615 L 410,615 L 345,600 L 280,600 L 185,600"
+            d="M 660,580 L 620,630 L 650,650 L 700,645"
             fill="none"
-            stroke="#334155"
-            strokeWidth="13"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M 580,580 L 545,610 L 480,615 L 410,615 L 345,600 L 280,600 L 185,600"
-            fill="none"
-            stroke="#f8fafc"
-            strokeWidth="1.5"
-            strokeDasharray="6,8"
-          />
-
-          {/* 5.10 ทางเข้าหน้าพระอุโบสถใหม่ และถนนเลียบศาลา 12 ไร่ */}
-          <path
-            d="M 538,680 L 490,680"
-            fill="none"
-            stroke="#475569"
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M 480,615 L 460,660 L 450,740 L 440,820"
-            fill="none"
-            stroke="#475569"
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* 5.11 ถนนสายหลักฝั่งวัดเก่า (จากประตู ถ.3265 ลงสู่วังมัจฉา & ริมแม่น้ำ) */}
-          <path
-            d="M 538,680 L 580,690 L 630,700 L 680,720 L 715,760"
-            fill="none"
-            stroke="#334155"
-            strokeWidth="12"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M 618,540 L 670,570 L 730,620 L 745,700 L 715,760"
-            fill="none"
-            stroke="#475569"
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M 630,700 L 650,750 L 690,770 L 715,760"
-            fill="none"
-            stroke="#475569"
+            stroke="#ffffff"
             strokeWidth="9"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* 5.12 ทางเดินเลียบแม่น้ำสะแกกรังฝั่งวัดเก่า */}
-          <path
-            d="M 745,640 L 740,720 L 715,780 L 680,840"
-            fill="none"
-            stroke="#475569"
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* 6. แปลนสถาปัตยกรรมอาคารสำคัญ (Architectural Footprints) */}
-          {/* วิหารแก้ว 100 เมตร (วางเฉียงแนว NW-SE ตามภาพดาวเทียม Google Maps) */}
-          <g transform="translate(664, 265) rotate(-34)">
-            <rect x="-55" y="-18" width="110" height="36" rx="5" fill="#e0f2fe" stroke="#0284c7" strokeWidth="2.5" filter="url(#mapShadow)" />
-            <line x1="-48" y1="0" x2="48" y2="0" stroke="#38bdf8" strokeWidth="2" strokeDasharray="4,4" />
+          {/* 4. เข็มทิศบอกทิศเหนือจริง (Compass) */}
+          <g transform="translate(65, 65)">
+            <circle cx="0" cy="0" r="26" fill="rgba(30,41,59,0.85)" stroke="#d4a843" strokeWidth="1.8" filter="url(#mapShadow)" />
+            <polygon points="0,-20 5,-4 0,0 -5,-4" fill="#ef4444" />
+            <polygon points="0,20 5,4 0,0 -5,4" fill="#94a3b8" />
+            <text x="0" y="-8" fill="#ef4444" fontSize="11" fontWeight="900" textAnchor="middle">N</text>
+            <text x="0" y="16" fill="#94a3b8" fontSize="9" fontWeight="700" textAnchor="middle">S</text>
+            <text x="15" y="4" fill="#94a3b8" fontSize="8" fontWeight="700" textAnchor="middle">E</text>
+            <text x="-15" y="4" fill="#94a3b8" fontSize="8" fontWeight="700" textAnchor="middle">W</text>
           </g>
 
-          {/* ปราสาททองกาญจนาภิเษก (กำแพงลานสี่เหลี่ยม 3 ชั้น) */}
-          <g transform="translate(295, 534)">
-            <rect x="-32" y="-32" width="64" height="64" rx="4" fill="#fef3c7" stroke="#d4a843" strokeWidth="2" filter="url(#mapShadow)" />
-            <rect x="-22" y="-22" width="44" height="44" fill="#fde68a" stroke="#d4a843" strokeWidth="1.5" />
-            <rect x="-12" y="-12" width="24" height="24" fill="#fbbf24" stroke="#b45309" strokeWidth="2" />
-          </g>
-
-          {/* ตึกขาววัดท่าซุง (อาคารใหญ่หลังคาโซลาร์เซลล์ มีลานกลาง) */}
-          <g transform="translate(454, 418)">
-            <rect x="-75" y="-140" width="150" height="280" rx="4" fill="#f8fafc" stroke="#94a3b8" strokeWidth="2" filter="url(#mapShadow)" />
-            <rect x="-40" y="-30" width="80" height="60" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1.5" />
-            <line x1="-60" y1="-100" x2="-20" y2="-100" stroke="#94a3b8" strokeWidth="1" />
-            <line x1="20" y1="-100" x2="60" y2="-100" stroke="#94a3b8" strokeWidth="1" />
-            <line x1="-60" y1="100" x2="-20" y2="100" stroke="#94a3b8" strokeWidth="1" />
-            <line x1="20" y1="100" x2="60" y2="100" stroke="#94a3b8" strokeWidth="1" />
-          </g>
-
-          {/* ศาลา 2 ไร่ (ทางใต้ของตึกขาว) */}
-          <g transform="translate(399, 544)">
-            <rect x="-35" y="-18" width="70" height="36" rx="3" fill="#fef3c7" stroke="#b45309" strokeWidth="1.5" filter="url(#mapShadow)" />
-          </g>
-
-          {/* พระมหาวิหาร 100 ปี พระราชพรหมยาน (ศาลา 12 ไร่ โครงหลังคาโค้งใหญ่) */}
-          <g transform="translate(402, 697)">
-            <rect x="-45" y="-70" width="90" height="140" rx="16" fill="#f1f5f9" stroke="#64748b" strokeWidth="2.5" filter="url(#mapShadow)" />
-            <line x1="0" y1="-60" x2="0" y2="60" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4,4" />
-          </g>
-
-          {/* พระอุโบสถใหม่ พร้อมแนวกำแพงแก้ว (หันหน้าเข้าหา ถ.3265) */}
-          <g transform="translate(494, 688)">
-            <rect x="-28" y="-36" width="56" height="72" rx="3" fill="#fef3c7" stroke="#d4a843" strokeWidth="2" strokeDasharray="4,3" />
-            <rect x="-16" y="-20" width="32" height="40" rx="2" fill="url(#goldRoofGrad)" stroke="#b45309" strokeWidth="2" filter="url(#mapShadow)" />
-          </g>
-
-          {/* โรงเรียนพระสุธรรมยานเถระวิทยา (ฝั่งตะวันออก ถ.3265) */}
-          <g transform="translate(868, 474)">
-            <rect x="-40" y="-30" width="80" height="60" rx="3" fill="#f1f5f9" stroke="#94a3b8" strokeWidth="2" filter="url(#mapShadow)" />
-            <rect x="-20" y="-15" width="40" height="30" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1" />
-          </g>
-
-          {/* พระอุโบสถเก่า & วิหารหลวงพ่อศักดิ์สิทธิ์ฝั่งวัดเดิม */}
-          <g transform="translate(685, 705)">
-            <rect x="-22" y="-15" width="44" height="30" rx="3" fill="#fffbeb" stroke="#b45309" strokeWidth="1.5" filter="url(#mapShadow)" />
-          </g>
-          <g transform="translate(650, 690)">
-            <rect x="-18" y="-14" width="36" height="28" rx="2" fill="#fff7ed" stroke="#b45309" strokeWidth="1.5" filter="url(#mapShadow)" />
-          </g>
-
-          {/* 7. เข็มทิศบอกทิศเหนือจริง (Compass Rose) */}
-          <g transform="translate(75, 75)">
-            <circle cx="0" cy="0" r="28" fill="rgba(255,255,255,0.92)" stroke="#d4a843" strokeWidth="2" filter="url(#mapShadow)" />
-            <polygon points="0,-22 6,-4 0,0 -6,-4" fill="#b91c1c" />
-            <polygon points="0,22 6,4 0,0 -6,4" fill="#64748b" />
-            <text x="0" y="-10" fill="#b91c1c" fontSize="12" fontWeight="900" textAnchor="middle">N</text>
-            <text x="0" y="18" fill="#64748b" fontSize="10" fontWeight="700" textAnchor="middle">S</text>
-            <text x="17" y="4" fill="#64748b" fontSize="9" fontWeight="700" textAnchor="middle">E</text>
-            <text x="-17" y="4" fill="#64748b" fontSize="9" fontWeight="700" textAnchor="middle">W</text>
-          </g>
-
-          {/* 8. หมุดและป้ายสถานที่ทั้ง 39 จุด (Interactive Pins & Badges) */}
+          {/* =============================================================== */}
+          {/* 5. หมุดและหมายเลขทั้ง 39 จุด ตรงตามรูปวาดของผู้ใช้ 100%             */}
+          {/* =============================================================== */}
           {SATELLITE_LOCATIONS.map((loc) => {
             const p = places.find((item) => item.id === loc.id);
             if (!p) return null;
             const isSelected = selectedPlace?.id === loc.id;
             const isHighlight = p.highlight;
+            const isWaterPin = loc.id === 30; // 30 วังมัจฉา (ผู้ใช้วาดเป็นตัวเลขสีน้ำเงิน)
 
             return (
               <g
@@ -501,77 +354,101 @@ export default function InteractiveMasterMap({
                   <circle
                     cx="0"
                     cy="0"
-                    r="24"
+                    r="22"
                     fill="none"
-                    stroke="#2563eb"
+                    stroke="#38bdf8"
                     strokeWidth="3.5"
                     strokeDasharray="4,4"
                     filter="url(#pinGlow)"
                   />
                 )}
 
-                {/* Building Base Representation */}
+                {/* Building / Node Background Pill */}
                 <rect
-                  x="-15"
-                  y="-13"
-                  width="30"
-                  height="26"
+                  x="-18"
+                  y="-14"
+                  width="36"
+                  height="28"
                   rx="6"
-                  fill={isSelected ? "#1e293b" : isHighlight ? "#fef3c7" : "#ffffff"}
-                  stroke={isSelected ? "#2563eb" : isHighlight ? "#d4a843" : "#cbd5e1"}
+                  fill={
+                    isSelected
+                      ? "#0284c7"
+                      : isHighlight
+                      ? "#fef08a"
+                      : isWaterPin
+                      ? "#1e3a8a"
+                      : "rgba(15, 23, 42, 0.92)"
+                  }
+                  stroke={
+                    isSelected
+                      ? "#38bdf8"
+                      : isHighlight
+                      ? "#d4a843"
+                      : isWaterPin
+                      ? "#38bdf8"
+                      : "#ffffff"
+                  }
                   strokeWidth={isSelected ? "2.5" : "1.8"}
                   filter="url(#mapShadow)"
                 />
 
-                {/* Number Badge */}
-                <circle
-                  cx="11"
-                  cy="-11"
-                  r="9.5"
-                  fill={isHighlight ? "#d4a843" : "#475569"}
-                  stroke="#ffffff"
-                  strokeWidth="1.6"
-                />
-                <text
-                  x="11"
-                  y="-7.5"
-                  fill="#ffffff"
-                  fontSize="9"
-                  fontWeight="800"
-                  textAnchor="middle"
-                >
-                  {loc.id}
-                </text>
-
-                {/* Center Icon Indicator */}
+                {/* Number Display (ตัวเลขตรงตามภาพผังผู้ใช้ พร้อมขีดเส้นใต้) */}
                 <text
                   x="0"
                   y="4"
+                  fill={
+                    isSelected
+                      ? "#ffffff"
+                      : isHighlight
+                      ? "#78350f"
+                      : isWaterPin
+                      ? "#60a5fa"
+                      : "#ffffff"
+                  }
+                  fontSize="13"
+                  fontWeight="900"
                   textAnchor="middle"
-                  fontSize="12"
-                  fill={isSelected ? "#ffffff" : isHighlight ? "#b45309" : "#334155"}
+                  fontFamily="'Prompt', 'Inter', sans-serif"
                 >
-                  {loc.id === 1 ? "🏰" : loc.id === 12 ? "✨" : loc.id === 3 ? "🙏" : loc.id === 33 ? "🐟" : loc.id === 9 ? "🌳" : "🛕"}
+                  {loc.id}
                 </text>
+                {/* เส้นขีดใต้ตัวเลขตามที่ผู้ใช้วาด */}
+                <line
+                  x1="-10"
+                  y1="7"
+                  x2="10"
+                  y2="7"
+                  stroke={
+                    isSelected
+                      ? "#ffffff"
+                      : isHighlight
+                      ? "#b45309"
+                      : isWaterPin
+                      ? "#60a5fa"
+                      : "#ffffff"
+                  }
+                  strokeWidth="1.5"
+                />
 
-                {/* Place Name Label Pill */}
+                {/* Short Name Badge */}
                 <rect
-                  x="-45"
-                  y="16"
-                  width="90"
+                  x="-42"
+                  y="18"
+                  width="84"
                   height="16"
                   rx="4"
-                  fill={isSelected ? "#2563eb" : "rgba(255,255,255,0.94)"}
-                  stroke={isSelected ? "#1d4ed8" : "rgba(0,0,0,0.12)"}
+                  fill={isSelected ? "#0284c7" : "rgba(30, 41, 59, 0.94)"}
+                  stroke={isSelected ? "#38bdf8" : "rgba(255,255,255,0.25)"}
                   strokeWidth="0.8"
                 />
                 <text
                   x="0"
-                  y="28"
-                  fill={isSelected ? "#ffffff" : "#1e293b"}
-                  fontSize="8.5"
+                  y="29.5"
+                  fill={isSelected ? "#ffffff" : isHighlight ? "#fef08a" : "#f8fafc"}
+                  fontSize="8"
                   fontWeight={isSelected || isHighlight ? "700" : "600"}
                   textAnchor="middle"
+                  fontFamily="'Prompt', 'Inter', sans-serif"
                 >
                   {p.shortName || p.name}
                 </text>
@@ -582,7 +459,7 @@ export default function InteractiveMasterMap({
       </div>
 
       <div className="master-map-footer-hint">
-        <span>💡 แตะที่อาคารหรือตัวเลขเพื่อดูข้อมูลและเปิดแผนที่นำทาง Google Maps</span>
+        <span>💡 แตะที่หมายเลขหรือชื่ออาคารเพื่อดูข้อมูล ประวัติ และนำทางไปยังจุดนั้น</span>
       </div>
     </div>
   );

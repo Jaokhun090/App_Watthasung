@@ -82,7 +82,7 @@ export const placeCategories = [
 
 export const places = [
   {
-    "id": 12,
+    "id": 1,
     "name": "วิหารแก้ว 100 เมตร",
     "altName": "",
     "shortName": "วิหารแก้ว 100 เมตร",
@@ -112,7 +112,7 @@ export const places = [
     ]
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)",
     "altName": "",
     "shortName": "ปราสาททองคำ",
@@ -141,7 +141,7 @@ export const places = [
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "วิหารสมเด็จองค์ปฐม",
     "altName": "",
     "shortName": "สมเด็จองค์ปฐม",
@@ -171,7 +171,7 @@ export const places = [
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)",
     "altName": "",
     "shortName": "พระยืน 30 ศอก",
@@ -197,7 +197,7 @@ export const places = [
     ]
   },
   {
-    "id": 20,
+    "id": 5,
     "name": "พระอุโบสถ",
     "altName": "",
     "shortName": "พระอุโบสถ",
@@ -223,7 +223,7 @@ export const places = [
     ]
   },
   {
-    "id": 32,
+    "id": 6,
     "name": "พระอุโบสถเก่า",
     "altName": "",
     "shortName": "โบสถ์เก่า",
@@ -248,7 +248,7 @@ export const places = [
     ]
   },
   {
-    "id": 30,
+    "id": 7,
     "name": "วิหารหลวงพ่อ 5 พระองค์",
     "altName": "",
     "shortName": "วิหาร 5 พระองค์",
@@ -275,7 +275,7 @@ export const places = [
     ]
   },
   {
-    "id": 36,
+    "id": 8,
     "name": "วิหารหลวงพ่อศักดิ์สิทธิ์",
     "altName": "",
     "shortName": "วิหารหลวงพ่อศักดิ์สิทธิ์",
@@ -301,7 +301,7 @@ export const places = [
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "มณฑปพระศรีอาริยเมตไตรย",
     "altName": "",
     "shortName": "พระศรีอาริยเมตไตรย",
@@ -330,7 +330,7 @@ export const places = [
     ]
   },
   {
-    "id": 6,
+    "id": 10,
     "name": "วิหารพระวิสุทธิเทพ",
     "altName": "",
     "shortName": "วิหารพระวิสุทธิเทพ",
@@ -355,7 +355,7 @@ export const places = [
     ]
   },
   {
-    "id": 28,
+    "id": 11,
     "name": "เจดีย์พุดตาน",
     "altName": "",
     "shortName": "เจดีย์พุดตาน",
@@ -380,7 +380,7 @@ export const places = [
     ]
   },
   {
-    "id": 38,
+    "id": 12,
     "name": "วิหารพระองค์ที่ 10 และ 11 ใต้ต้นโพธิ์",
     "altName": "",
     "shortName": "วิหารใต้ต้นโพธิ์",
@@ -407,7 +407,7 @@ export const places = [
     ]
   },
   {
-    "id": 34,
+    "id": 13,
     "name": "มณฑปแก้วพระองค์ที่ 10 และ 11",
     "altName": "",
     "shortName": "มณฑปแก้วพระองค์ที่ 10-11",
@@ -433,7 +433,7 @@ export const places = [
     ]
   },
   {
-    "id": 35,
+    "id": 14,
     "name": "มณฑปท้าวจาตุมหาราช",
     "altName": "",
     "shortName": "มณฑปท้าวมหาราช",
@@ -460,7 +460,7 @@ export const places = [
     ]
   },
   {
-    "id": 29,
+    "id": 15,
     "name": "วิหารหลวงพ่อพระมหากัสสป",
     "altName": "",
     "shortName": "วิหารพระมหากัสสป",
@@ -486,7 +486,7 @@ export const places = [
     ]
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "พระมหาวิหาร100ปี พระราชพรหมยาน (ศาลา 12 ไร่)",
     "altName": "",
     "shortName": "ศาลา 12 ไร่",
@@ -511,7 +511,7 @@ export const places = [
     ]
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "หอประชุมพระสุธรรมยานเถระ (โรงทานศาลา 4 ไร่)",
     "altName": "",
     "shortName": "ศาลา 4 ไร่ (หอประชุม)",
@@ -538,7 +538,7 @@ export const places = [
     ]
   },
   {
-    "id": 23,
+    "id": 18,
     "name": "ศาลา 2 ไร่",
     "altName": "",
     "shortName": "ศาลา 2 ไร่",
@@ -563,7 +563,7 @@ export const places = [
     ]
   },
   {
-    "id": 24,
+    "id": 19,
     "name": "ศาลา 3 ไร่",
     "altName": "",
     "shortName": "ศาลา 3 ไร่",
@@ -588,7 +588,7 @@ export const places = [
     ]
   },
   {
-    "id": 22,
+    "id": 20,
     "name": "ศาลานวราช (ติดต่อที่พัก)",
     "altName": "",
     "shortName": "ศาลานวราช",
@@ -613,7 +613,7 @@ export const places = [
     ]
   },
   {
-    "id": 16,
+    "id": 21,
     "name": "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร",
     "altName": "",
     "shortName": "ที่พักพระพินิจอักษร",
@@ -638,7 +638,7 @@ export const places = [
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "ศาลาบูรพาจารย์",
     "altName": "",
     "shortName": "ศาลาบูรพาจารย์",
@@ -664,7 +664,7 @@ export const places = [
     ]
   },
   {
-    "id": 25,
+    "id": 23,
     "name": "อาคารธรรมวิโมกข์",
     "altName": "",
     "shortName": "อาคารธรรมวิโมกข์",
@@ -689,7 +689,7 @@ export const places = [
     ]
   },
   {
-    "id": 27,
+    "id": 24,
     "name": "อาคารเสริมศรี",
     "altName": "",
     "shortName": "อาคารเสริมศรี",
@@ -714,7 +714,7 @@ export const places = [
     ]
   },
   {
-    "id": 31,
+    "id": 25,
     "name": "หอฉัน",
     "altName": "",
     "shortName": "หอฉัน",
@@ -741,7 +741,7 @@ export const places = [
     ]
   },
   {
-    "id": 11,
+    "id": 26,
     "name": "ร้านอิ่มบุญ (ครัวร้อยเมตร)",
     "altName": "",
     "shortName": "ร้านอิ่มบุญ",
@@ -766,7 +766,7 @@ export const places = [
     ]
   },
   {
-    "id": 13,
+    "id": 27,
     "name": "Tha Sung Coffee (กาแฟท่าซุง)",
     "altName": "",
     "shortName": "กาแฟท่าซุง",
@@ -793,7 +793,7 @@ export const places = [
     ]
   },
   {
-    "id": 14,
+    "id": 28,
     "name": "ร้านค้าสวัสดิการ",
     "altName": "",
     "shortName": "ร้านค้าสวัสดิการ",
@@ -818,7 +818,7 @@ export const places = [
     ]
   },
   {
-    "id": 37,
+    "id": 29,
     "name": "ตึกรับแขก (สถานที่จำหน่ายหนังสือ, คำสอน, วัตถุมงคล, ยาสมุนไพร)",
     "altName": "",
     "shortName": "ตึกรับแขก",
@@ -851,7 +851,7 @@ export const places = [
     ]
   },
   {
-    "id": 33,
+    "id": 30,
     "name": "แพเลี้ยงปลา (วังมัจฉา)",
     "altName": "",
     "shortName": "แพเลี้ยงปลา",
@@ -877,7 +877,7 @@ export const places = [
     ]
   },
   {
-    "id": 5,
+    "id": 31,
     "name": "ลาน 25 ไร่",
     "altName": "",
     "shortName": "ลาน 25 ไร่",
@@ -903,7 +903,7 @@ export const places = [
     ]
   },
   {
-    "id": 2,
+    "id": 32,
     "name": "พิพิธภัณฑ์สมบัติพ่อให้",
     "altName": "",
     "shortName": "สมบัติพ่อให้",
@@ -938,7 +938,7 @@ export const places = [
     ]
   },
   {
-    "id": 26,
+    "id": 33,
     "name": "อนุสาวรีย์พระเจ้าพรหมมหาราช",
     "altName": "",
     "shortName": "พระเจ้าพรหมมหาราช",
@@ -963,7 +963,7 @@ export const places = [
     ]
   },
   {
-    "id": 7,
+    "id": 34,
     "name": "ตึกขาว",
     "altName": "",
     "shortName": "ตึกขาว",
@@ -988,7 +988,7 @@ export const places = [
     ]
   },
   {
-    "id": 40,
+    "id": 35,
     "name": "เรือคนึงหา (จามเทวีนาวา)",
     "altName": "",
     "shortName": "เรือคนึงหา",
@@ -1013,7 +1013,7 @@ export const places = [
     ]
   },
   {
-    "id": 39,
+    "id": 36,
     "name": "โรงเรียนพระสุธรรมยานเถระวิทยา",
     "altName": "",
     "shortName": "โรงเรียนพระสุธรรมยานฯ",
@@ -1038,7 +1038,7 @@ export const places = [
     ]
   },
   {
-    "id": 15,
+    "id": 37,
     "name": "ห้องสมุดประชาชนเฉลิมราชกุมารี",
     "altName": "",
     "shortName": "ห้องสมุดประชาชน",
@@ -1064,7 +1064,7 @@ export const places = [
     ]
   },
   {
-    "id": 9,
+    "id": 38,
     "name": "สวนสมเด็จฯ",
     "altName": "",
     "shortName": "สวนสมเด็จฯ",
@@ -1093,7 +1093,7 @@ export const places = [
     ]
   },
   {
-    "id": 10,
+    "id": 39,
     "name": "ตึกพระเถระ",
     "altName": "",
     "shortName": "ตึกพระเถระ",
@@ -1123,42 +1123,42 @@ export const places = [
 export const walkingTour = [
   {
     "step": 1,
-    "placeId": 1,
+    "placeId": 2,
     "duration": "30 นาที",
     "time": "08:30",
     "tip": "ปราสาททองคำเปิดตั้งแต่ 08:00 น. แวะชมความวิจิตรสีทองอร่ามก่อนเลย"
   },
   {
     "step": 2,
-    "placeId": 12,
+    "placeId": 1,
     "duration": "45 นาที",
     "time": "09:00",
     "tip": "ไฮไลต์สำคัญ! สรีระสังขารหลวงพ่อไม่เน่าเปื่อยในโลงแก้ว ณ มหาวิหารแก้ว 100 เมตร (เปิดรอบเช้า 09:00-11:45 น.)"
   },
   {
     "step": 3,
-    "placeId": 4,
+    "placeId": 3,
     "duration": "30 นาที",
     "time": "10:00",
     "tip": "กราบไหว้ขอพรสมเด็จองค์ปฐม พระพุทธเจ้าพระองค์แรก"
   },
   {
     "step": 4,
-    "placeId": 3,
+    "placeId": 4,
     "duration": "20 นาที",
     "time": "10:35",
     "tip": "กราบพระยืน 30 ศอก ขอพรโชคลาภการเงินและความคล่องตัวด้วยพระคาถาเงินล้าน"
   },
   {
     "step": 5,
-    "placeId": 2,
+    "placeId": 32,
     "duration": "30 นาที",
     "time": "11:00",
     "tip": "ชมพิพิธภัณฑ์สมบัติพ่อให้ อัฐบริขารและวัตถุมงคลล้ำค่า (เปิดทุกวัน 09:00-16:00 น. พักเที่ยง 12:00-13:00 น.)"
   },
   {
     "step": 6,
-    "placeId": 11,
+    "placeId": 26,
     "name": "พักเที่ยง — ร้านอาหารและร้านค้าชุมชนรอบวัด",
     "duration": "45 นาที",
     "time": "11:45",
@@ -1166,21 +1166,21 @@ export const walkingTour = [
   },
   {
     "step": 7,
-    "placeId": 30,
+    "placeId": 7,
     "duration": "25 นาที",
     "time": "13:30",
     "tip": "กราบสักการะพระพุทธเจ้า ๕ พระองค์แห่งภัทรกัปป์ ณ วิหารสีขาวบริสุทธิ์เพื่อความเป็นสิริมงคล"
   },
   {
     "step": 8,
-    "placeId": 36,
+    "placeId": 8,
     "duration": "35 นาที",
     "time": "14:00",
     "tip": "กราบหลวงพ่อศักดิ์สิทธิ์ พระประธานโบราณคู่บารมีวัดท่าซุง และชมพระอุโบสถเก่าสมัยอยุธยา"
   },
   {
     "step": 9,
-    "placeId": 33,
+    "placeId": 30,
     "duration": "25 นาที",
     "time": "14:40",
     "tip": "ให้อาหารปลา ทำบุญปล่อยปลา สูดอากาศบริสุทธิ์ริมแม่น้ำสะแกกรัง ณ แพเลี้ยงปลาวังมัจฉา"

@@ -1,0 +1,314 @@
+[
+  {
+    "id": 12,
+    "name": "วิหารแก้ว 100 เมตร",
+    "shortName": "วิหารแก้ว 100 เมตร",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 1,
+    "name": "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)",
+    "shortName": "ปราสาททองคำ",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 4,
+    "name": "วิหารสมเด็จองค์ปฐม",
+    "shortName": "สมเด็จองค์ปฐม",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 3,
+    "name": "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)",
+    "shortName": "พระยืน 30 ศอก",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 20,
+    "name": "พระอุโบสถ",
+    "shortName": "พระอุโบสถ",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 32,
+    "name": "พระอุโบสถเก่า",
+    "shortName": "โบสถ์เก่า",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 30,
+    "name": "วิหารหลวงพ่อ 5 พระองค์",
+    "shortName": "วิหาร 5 พระองค์",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 36,
+    "name": "วิหารหลวงพ่อศักดิ์สิทธิ์",
+    "shortName": "วิหารหลวงพ่อศักดิ์สิทธิ์",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 8,
+    "name": "มณฑปพระศรีอาริยเมตไตรย",
+    "shortName": "พระศรีอาริยเมตไตรย",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 6,
+    "name": "วิหารพระวิสุทธิเทพ",
+    "shortName": "วิหารพระวิสุทธิเทพ",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 28,
+    "name": "เจดีย์พุดตาน",
+    "shortName": "เจดีย์พุดตาน",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 38,
+    "name": "วิหารพระองค์ที่ 10 และ 11 ใต้ต้นโพธิ์",
+    "shortName": "วิหารใต้ต้นโพธิ์",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 34,
+    "name": "มณฑปแก้วพระองค์ที่ 10 และ 11",
+    "shortName": "มณฑปแก้วพระองค์ที่ 10-11",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 35,
+    "name": "มณฑปท้าวจาตุมหาราช",
+    "shortName": "มณฑปท้าวมหาราช",
+    "zone": "old",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 29,
+    "name": "วิหารหลวงพ่อพระมหากัสสป",
+    "shortName": "วิหารพระมหากัสสป",
+    "zone": "new",
+    "cat": "worship",
+    "highlight": true
+  },
+  {
+    "id": 17,
+    "name": "พระมหาวิหาร100ปี พระราชพรหมยาน (ศาลา 12 ไร่)",
+    "shortName": "ศาลา 12 ไร่",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 18,
+    "name": "หอประชุมพระสุธรรมยานเถระ (โรงทานศาลา 4 ไร่)",
+    "shortName": "ศาลา 4 ไร่ (หอประชุม)",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 23,
+    "name": "ศาลา 2 ไร่",
+    "shortName": "ศาลา 2 ไร่",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 24,
+    "name": "ศาลา 3 ไร่",
+    "shortName": "ศาลา 3 ไร่",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 22,
+    "name": "ศาลานวราช (ติดต่อที่พัก)",
+    "shortName": "ศาลานวราช",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 16,
+    "name": "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร",
+    "shortName": "ที่พักพระพินิจอักษร",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 21,
+    "name": "ศาลาบูรพาจารย์",
+    "shortName": "ศาลาบูรพาจารย์",
+    "zone": "old",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 25,
+    "name": "อาคารธรรมวิโมกข์",
+    "shortName": "อาคารธรรมวิโมกข์",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 27,
+    "name": "อาคารเสริมศรี",
+    "shortName": "อาคารเสริมศรี",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 31,
+    "name": "หอฉัน",
+    "shortName": "หอฉัน",
+    "zone": "pavilion",
+    "cat": "retreat",
+    "highlight": false
+  },
+  {
+    "id": 11,
+    "name": "ร้านอิ่มบุญ (ครัวร้อยเมตร)",
+    "shortName": "ร้านอิ่มบุญ",
+    "zone": "pavilion",
+    "cat": "shop",
+    "highlight": false
+  },
+  {
+    "id": 13,
+    "name": "Tha Sung Coffee (กาแฟท่าซุง)",
+    "shortName": "กาแฟท่าซุง",
+    "zone": "old",
+    "cat": "shop",
+    "highlight": false
+  },
+  {
+    "id": 14,
+    "name": "ร้านค้าสวัสดิการ",
+    "shortName": "ร้านค้าสวัสดิการ",
+    "zone": "pavilion",
+    "cat": "shop",
+    "highlight": false
+  },
+  {
+    "id": 37,
+    "name": "ตึกรับแขก (สถานที่จำหน่ายหนังสือ, คำสอน, วัตถุมงคล, ยาสมุนไพร)",
+    "shortName": "ตึกรับแขก",
+    "zone": "pavilion",
+    "cat": "shop",
+    "highlight": false
+  },
+  {
+    "id": 33,
+    "name": "แพเลี้ยงปลา (วังมัจฉา)",
+    "shortName": "แพเลี้ยงปลา",
+    "zone": "old",
+    "cat": "shop",
+    "highlight": false
+  },
+  {
+    "id": 5,
+    "name": "ลาน 25 ไร่",
+    "shortName": "ลาน 25 ไร่",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 2,
+    "name": "พิพิธภัณฑ์สมบัติพ่อให้",
+    "shortName": "สมบัติพ่อให้",
+    "zone": "new",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 26,
+    "name": "อนุสาวรีย์พระเจ้าพรหมมหาราช",
+    "shortName": "พระเจ้าพรหมมหาราช",
+    "zone": "old",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 7,
+    "name": "ตึกขาว",
+    "shortName": "ตึกขาว",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 40,
+    "name": "เรือคนึงหา (จามเทวีนาวา)",
+    "shortName": "เรือคนึงหา",
+    "zone": "old",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 39,
+    "name": "โรงเรียนพระสุธรรมยานเถระวิทยา",
+    "shortName": "โรงเรียนพระสุธรรมยานฯ",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 15,
+    "name": "ห้องสมุดประชาชนเฉลิมราชกุมารี",
+    "shortName": "ห้องสมุดประชาชน",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 9,
+    "name": "สวนสมเด็จฯ",
+    "shortName": "สวนสมเด็จฯ",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  },
+  {
+    "id": 10,
+    "name": "ตึกพระเถระ",
+    "shortName": "ตึกพระเถระ",
+    "zone": "pavilion",
+    "cat": "general",
+    "highlight": false
+  }
+]

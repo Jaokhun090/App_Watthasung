@@ -15,60 +15,66 @@ import SideDetailDrawer from "./SideDetailDrawer";
 // มีระยะห่างที่คำนวณอย่างแม่นยำ ไม่มีการซ้อนทับกัน (Zero Overlap) 100%
 // ============================================================================
 export const BUILDING_LAYOUT = {
-  // --- โซนวัดใหม่ - กลุ่มวิหารแก้ว 100 เมตร (ฝั่งตะวันออกเฉียงเหนือ ริม ถ.3265) ---
-  14: { x:   85.5, z: -139.1, w: 12, d:  9, h:  7, type: "shop", label: "ร้านค้าสวัสดิการ", zone: "pavilion" },
-  11: { x:   92.2, z: -124.4, w: 14, d: 10, h:  7, type: "shop", label: "ร้านอิ่มบุญ (ครัวร้อยเมตร)", zone: "pavilion" },
-  12: { x:   64.7, z:  -87.8, w: 48, d: 16, h: 13, rotY: -0.59, type: "vihara100m", label: "มหาวิหารแก้ว 100 เมตร", zone: "new" },
-   6: { x:   83.9, z:  -42.4, w: 14, d: 14, h: 13, type: "crystalMondop", label: "วิหารพระวิสุทธิเทพ (พระจุฬามณี)", zone: "new" },
-  26: { x:   85.0, z:  -25.9, w: 11, d: 11, h:  8, type: "monument", label: "อนุสาวรีย์พระเจ้าพรหมมหาราช", zone: "pavilion" },
-  16: { x:   96.0, z:  -55.1, w: 15, d: 11, h:  9, type: "retreat", label: "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร", zone: "pavilion" },
-  15: { x:  115.2, z:  -46.8, w: 14, d: 11, h:  8, type: "library", label: "ห้องสมุดประชาชนเฉลิมราชกุมารี", zone: "pavilion" },
-  39: { x:  156.4, z:    6.2, w: 26, d: 22, h: 10, type: "school", label: "โรงเรียนพระสุธรรมยานเถระวิทยา", zone: "pavilion" },
+  // --- กลุ่มทิศเหนือ: สวนสมเด็จฯ, ตึกพระเถระ, ร้านค้าสวัสดิการ & อิ่มบุญ, วิหารแก้ว 100 เมตร ---
+  39: { x:    0.0, z: -158.0, w: 16, d: 12, h:  8, type: "hall", label: "ตึกพระเถระ", zone: "pavilion" },
+  38: { x:  -14.0, z: -142.0, w: 26, d: 18, h:  6, type: "pondGazebo", label: "สวนสมเด็จฯ (สระน้ำ & ศาลากลางน้ำ)", zone: "pavilion" },
+  28: { x:   75.0, z: -135.0, w: 12, d:  9, h:  7, type: "shop", label: "ร้านค้าสวัสดิการ", zone: "pavilion" },
+  26: { x:   70.0, z: -120.0, w: 14, d: 10, h:  7, type: "shop", label: "ร้านอิ่มบุญ (ครัวร้อยเมตร)", zone: "pavilion" },
+   1: { x:   35.0, z: -105.0, w: 48, d: 16, h: 13, rotY: -0.59, type: "vihara100m", label: "มหาวิหารแก้ว 100 เมตร", zone: "new" },
 
-  // --- โซนวัดใหม่ - สวนสมเด็จฯ & ลานพระยืน 30 ศอก (ทิศเหนือ) ---
-   9: { x:   -5.8, z: -150.8, w: 26, d: 18, h:  6, type: "pondGazebo", label: "สวนสมเด็จฯ (สระน้ำ & ศาลากลางน้ำ)", zone: "pavilion" },
-  10: { x:   14.5, z: -137.9, w: 16, d: 12, h:  8, type: "hall", label: "ตึกพระเถระ", zone: "pavilion" },
-   4: { x:  -93.9, z: -108.9, w: 16, d: 13, h: 14, type: "somdejPrathom", label: "วิหารสมเด็จองค์ปฐม", zone: "new" },
-  28: { x: -115.2, z: -105.8, w: 10, d: 10, h: 13, type: "stupa", label: "เจดีย์พุดตาน", zone: "new" },
-   3: { x: -120.6, z:  -90.6, w: 12, d: 12, h: 24, type: "standingBuddha", label: "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)", zone: "new" },
-   8: { x:  -81.0, z:  -90.1, w: 12, d: 12, h: 13, type: "goldMondop", label: "มณฑปพระศรีอาริยเมตไตรย", zone: "new" },
-   2: { x: -123.1, z:  -56.6, w: 22, d: 13, h: 10, type: "museum", label: "พิพิธภัณฑ์สมบัติพ่อให้", zone: "new" },
-  29: { x: -148.6, z:  -26.5, w: 13, d: 11, h:  8, type: "forestVihara", label: "วิหารหลวงพ่อพระมหากัสสป", zone: "new" },
+  // --- กลุ่มทิศตะวันตกเฉียงเหนือ (ลูปสมเด็จองค์ปฐม, พระยืน, หลวงพ่อกัสสป) ---
+  11: { x: -102.0, z: -115.0, w: 10, d: 10, h: 13, type: "stupa", label: "เจดีย์พุดตาน", zone: "new" },
+   3: { x:  -80.0, z: -115.0, w: 16, d: 13, h: 14, type: "somdejPrathom", label: "วิหารสมเด็จองค์ปฐม", zone: "new" },
+   4: { x: -102.0, z:  -90.0, w: 12, d: 12, h: 24, type: "standingBuddha", label: "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)", zone: "new" },
+   9: { x:  -65.0, z:  -80.0, w: 12, d: 12, h: 13, type: "goldMondop", label: "มณฑปพระศรีอาริยเมตไตรย", zone: "new" },
+  32: { x: -102.0, z:  -60.0, w: 22, d: 13, h: 10, type: "museum", label: "พิพิธภัณฑ์สมบัติพ่อให้", zone: "new" },
+  15: { x: -142.0, z:  -35.0, w: 13, d: 11, h:  8, type: "forestVihara", label: "วิหารหลวงพ่อพระมหากัสสป", zone: "new" },
 
-  // --- โซนวัดใหม่ - กลุ่มปราสาททองคำ & ตึกขาว (ศูนย์กลาง) ---
-   7: { x:  -29.7, z:  -18.9, w: 28, d: 32, h: 10, type: "whiteBuilding", label: "ตึกขาว", zone: "pavilion" },
-   5: { x:  -66.1, z:  -14.7, w: 22, d: 16, h:  6, type: "plaza", label: "ลาน 25 ไร่", zone: "pavilion" },
-   1: { x: -101.2, z:   33.2, w: 26, d: 26, h: 22, type: "prasatThong", label: "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)", zone: "new" },
-  23: { x:  -54.6, z:   37.9, w: 22, d: 14, h:  9, type: "hall", label: "ศาลา 2 ไร่", zone: "pavilion" },
-  24: { x:  -22.0, z:   43.2, w: 20, d: 12, h:  8, type: "hall", label: "ศาลา 3 ไร่", zone: "pavilion" },
-  18: { x:  -72.7, z:   58.6, w: 22, d: 14, h:  9, type: "hall", label: "หอประชุมพระสุธรรมยานเถระ (ศาลา 4 ไร่)", zone: "pavilion" },
+  // --- กลุ่มริม ถ.3265 ทิศตะวันออกเฉียงเหนือ (อาคารบริการ & ปูชนียสถาน) ---
+  21: { x:   88.0, z:  -65.0, w: 15, d: 11, h:  9, type: "retreat", label: "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร", zone: "pavilion" },
+  37: { x:   92.0, z:  -50.0, w: 14, d: 11, h:  8, type: "library", label: "ห้องสมุดประชาชนเฉลิมราชกุมารี", zone: "pavilion" },
+  10: { x:   72.0, z:  -35.0, w: 14, d: 14, h: 13, type: "crystalMondop", label: "วิหารพระวิสุทธิเทพ (พระจุฬามณี)", zone: "new" },
+  33: { x:   76.0, z:  -18.0, w: 11, d: 11, h:  8, type: "monument", label: "อนุสาวรีย์พระเจ้าพรหมมหาราช", zone: "pavilion" },
 
-  // --- โซนวัดใหม่ - กลุ่มศาลาปฏิบัติธรรม & พระอุโบสถใหม่ (ทิศใต้) ---
-  17: { x:  -53.2, z:  106.6, w: 38, d: 26, h: 14, type: "curvedVault", label: "พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)", zone: "pavilion" },
-  25: { x:  -23.9, z:   88.2, w: 16, d: 11, h:  8, type: "hall", label: "อาคารธรรมวิโมกข์", zone: "pavilion" },
-  20: { x:  -11.6, z:  102.8, w: 20, d: 14, h: 14, type: "newUbosot", label: "พระอุโบสถ (โบสถ์ใหม่)", zone: "new" },
-  22: { x:   -0.9, z:  101.2, w: 14, d: 11, h:  8, type: "pavilion", label: "ศาลานวราช (ติดต่อที่พัก)", zone: "pavilion" },
+  // --- อาคารเดี่ยวฝั่งตะวันออก ถ.3265 ---
+  36: { x:  135.0, z:    8.0, w: 26, d: 22, h: 10, type: "school", label: "โรงเรียนพระสุธรรมยานเถระวิทยา", zone: "pavilion" },
 
-  // --- โซนวัดเก่า & ริมแม่น้ำสะแกกรัง (ฝั่งตะวันออก / ขวาของ ถ.3265) ---
-  37: { x:   26.1, z:   96.8, w: 18, d: 11, h:  8, type: "office", label: "ตึกรับแขก (จำหน่ายวัตถุมงคล/หนังสือ)", zone: "old" },
-  35: { x:   51.8, z:   87.8, w: 10, d: 10, h: 12, type: "goldMondop", label: "มณฑปท้าวจาตุมหาราช", zone: "old" },
-  34: { x:   38.2, z:   99.0, w:  9, d:  9, h: 12, type: "crystalMondop", label: "มณฑปแก้วพระองค์ที่ 10-11", zone: "old" },
-  36: { x:   58.5, z:  103.5, w: 16, d: 11, h:  9, type: "vihara", label: "วิหารหลวงพ่อศักดิ์สิทธิ์", zone: "old" },
-  32: { x:   74.2, z:  110.2, w: 18, d: 11, h: 10, type: "ancientUbosot", label: "พระอุโบสถเก่า (โบสถ์เก่า)", zone: "old" },
-  13: { x:   36.0, z:  117.0, w: 11, d:  9, h:  7, type: "shop", label: "Tha Sung Coffee (กาแฟท่าซุง)", zone: "old" },
-  21: { x:   56.2, z:  123.8, w: 14, d: 11, h:  7, type: "pavilion", label: "ศาลาบูรพาจารย์", zone: "old" },
-  38: { x:   74.2, z:  128.2, w: 12, d: 12, h:  8, type: "bodhiShrine", label: "วิหารใต้ต้นโพธิ์", zone: "old" },
-  30: { x:   29.2, z:  137.2, w: 18, d: 12, h: 11, type: "fiveBuddha", label: "วิหารหลวงพ่อ 5 พระองค์", zone: "old" },
-  31: { x:   47.2, z:  141.8, w: 16, d: 12, h:  8, type: "hall", label: "หอฉัน", zone: "old" },
-  27: { x:   29.2, z:  157.5, w: 18, d: 11, h:  7, type: "hall", label: "อาคารเสริมศรี", zone: "old" },
-  33: { x:   78.8, z:  146.2, w: 20, d: 12, h:  4, type: "raft", label: "แพเลี้ยงปลา (วังมัจฉา)", zone: "old" },
-  40: { x:   78.8, z:  164.2, w: 14, d:  6, h:  5, rotY: 0.25, type: "boat", label: "เรือคนึงหา (จามเทวีนาวา)", zone: "old" },
+  // --- กลุ่มใจกลาง & ตะวันตก (ปราสาททองคำ, ลาน 25 ไร่, ตึกขาว) ---
+  34: { x:  -28.0, z:  -14.0, w: 28, d: 32, h: 10, type: "whiteBuilding", label: "ตึกขาว", zone: "pavilion" },
+  31: { x:  -62.0, z:  -12.0, w: 22, d: 16, h:  6, type: "plaza", label: "ลาน 25 ไร่", zone: "pavilion" },
+   2: { x:  -96.0, z:   18.0, w: 26, d: 26, h: 22, type: "prasatThong", label: "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)", zone: "new" },
+
+  // --- กลุ่มศาลาด้านล่าง & พระอุโบสถใหม่ (ทิศใต้ฝั่งวัดใหม่) ---
+  // แถวบนเหนือถนนสายใต้ (ซ้ายไปขวา: 17, 18, 19)
+  17: { x:  -68.0, z:   46.0, w: 22, d: 14, h:  9, type: "hall", label: "หอประชุมพระสุธรรมยานเถระ (ศาลา 4 ไร่)", zone: "pavilion" },
+  18: { x:  -42.0, z:   48.0, w: 22, d: 14, h:  9, type: "hall", label: "ศาลา 2 ไร่", zone: "pavilion" },
+  19: { x:  -16.0, z:   52.0, w: 20, d: 12, h:  8, type: "hall", label: "ศาลา 3 ไร่", zone: "pavilion" },
+  // แถวล่างใต้ถนนสายใต้ (16, 23, 20, 5)
+  16: { x:  -58.0, z:   86.0, w: 38, d: 26, h: 14, type: "curvedVault", label: "พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)", zone: "pavilion" },
+  23: { x:  -26.0, z:   88.0, w: 16, d: 11, h:  8, type: "hall", label: "อาคารธรรมวิโมกข์", zone: "pavilion" },
+   5: { x:   -2.0, z:  106.0, w: 20, d: 14, h: 14, type: "newUbosot", label: "พระอุโบสถ (โบสถ์ใหม่)", zone: "new" },
+  20: { x:   12.0, z:   98.0, w: 14, d: 11, h:  8, type: "pavilion", label: "ศาลานวราช (ติดต่อที่พัก)", zone: "pavilion" },
+
+  // --- กลุ่มฝั่งวัดเก่า & ริมแม่น้ำสะแกกรัง (ทิศตะวันออกเฉียงใต้) ---
+  14: { x:   38.0, z:   82.0, w: 10, d: 10, h: 12, type: "goldMondop", label: "มณฑปท้าวจาตุมหาราช", zone: "old" },
+  13: { x:   30.0, z:   96.0, w:  9, d:  9, h: 12, type: "crystalMondop", label: "มณฑปแก้วพระองค์ที่ 10-11", zone: "old" },
+  29: { x:   52.0, z:   96.0, w: 18, d: 11, h:  8, type: "office", label: "ตึกรับแขก (จำหน่ายวัตถุมงคล/หนังสือ)", zone: "old" },
+  27: { x:   22.0, z:  110.0, w: 11, d:  9, h:  7, type: "shop", label: "Tha Sung Coffee (กาแฟท่าซุง)", zone: "old" },
+   6: { x:   42.0, z:  114.0, w: 18, d: 11, h: 10, type: "ancientUbosot", label: "พระอุโบสถเก่า (โบสถ์เก่า)", zone: "old" },
+   8: { x:   60.0, z:  116.0, w: 16, d: 11, h:  9, type: "vihara", label: "วิหารหลวงพ่อศักดิ์สิทธิ์", zone: "old" },
+   7: { x:   18.0, z:  128.0, w: 18, d: 12, h: 11, type: "fiveBuddha", label: "วิหารหลวงพ่อ 5 พระองค์", zone: "old" },
+  22: { x:   42.0, z:  130.0, w: 14, d: 11, h:  7, type: "pavilion", label: "ศาลาบูรพาจารย์", zone: "old" },
+  12: { x:   62.0, z:  130.0, w: 12, d: 12, h:  8, type: "bodhiShrine", label: "วิหารใต้ต้นโพธิ์", zone: "old" },
+  24: { x:   18.0, z:  152.0, w: 18, d: 11, h:  7, type: "hall", label: "อาคารเสริมศรี", zone: "old" },
+  25: { x:   36.0, z:  146.0, w: 16, d: 12, h:  8, type: "hall", label: "หอฉัน", zone: "old" },
+  35: { x:   54.0, z:  160.0, w: 14, d:  6, h:  5, rotY: 0.25, type: "boat", label: "เรือคนึงหา (จามเทวีนาวา)", zone: "old" },
+  30: { x:   76.0, z:  150.0, w: 20, d: 12, h:  4, type: "raft", label: "แพเลี้ยงปลา (วังมัจฉา)", zone: "old" },
 };
 
 
 // 19 จุดแลนด์มาร์คไฮไลท์หลักที่แสดงป้ายชื่อเต็ม (Major Landmarks)
 export const MAJOR_LANDMARK_IDS = new Set([
-  1, 12, 3, 20, 32, 17, 9, 4, 2, 40, 33, 38, 6, 28, 26, 18, 39, 30, 36
+  1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 16, 17, 30, 32, 33, 35, 36, 38
 ]);
 
 // ============================================================================
@@ -480,6 +486,7 @@ export default function DigitalTwin3D({
   const [selectedPlaceId, setSelectedPlaceId] = useState(null);
   const [selectedZone, setSelectedZone] = useState("all");
   const [isNightMode, setIsNightMode] = useState(false);
+  const [isExtraBright, setIsExtraBright] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showLabels, setShowLabels] = useState(true);
 
@@ -573,10 +580,10 @@ export default function DigitalTwin3D({
     const width = mount.clientWidth;
     const height = mount.clientHeight;
 
-    // 1. Scene
+    // 1. Scene - โหมดตอนเช้าสว่างสดใส (Fresh Radiant Morning Sky)
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#0c1524");
-    scene.fog = new THREE.FogExp2("#0c1524", 0.0028);
+    scene.background = new THREE.Color("#dbeafe");
+    scene.fog = new THREE.FogExp2("#e0f2fe", 0.0009);
     sceneRef.current = scene;
 
     // 2. Camera
@@ -594,7 +601,7 @@ export default function DigitalTwin3D({
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.42; // ปรับความสว่างแสงเช้าให้คมชัดสวยงาม
     mount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -608,12 +615,12 @@ export default function DigitalTwin3D({
     controls.target.set(0, 0, 10);
     controlsRef.current = controls;
 
-    // 5. Lighting Setup
-    const ambientLight = new THREE.AmbientLight("#fef3c7", 0.85);
+    // 5. Lighting Setup - แสงแดดยามเช้าสว่างสดใส (Morning Daylight Setup)
+    const ambientLight = new THREE.AmbientLight("#ffffff", 1.45);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight("#fffbeb", 1.8);
-    dirLight.position.set(90, 150, 70);
+    const dirLight = new THREE.DirectionalLight("#fffdf2", 2.85);
+    dirLight.position.set(110, 175, 75);
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
@@ -626,7 +633,7 @@ export default function DigitalTwin3D({
     dirLight.shadow.bias = -0.0005;
     scene.add(dirLight);
 
-    const hemiLight = new THREE.HemisphereLight("#bae6fd", "#78350f", 0.6);
+    const hemiLight = new THREE.HemisphereLight("#bae6fd", "#e2d5c3", 1.0);
     scene.add(hemiLight);
 
     lightsRef.current = { ambient: ambientLight, dir: dirLight, hemi: hemiLight };
@@ -635,34 +642,34 @@ export default function DigitalTwin3D({
     const nightLights = new THREE.Group();
     nightLights.visible = false;
 
-    // 1. Spotlight on Prasat Thong Kham
+    // 1. Spotlight on Prasat Thong Kham (จุดที่ 2)
     const lightPrasat = new THREE.PointLight("#f59e0b", 4.5, 70);
-    lightPrasat.position.set(-108.0, 18, 31.5);
+    lightPrasat.position.set(-96.0, 18, 18.0);
     nightLights.add(lightPrasat);
 
-    // 2. Spotlight on Vihara 100m
+    // 2. Spotlight on Vihara 100m (จุดที่ 1)
     const lightVihara = new THREE.PointLight("#38bdf8", 4.5, 90);
-    lightVihara.position.set(69.8, 14, -101.2);
+    lightVihara.position.set(35.0, 14, -105.0);
     nightLights.add(lightVihara);
 
-    // 3. Spotlight on Standing Buddha
+    // 3. Spotlight on Standing Buddha (จุดที่ 4)
     const lightBuddha = new THREE.PointLight("#fbbf24", 5.0, 60);
-    lightBuddha.position.set(-119.2, 20, -96.8);
+    lightBuddha.position.set(-102.0, 20, -90.0);
     nightLights.add(lightBuddha);
 
-    // 4. Spotlight on Ubosot (New Ubosot)
+    // 4. Spotlight on Ubosot (จุดที่ 5 โบสถ์ใหม่)
     const lightUbosot = new THREE.PointLight("#f97316", 4.0, 60);
-    lightUbosot.position.set(-13.5, 14, 112.5);
+    lightUbosot.position.set(-2.0, 14, 106.0);
     nightLights.add(lightUbosot);
 
-    // 5. Spotlight on Pond Gazebo (Somdej Park)
+    // 5. Spotlight on Pond Gazebo (จุดที่ 38 สวนสมเด็จฯ)
     const lightPond = new THREE.PointLight("#34d399", 3.2, 50);
-    lightPond.position.set(-63.0, 8, -135.0);
+    lightPond.position.set(-14.0, 8, -142.0);
     nightLights.add(lightPond);
 
-    // 6. Spotlight on Old Temple (Ubosot & Luang Pho Sak Sit)
+    // 6. Spotlight on Old Temple (จุดที่ 6 โบสถ์เก่า & 8 หลวงพ่อศักดิ์สิทธิ์)
     const lightOldTemple = new THREE.PointLight("#f59e0b", 3.8, 60);
-    lightOldTemple.position.set(58.5, 12, 119.2);
+    lightOldTemple.position.set(48.0, 12, 115.0);
     nightLights.add(lightOldTemple);
 
     scene.add(nightLights);
@@ -1335,7 +1342,7 @@ export default function DigitalTwin3D({
   }, [handleSelectBuilding]);
 
   // ==========================================================================
-  // Night / Day Mode Toggle Lighting
+  // Night / Day Mode Toggle Lighting & Brightness
   // ==========================================================================
   useEffect(() => {
     if (!lightsRef.current.dir || !sceneRef.current) return;
@@ -1344,29 +1351,31 @@ export default function DigitalTwin3D({
     if (isNightMode) {
       // Night Mode: Deep starry twilight sky with golden building illuminations
       sceneRef.current.background = new THREE.Color("#050b14");
-      sceneRef.current.fog.color = new THREE.Color("#050b14");
+      sceneRef.current.fog = new THREE.FogExp2("#050b14", 0.0025);
       ambient.color.set("#1e293b");
       ambient.intensity = 0.55;
       dir.color.set("#fef08a");
       dir.intensity = 0.75;
       hemi.color.set("#0f172a");
       hemi.groundColor.set("#020617");
-      if (rendererRef.current) rendererRef.current.toneMappingExposure = 1.35;
+      hemi.intensity = 0.5;
+      if (rendererRef.current) rendererRef.current.toneMappingExposure = 1.25;
       if (nightLightsGroupRef.current) nightLightsGroupRef.current.visible = true;
     } else {
-      // Day Mode: Bright golden sunlight
-      sceneRef.current.background = new THREE.Color("#0c1524");
-      sceneRef.current.fog.color = new THREE.Color("#0c1524");
-      ambient.color.set("#fef3c7");
-      ambient.intensity = 0.85;
-      dir.color.set("#fffbeb");
-      dir.intensity = 1.8;
+      // Day / Morning Mode: สว่างสดใสแดดยามเช้า ท้องฟ้าสีฟ้าอ่อนใสชัดเจน
+      sceneRef.current.background = new THREE.Color("#dbeafe");
+      sceneRef.current.fog = new THREE.FogExp2("#e0f2fe", isExtraBright ? 0.0006 : 0.0009);
+      ambient.color.set("#ffffff");
+      ambient.intensity = isExtraBright ? 1.75 : 1.45;
+      dir.color.set("#fffdf2");
+      dir.intensity = isExtraBright ? 3.3 : 2.85;
       hemi.color.set("#bae6fd");
-      hemi.groundColor.set("#78350f");
-      if (rendererRef.current) rendererRef.current.toneMappingExposure = 1.15;
+      hemi.groundColor.set("#e2d5c3");
+      hemi.intensity = isExtraBright ? 1.2 : 1.0;
+      if (rendererRef.current) rendererRef.current.toneMappingExposure = isExtraBright ? 1.55 : 1.42;
       if (nightLightsGroupRef.current) nightLightsGroupRef.current.visible = false;
     }
-  }, [isNightMode]);
+  }, [isNightMode, isExtraBright]);
 
   // ==========================================================================
   // Toggle Labels Visibility
@@ -1427,10 +1436,20 @@ export default function DigitalTwin3D({
               type="button"
               className={`bdt-hud-icon-btn ${isNightMode ? "bdt-hud-icon-btn--active" : ""}`}
               onClick={() => setIsNightMode(!isNightMode)}
-              title={isNightMode ? "สลับเป็นโหมดกลางวัน" : "สลับเป็นโหมดกลางคืน (เปิดไฟทองอร่าม)"}
+              title={isNightMode ? "สลับเป็นโหมดแดดยามเช้า (สว่างสดใส)" : "สลับเป็นโหมดกลางคืน (เปิดไฟทองอร่าม)"}
             >
               {isNightMode ? "🌙" : "☀️"}
             </button>
+            {!isNightMode && (
+              <button
+                type="button"
+                className={`bdt-hud-icon-btn ${isExtraBright ? "bdt-hud-icon-btn--active" : ""}`}
+                onClick={() => setIsExtraBright(!isExtraBright)}
+                title={isExtraBright ? "แดดยามเช้า: สว่างสูงสุด (คลิกเพื่อสลับเป็นความสว่างมาตรฐาน)" : "คลิกเพื่อเร่งแสงแดดเช้าสว่างเจิดจ้าพิเศษ"}
+              >
+                {isExtraBright ? "🔆" : "🌤️"}
+              </button>
+            )}
             <button
               type="button"
               className={`bdt-hud-icon-btn ${showLabels ? "bdt-hud-icon-btn--active" : ""}`}

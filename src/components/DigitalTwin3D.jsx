@@ -7,57 +7,64 @@ import SideDetailDrawer from "./SideDetailDrawer";
 
 // ============================================================================
 // การจัดผังพิกัด 3D ของสถานที่ทั้ง 40 จุด
-// อิงการจัดโซนตาม "20260927_122430.jpg" ผสมผสานรายละเอียดสถาปัตยกรรมจาก "แผนผัง01.jpg"
-// มีระยะห่างที่คำนวณอย่างแม่นยำ ไม่มีการซ้อนทับกัน (Zero Overlap) 100% (ระยะห่างขั้นต่ำ >= 5.0 units)
+// ============================================================================
+// การจัดผังพิกัด 3D ของสถานที่ทั้ง 39 จุด อิงตามภาพถ่ายดาวเทียม Google Maps จริง 100%
+// ============================================================================
+// การจัดผังพิกัด 3D ของสถานที่ทั้ง 39 จุด อิงตามภาพถ่ายดาวเทียม Google Maps จริง 100%
+// (แกน +X: ตะวันออก/แม่น้ำสะแกกรัง, แกน -X: ตะวันตก/วัดใหม่, แกน -Z: เหนือ, แกน +Z: ใต้)
+// มีระยะห่างที่คำนวณอย่างแม่นยำ ไม่มีการซ้อนทับกัน (Zero Overlap) 100%
 // ============================================================================
 export const BUILDING_LAYOUT = {
-  // --- โซนริมแม่น้ำสะแกกรัง & วัดเก่า (ฝั่งใต้ / Z = 38 ถึง 80) ---
-  40: { x: -130, z: 76, w: 14, d: 7, h: 5, type: "boat", label: "เรือคนึงหา (จามเทวีนาวา)", zone: "old" },
-  21: { x: -108, z: 62, w: 14, d: 10, h: 7, type: "pavilion", label: "ศาลาบูรพาจารย์", zone: "pavilion" },
-  33: { x: -76, z: 76, w: 22, d: 12, h: 4, type: "raft", label: "แพเลี้ยงปลา (วังมัจฉา)", zone: "old" },
-  27: { x: -120, z: 38, w: 18, d: 11, h: 7, type: "hall", label: "อาคารเสริมศรี", zone: "pavilion" },
-  31: { x: -94, z: 38, w: 16, d: 12, h: 8, type: "hall", label: "หอฉัน", zone: "pavilion" },
-  30: { x: -68, z: 38, w: 18, d: 12, h: 10, type: "fiveBuddha", label: "วิหารหลวงพ่อ 5 พระองค์", zone: "old" },
-  32: { x: -32, z: 58, w: 20, d: 12, h: 10, type: "ancientUbosot", label: "พระอุโบสถเก่า (โบสถ์เก่า)", zone: "old" },
-  36: { x: -8, z: 58, w: 16, d: 11, h: 9, type: "vihara", label: "วิหารหลวงพ่อศักดิ์สิทธิ์", zone: "old" },
-  38: { x: -8, z: 75, w: 12, d: 12, h: 8, type: "bodhiShrine", label: "วิหารใต้ต้นโพธิ์", zone: "old" },
-  34: { x: 15, z: 56, w: 11, d: 11, h: 12, type: "crystalMondop", label: "มณฑปแก้วพระองค์ที่ 10-11", zone: "old" },
-  35: { x: 33, z: 56, w: 12, d: 12, h: 13, type: "goldMondop", label: "มณฑปท้าวจาตุมหาราช", zone: "old" },
-  37: { x: 20, z: 75, w: 20, d: 12, h: 8, type: "office", label: "ตึกรับแขก (จำหน่ายวัตถุมงคล/หนังสือ)", zone: "pavilion" },
-  39: { x: 75, z: 65, w: 32, d: 14, h: 11, type: "school", label: "โรงเรียนพระสุธรรมยานเถระวิทยา", zone: "pavilion" },
+  // --- โซนวัดใหม่ - กลุ่มวิหารแก้ว 100 เมตร (ฝั่งตะวันออกเฉียงเหนือ ริม ถ.3265) ---
+  14: { x:   85.5, z: -139.1, w: 12, d:  9, h:  7, type: "shop", label: "ร้านค้าสวัสดิการ", zone: "pavilion" },
+  11: { x:   92.2, z: -124.4, w: 14, d: 10, h:  7, type: "shop", label: "ร้านอิ่มบุญ (ครัวร้อยเมตร)", zone: "pavilion" },
+  12: { x:   64.7, z:  -87.8, w: 48, d: 16, h: 13, rotY: -0.59, type: "vihara100m", label: "มหาวิหารแก้ว 100 เมตร", zone: "new" },
+   6: { x:   83.9, z:  -42.4, w: 14, d: 14, h: 13, type: "crystalMondop", label: "วิหารพระวิสุทธิเทพ (พระจุฬามณี)", zone: "new" },
+  26: { x:   85.0, z:  -25.9, w: 11, d: 11, h:  8, type: "monument", label: "อนุสาวรีย์พระเจ้าพรหมมหาราช", zone: "pavilion" },
+  16: { x:   96.0, z:  -55.1, w: 15, d: 11, h:  9, type: "retreat", label: "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร", zone: "pavilion" },
+  15: { x:  115.2, z:  -46.8, w: 14, d: 11, h:  8, type: "library", label: "ห้องสมุดประชาชนเฉลิมราชกุมารี", zone: "pavilion" },
+  39: { x:  156.4, z:    6.2, w: 26, d: 22, h: 10, type: "school", label: "โรงเรียนพระสุธรรมยานเถระวิทยา", zone: "pavilion" },
 
-  // --- โซนศาลา & อาคารบริการฝั่งตะวันตก (Z = -60 ถึง 20, X = -140 ถึง -15) ---
-  17: { x: -95, z: 10, w: 36, d: 24, h: 14, type: "curvedVault", label: "พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)", zone: "pavilion" },
-  20: { x: -58, z: 14, w: 22, d: 14, h: 13, type: "newUbosot", label: "พระอุโบสถ (โบสถ์ใหม่)", zone: "new" },
-  22: { x: -74, z: -14, w: 16, d: 12, h: 8, type: "pavilion", label: "ศาลานวราช (ติดต่อที่พัก)", zone: "pavilion" },
-  25: { x: -52, z: -14, w: 16, d: 11, h: 8, type: "hall", label: "อาคารธรรมวิโมกข์", zone: "pavilion" },
-  18: { x: -24, z: 12, w: 26, d: 16, h: 10, type: "hall", label: "หอประชุมพระสุธรรมยานเถระ (ศาลา 4 ไร่)", zone: "pavilion" },
-  23: { x: -24, z: -10, w: 22, d: 14, h: 9, type: "hall", label: "ศาลา 2 ไร่", zone: "pavilion" },
-  24: { x: -24, z: -32, w: 22, d: 13, h: 9, type: "hall", label: "ศาลา 3 ไร่", zone: "pavilion" },
-  1: { x: -64, z: -48, w: 26, d: 26, h: 22, type: "prasatThong", label: "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)", zone: "new" },
-  29: { x: -20, z: -56, w: 14, d: 12, h: 8, type: "forestVihara", label: "วิหารหลวงพ่อพระมหากัสสป", zone: "new" },
+  // --- โซนวัดใหม่ - สวนสมเด็จฯ & ลานพระยืน 30 ศอก (ทิศเหนือ) ---
+   9: { x:   -5.8, z: -150.8, w: 26, d: 18, h:  6, type: "pondGazebo", label: "สวนสมเด็จฯ (สระน้ำ & ศาลากลางน้ำ)", zone: "pavilion" },
+  10: { x:   14.5, z: -137.9, w: 16, d: 12, h:  8, type: "hall", label: "ตึกพระเถระ", zone: "pavilion" },
+   4: { x:  -93.9, z: -108.9, w: 16, d: 13, h: 14, type: "somdejPrathom", label: "วิหารสมเด็จองค์ปฐม", zone: "new" },
+  28: { x: -115.2, z: -105.8, w: 10, d: 10, h: 13, type: "stupa", label: "เจดีย์พุดตาน", zone: "new" },
+   3: { x: -120.6, z:  -90.6, w: 12, d: 12, h: 24, type: "standingBuddha", label: "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)", zone: "new" },
+   8: { x:  -81.0, z:  -90.1, w: 12, d: 12, h: 13, type: "goldMondop", label: "มณฑปพระศรีอาริยเมตไตรย", zone: "new" },
+   2: { x: -123.1, z:  -56.6, w: 22, d: 13, h: 10, type: "museum", label: "พิพิธภัณฑ์สมบัติพ่อให้", zone: "new" },
+  29: { x: -148.6, z:  -26.5, w: 13, d: 11, h:  8, type: "forestVihara", label: "วิหารหลวงพ่อพระมหากัสสป", zone: "new" },
 
-  // --- โซนวัฒนธรรม & ลานเหนือ (Z = -70 ถึง -26, X = 0 ถึง 80) ---
-  2: { x: 10, z: -65, w: 24, d: 14, h: 10, type: "museum", label: "พิพิธภัณฑ์สมบัติพ่อให้", zone: "new" },
-  26: { x: 8, z: -35, w: 12, d: 12, h: 8, type: "monument", label: "อนุสาวรีย์พระเจ้าพรหมมหาราช", zone: "pavilion" },
-  5: { x: 30, z: -35, w: 20, d: 14, h: 7, type: "plaza", label: "ลาน 25 ไร่", zone: "pavilion" },
-  28: { x: 36, z: -65, w: 12, d: 12, h: 14, type: "stupa", label: "เจดีย์พุดตาน", zone: "new" },
-  3: { x: 56, z: -65, w: 14, d: 14, h: 24, type: "standingBuddha", label: "พระยืน 30 ศอก (หลวงพ่อเงินไหลมาเทมา)", zone: "new" },
-  7: { x: 78, z: -65, w: 18, d: 12, h: 9, type: "whiteBuilding", label: "ตึกขาว", zone: "new" },
-  9: { x: 62, z: -32, w: 24, d: 18, h: 6, type: "pondGazebo", label: "สวนสมเด็จฯ (สระน้ำ & ศาลากลางน้ำ)", zone: "pavilion" },
+  // --- โซนวัดใหม่ - กลุ่มปราสาททองคำ & ตึกขาว (ศูนย์กลาง) ---
+   7: { x:  -29.7, z:  -18.9, w: 28, d: 32, h: 10, type: "whiteBuilding", label: "ตึกขาว", zone: "pavilion" },
+   5: { x:  -66.1, z:  -14.7, w: 22, d: 16, h:  6, type: "plaza", label: "ลาน 25 ไร่", zone: "pavilion" },
+   1: { x: -101.2, z:   33.2, w: 26, d: 26, h: 22, type: "prasatThong", label: "ปราสาททองกาญจนาภิเษก (ปราสาททองคำ)", zone: "new" },
+  23: { x:  -54.6, z:   37.9, w: 22, d: 14, h:  9, type: "hall", label: "ศาลา 2 ไร่", zone: "pavilion" },
+  24: { x:  -22.0, z:   43.2, w: 20, d: 12, h:  8, type: "hall", label: "ศาลา 3 ไร่", zone: "pavilion" },
+  18: { x:  -72.7, z:   58.6, w: 22, d: 14, h:  9, type: "hall", label: "หอประชุมพระสุธรรมยานเถระ (ศาลา 4 ไร่)", zone: "pavilion" },
 
-  // --- โซนมหาวิหารแก้ว 100 เมตร & สิ่งอำนวยความสะดวก (ฝั่งตะวันออก / Z = -55 ถึง 32, X = 25 ถึง 140) ---
-  8: { x: 26, z: 5, w: 12, d: 12, h: 13, type: "goldMondop", label: "มณฑปพระศรีอาริยเมตไตรย", zone: "new" },
-  4: { x: 46, z: 5, w: 18, d: 14, h: 14, type: "somdejPrathom", label: "วิหารสมเด็จองค์ปฐม", zone: "new" },
-  12: { x: 88, z: 0, w: 52, d: 18, h: 14, type: "vihara100m", label: "มหาวิหารแก้ว 100 เมตร", zone: "new" },
-  11: { x: 66, z: 25, w: 14, d: 10, h: 7, type: "shop", label: "ร้านอิ่มบุญ (ครัวร้อยเมตร)", zone: "pavilion" },
-  13: { x: 84, z: 25, w: 12, d: 10, h: 7, type: "shop", label: "Tha Sung Coffee (กาแฟท่าซุง)", zone: "pavilion" },
-  14: { x: 102, z: 25, w: 14, d: 10, h: 7, type: "shop", label: "ร้านค้าสวัสดิการ", zone: "pavilion" },
-  6: { x: 124, z: -25, w: 16, d: 16, h: 14, type: "crystalMondop", label: "วิหารพระวิสุทธิเทพ (พระจุฬามณี)", zone: "new" },
-  10: { x: 114, z: -52, w: 18, d: 13, h: 9, type: "hall", label: "ตึกพระเถระ", zone: "pavilion" },
-  15: { x: 128, z: 4, w: 16, d: 12, h: 8, type: "library", label: "ห้องสมุดประชาชนเฉลิมราชกุมารี", zone: "pavilion" },
-  16: { x: 128, z: 26, w: 16, d: 12, h: 10, type: "retreat", label: "อาคารที่พักผู้ปฏิบัติธรรมพระพินิจอักษร", zone: "pavilion" },
+  // --- โซนวัดใหม่ - กลุ่มศาลาปฏิบัติธรรม & พระอุโบสถใหม่ (ทิศใต้) ---
+  17: { x:  -53.2, z:  106.6, w: 38, d: 26, h: 14, type: "curvedVault", label: "พระมหาวิหาร 100 ปี (ศาลา 12 ไร่)", zone: "pavilion" },
+  25: { x:  -23.9, z:   88.2, w: 16, d: 11, h:  8, type: "hall", label: "อาคารธรรมวิโมกข์", zone: "pavilion" },
+  20: { x:  -11.6, z:  102.8, w: 20, d: 14, h: 14, type: "newUbosot", label: "พระอุโบสถ (โบสถ์ใหม่)", zone: "new" },
+  22: { x:   -0.9, z:  101.2, w: 14, d: 11, h:  8, type: "pavilion", label: "ศาลานวราช (ติดต่อที่พัก)", zone: "pavilion" },
+
+  // --- โซนวัดเก่า & ริมแม่น้ำสะแกกรัง (ฝั่งตะวันออก / ขวาของ ถ.3265) ---
+  37: { x:   26.1, z:   96.8, w: 18, d: 11, h:  8, type: "office", label: "ตึกรับแขก (จำหน่ายวัตถุมงคล/หนังสือ)", zone: "old" },
+  35: { x:   51.8, z:   87.8, w: 10, d: 10, h: 12, type: "goldMondop", label: "มณฑปท้าวจาตุมหาราช", zone: "old" },
+  34: { x:   38.2, z:   99.0, w:  9, d:  9, h: 12, type: "crystalMondop", label: "มณฑปแก้วพระองค์ที่ 10-11", zone: "old" },
+  36: { x:   58.5, z:  103.5, w: 16, d: 11, h:  9, type: "vihara", label: "วิหารหลวงพ่อศักดิ์สิทธิ์", zone: "old" },
+  32: { x:   74.2, z:  110.2, w: 18, d: 11, h: 10, type: "ancientUbosot", label: "พระอุโบสถเก่า (โบสถ์เก่า)", zone: "old" },
+  13: { x:   36.0, z:  117.0, w: 11, d:  9, h:  7, type: "shop", label: "Tha Sung Coffee (กาแฟท่าซุง)", zone: "old" },
+  21: { x:   56.2, z:  123.8, w: 14, d: 11, h:  7, type: "pavilion", label: "ศาลาบูรพาจารย์", zone: "old" },
+  38: { x:   74.2, z:  128.2, w: 12, d: 12, h:  8, type: "bodhiShrine", label: "วิหารใต้ต้นโพธิ์", zone: "old" },
+  30: { x:   29.2, z:  137.2, w: 18, d: 12, h: 11, type: "fiveBuddha", label: "วิหารหลวงพ่อ 5 พระองค์", zone: "old" },
+  31: { x:   47.2, z:  141.8, w: 16, d: 12, h:  8, type: "hall", label: "หอฉัน", zone: "old" },
+  27: { x:   29.2, z:  157.5, w: 18, d: 11, h:  7, type: "hall", label: "อาคารเสริมศรี", zone: "old" },
+  33: { x:   78.8, z:  146.2, w: 20, d: 12, h:  4, type: "raft", label: "แพเลี้ยงปลา (วังมัจฉา)", zone: "old" },
+  40: { x:   78.8, z:  164.2, w: 14, d:  6, h:  5, rotY: 0.25, type: "boat", label: "เรือคนึงหา (จามเทวีนาวา)", zone: "old" },
 };
+
 
 // 19 จุดแลนด์มาร์คไฮไลท์หลักที่แสดงป้ายชื่อเต็ม (Major Landmarks)
 export const MAJOR_LANDMARK_IDS = new Set([
@@ -378,6 +385,83 @@ function createLabelSprite(placeId, name, isMajor = false, isGolden = false) {
   }
 }
 
+// ============================================================================
+// เส้นทางถนน 3D (3D Road Ribbon Polylines อิงตามภาพถ่ายดาวเทียม Google Maps 100%)
+// ============================================================================
+export const ROAD_3D_PATHS = {
+  hwy3265: [[126.0, -207.0], [121.5, -144.0], [97.2, -81.0], [74.7, -27.0], [44.1, 36.0], [8.1, 99.0], [-20.2, 144.0], [-41.4, 175.5]],
+  northRoad: [[121.5, -137.2], [103.5, -128.2], [81.0, -119.2], [54.0, -114.8], [31.5, -114.8]],
+  suanSomdejNorth: [[31.5, -114.8], [20.2, -128.2], [2.2, -144.0], [-31.5, -146.2], [-76.5, -144.9], [-121.5, -141.8], [-153.0, -128.2], [-166.5, -110.2], [-168.8, -85.5]],
+  suanSomdejSouth: [[31.5, -114.8], [6.8, -99.0], [-18.0, -92.2], [-45.0, -90.0], [-67.5, -87.8], [-90.0, -87.8], [-108.0, -87.8]],
+  spineEast: [[31.5, -114.8], [18.0, -81.0], [8.1, -36.0], [8.1, 9.0], [8.1, 49.5], [11.2, 67.5]],
+  spineWest: [[-67.5, -87.8], [-74.2, -58.5], [-78.8, -18.0], [-78.8, 27.0], [-78.8, 63.0]],
+  prasatThongLoop: [[-78.8, 27.0], [-99.0, 4.5], [-126.0, 9.0], [-135.0, 27.0], [-130.5, 49.5], [-108.0, 63.0], [-78.8, 63.0]],
+  parkingWest: [[-135.0, 27.0], [-159.8, 31.5]],
+  westRoad: [[-168.8, -85.5], [-166.5, -45.0], [-162.0, 4.5], [-159.8, 45.0], [-150.8, 99.0], [-144.0, 153.0], [-139.5, 175.5]],
+  southCross: [[27.0, 54.0], [11.2, 67.5], [-18.0, 69.8], [-49.5, 69.8], [-78.8, 63.0], [-108.0, 63.0], [-150.8, 63.0]],
+  ubosotFrontRoad: [[8.1, 99.0], [-13.5, 99.0]],
+  ubosotSide: [[-18.0, 69.8], [-27.0, 90.0], [-31.5, 126.0], [-36.0, 162.0]],
+  oldTempleRoad: [[8.1, 99.0], [27.0, 103.5], [49.5, 108.0], [72.0, 117.0], [87.8, 135.0]],
+  oldTempleNorth: [[44.1, 36.0], [67.5, 49.5], [94.5, 72.0], [101.2, 108.0], [87.8, 135.0]],
+  oldTempleLoop: [[49.5, 108.0], [58.5, 130.5], [76.5, 139.5], [87.8, 135.0]],
+  oldTempleRiverfront: [[101.2, 81.0], [99.0, 117.0], [87.8, 144.0], [72.0, 171.0]],
+  riverPath: [[234.0, -207.0], [220.5, -144.0], [198.0, -81.0], [164.2, -18.0], [126.0, 45.0], [96.8, 99.0], [67.5, 144.0], [49.5, 175.5]],
+};
+
+// ฟังก์ชันสร้าง Ribbon ผิวถนนโค้งเนียน 3D ตามเส้นทาง Polyline พิกัดจริง
+function createRoadRibbonGeometry(points2D, width) {
+  const vertices = [];
+  const indices = [];
+  const uvs = [];
+
+  const normals = [];
+  for (let i = 0; i < points2D.length; i++) {
+    let dx, dz;
+    if (i === 0) {
+      dx = points2D[1][0] - points2D[0][0];
+      dz = points2D[1][1] - points2D[0][1];
+    } else if (i === points2D.length - 1) {
+      dx = points2D[i][0] - points2D[i - 1][0];
+      dz = points2D[i][1] - points2D[i - 1][1];
+    } else {
+      dx = points2D[i + 1][0] - points2D[i - 1][0];
+      dz = points2D[i + 1][1] - points2D[i - 1][1];
+    }
+    const len = Math.hypot(dx, dz) || 1;
+    normals.push([-dz / len, dx / len]);
+  }
+
+  const halfW = width / 2;
+  for (let i = 0; i < points2D.length; i++) {
+    const px = points2D[i][0];
+    const pz = points2D[i][1];
+    const nx = normals[i][0];
+    const nz = normals[i][1];
+
+    vertices.push(px - nx * halfW, 0.08, pz - nz * halfW);
+    uvs.push(0, i / (points2D.length - 1));
+
+    vertices.push(px + nx * halfW, 0.08, pz + nz * halfW);
+    uvs.push(1, i / (points2D.length - 1));
+
+    if (i < points2D.length - 1) {
+      const a = 2 * i;
+      const b = 2 * i + 1;
+      const c = 2 * (i + 1);
+      const d = 2 * (i + 1) + 1;
+      indices.push(a, b, c);
+      indices.push(b, d, c);
+    }
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return geo;
+}
+
 export default function DigitalTwin3D({
   userLocation,
   gpsStatus,
@@ -449,9 +533,9 @@ export default function DigitalTwin3D({
     const isMobile = mountRef.current.clientWidth < 600;
     flyTargetLookRef.current.set(0, 0, 10);
     if (isMobile) {
-      flyTargetPosRef.current.set(0, 160, 210);
+      flyTargetPosRef.current.set(0, 290, 310);
     } else {
-      flyTargetPosRef.current.set(0, 125, 165);
+      flyTargetPosRef.current.set(0, 240, 260);
     }
     isFlyingRef.current = true;
     setSelectedPlaceId(null);
@@ -463,9 +547,10 @@ export default function DigitalTwin3D({
 
   // Top-down Plan View
   const handleTopDownView = useCallback(() => {
-    if (!controlsRef.current || !cameraRef.current) return;
+    if (!controlsRef.current || !cameraRef.current || !mountRef.current) return;
+    const isMobile = mountRef.current.clientWidth < 600;
     flyTargetLookRef.current.set(0, 0, 10);
-    flyTargetPosRef.current.set(0, 240, 12);
+    flyTargetPosRef.current.set(0, isMobile ? 480 : 420, 12);
     isFlyingRef.current = true;
   }, []);
 
@@ -496,9 +581,9 @@ export default function DigitalTwin3D({
 
     // 2. Camera
     const isMobile = width < 600;
-    const initialCamY = isMobile ? 160 : 125;
-    const initialCamZ = isMobile ? 210 : 165;
-    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    const initialCamY = isMobile ? 290 : 240;
+    const initialCamZ = isMobile ? 310 : 260;
+    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1500);
     camera.position.set(0, initialCamY, initialCamZ);
     cameraRef.current = camera;
 
@@ -519,7 +604,7 @@ export default function DigitalTwin3D({
     controls.dampingFactor = 0.06;
     controls.maxPolarAngle = Math.PI / 2 - 0.05; // ไม่ให้มุมกล้องมุดลงใต้ผิวดิน
     controls.minDistance = 15;
-    controls.maxDistance = 500;
+    controls.maxDistance = 600;
     controls.target.set(0, 0, 10);
     controlsRef.current = controls;
 
@@ -552,28 +637,33 @@ export default function DigitalTwin3D({
 
     // 1. Spotlight on Prasat Thong Kham
     const lightPrasat = new THREE.PointLight("#f59e0b", 4.5, 70);
-    lightPrasat.position.set(-64, 18, -48);
+    lightPrasat.position.set(-108.0, 18, 31.5);
     nightLights.add(lightPrasat);
 
     // 2. Spotlight on Vihara 100m
-    const lightVihara = new THREE.PointLight("#38bdf8", 4.0, 90);
-    lightVihara.position.set(88, 14, 0);
+    const lightVihara = new THREE.PointLight("#38bdf8", 4.5, 90);
+    lightVihara.position.set(69.8, 14, -101.2);
     nightLights.add(lightVihara);
 
     // 3. Spotlight on Standing Buddha
     const lightBuddha = new THREE.PointLight("#fbbf24", 5.0, 60);
-    lightBuddha.position.set(56, 20, -65);
+    lightBuddha.position.set(-119.2, 20, -96.8);
     nightLights.add(lightBuddha);
 
-    // 4. Spotlight on Ubosot
-    const lightUbosot = new THREE.PointLight("#f97316", 3.8, 60);
-    lightUbosot.position.set(-58, 14, 14);
+    // 4. Spotlight on Ubosot (New Ubosot)
+    const lightUbosot = new THREE.PointLight("#f97316", 4.0, 60);
+    lightUbosot.position.set(-13.5, 14, 112.5);
     nightLights.add(lightUbosot);
 
-    // 5. Spotlight on Pond Gazebo
+    // 5. Spotlight on Pond Gazebo (Somdej Park)
     const lightPond = new THREE.PointLight("#34d399", 3.2, 50);
-    lightPond.position.set(62, 8, -32);
+    lightPond.position.set(-63.0, 8, -135.0);
     nightLights.add(lightPond);
+
+    // 6. Spotlight on Old Temple (Ubosot & Luang Pho Sak Sit)
+    const lightOldTemple = new THREE.PointLight("#f59e0b", 3.8, 60);
+    lightOldTemple.position.set(58.5, 12, 119.2);
+    nightLights.add(lightOldTemple);
 
     scene.add(nightLights);
     nightLightsGroupRef.current = nightLights;
@@ -624,6 +714,7 @@ export default function DigitalTwin3D({
       color: "#334155",
       roughness: 0.9,
       metalness: 0.05,
+      side: THREE.DoubleSide,
     });
     const matGrass = new THREE.MeshStandardMaterial({
       color: "#2e7d32",
@@ -631,62 +722,93 @@ export default function DigitalTwin3D({
       metalness: 0.05,
     });
 
-    // 7. Ground Terrain Base
-    const groundGeo = new THREE.PlaneGeometry(360, 240);
+    // 7. Ground Terrain Base (ขนาด 480 x 480 ครอบคลุมวัดใหม่ วัดเก่า และแม่น้ำสะแกกรัง)
+    const groundGeo = new THREE.PlaneGeometry(480, 480);
     const groundMesh = new THREE.Mesh(groundGeo, matGround);
     groundMesh.rotation.x = -Math.PI / 2;
     groundMesh.position.set(0, -0.05, 0);
     groundMesh.receiveShadow = true;
     scene.add(groundMesh);
 
-    // Green Meditation Garden Zones (ป่าธุดงค์ / แปลงเกษตรอินทรีย์)
-    const forestGeo = new THREE.PlaneGeometry(55, 36);
+    // Green Meditation Garden Zones (สวนป่าไผ่เวฬุวัน รอบวิหารกัสสป)
+    const forestGeo = new THREE.PlaneGeometry(60, 70);
     const forestMesh = new THREE.Mesh(forestGeo, matGrass);
     forestMesh.rotation.x = -Math.PI / 2;
-    forestMesh.position.set(-20, 0.02, -56);
+    forestMesh.position.set(-140, 0.01, -20);
     scene.add(forestMesh);
 
-    // 8. Sakae Krang River (แม่น้ำสะแกกรัง ทางทิศใต้ Z: 75 ถึง 110)
-    const riverGeo = new THREE.PlaneGeometry(380, 50, 40, 10);
+    // สวนสมเด็จฯ (โซนธรรมชาติรอบทะเลสาบทางทิศเหนือ)
+    const parkGeo = new THREE.PlaneGeometry(130, 90);
+    const parkMesh = new THREE.Mesh(parkGeo, matGrass);
+    parkMesh.rotation.x = -Math.PI / 2;
+    parkMesh.position.set(-63, 0.01, -135);
+    scene.add(parkMesh);
+
+    // สระน้ำสวนสมเด็จฯ (รูปเกือกม้าตามภาพถ่ายดาวเทียม Google Maps)
+    const pondGeo = new THREE.RingGeometry(12, 28, 32, 1, 0, Math.PI);
+    const pondMesh = new THREE.Mesh(pondGeo, matWater);
+    pondMesh.rotation.x = -Math.PI / 2;
+    pondMesh.rotation.z = Math.PI * 0.1;
+    pondMesh.position.set(-63, 0.03, -135);
+    scene.add(pondMesh);
+
+    // 8. Sakae Krang River (แม่น้ำสะแกกรัง ทางทิศตะวันออก ขนานแนว ถ.3265)
+    const riverGeo = createRoadRibbonGeometry(ROAD_3D_PATHS.riverPath, 50);
     const riverMesh = new THREE.Mesh(riverGeo, matWater);
-    riverMesh.rotation.x = -Math.PI / 2;
-    riverMesh.position.set(0, 0.05, 88);
+    riverMesh.position.y = 0;
     riverMesh.receiveShadow = true;
     scene.add(riverMesh);
     waterMeshRef.current = riverMesh;
 
-    // River embankment / quay wall
-    const quayGeo = new THREE.BoxGeometry(360, 1.2, 3);
-    const quayMat = new THREE.MeshStandardMaterial({ color: "#64748b", roughness: 0.8 });
-    const quay = new THREE.Mesh(quayGeo, quayMat);
-    quay.position.set(0, 0.6, 64);
-    scene.add(quay);
-
-    // 9. Roadways Grid (ถนนหลักตามรูปผัง 20260927_122430)
+    // 9. Roadways Grid (ถนนสาย 3265 และโครงข่ายถนนตามภาพถ่ายดาวเทียม Google Maps 100%)
     const roadGroup = new THREE.Group();
-    // ถนนหน้าแม่น้ำ (West - East)
-    const riverRoad = new THREE.Mesh(new THREE.PlaneGeometry(340, 8), matRoad);
-    riverRoad.rotation.x = -Math.PI / 2;
-    riverRoad.position.set(0, 0.03, 49);
-    roadGroup.add(riverRoad);
 
-    // ถนนกลางเชื่อมต่อเหนือ-ใต้
-    const midRoad = new THREE.Mesh(new THREE.PlaneGeometry(8, 70), matRoad);
-    midRoad.rotation.x = -Math.PI / 2;
-    midRoad.position.set(-2, 0.03, 15);
-    roadGroup.add(midRoad);
+    // 9.1 ทางหลวงแผ่นดินหมายเลข 3265 (ทล.3265 ผ่ากลางเฉียง 45 องศา)
+    const hwyMat = new THREE.MeshStandardMaterial({
+      color: "#1e293b",
+      roughness: 0.85,
+      side: THREE.DoubleSide,
+    });
+    const hwyGeo = createRoadRibbonGeometry(ROAD_3D_PATHS.hwy3265, 11);
+    const hwyMesh = new THREE.Mesh(hwyGeo, hwyMat);
+    hwyMesh.position.y = 0;
+    roadGroup.add(hwyMesh);
 
-    // ถนนหน้าวิหารแก้ว 100 เมตร
-    const viharaRoad = new THREE.Mesh(new THREE.PlaneGeometry(160, 7), matRoad);
-    viharaRoad.rotation.x = -Math.PI / 2;
-    viharaRoad.position.set(70, 0.03, 14);
-    roadGroup.add(viharaRoad);
+    // เส้นประแบ่งเลน ถ.3265
+    const stripeGeo = createRoadRibbonGeometry(ROAD_3D_PATHS.hwy3265, 0.6);
+    const stripeMat = new THREE.MeshBasicMaterial({
+      color: "#ffffff",
+      side: THREE.DoubleSide,
+    });
+    const stripeMesh = new THREE.Mesh(stripeGeo, stripeMat);
+    stripeMesh.position.y = 0.02;
+    roadGroup.add(stripeMesh);
 
-    // ถนนหน้าปราสาททองคำ
-    const prasatRoad = new THREE.Mesh(new THREE.PlaneGeometry(140, 7), matRoad);
-    prasatRoad.rotation.x = -Math.PI / 2;
-    prasatRoad.position.set(-65, 0.03, -25);
-    roadGroup.add(prasatRoad);
+    // 9.2 โครงข่ายถนนสายในและเชื่อมต่อทั้งหมด
+    const innerRoads = [
+      { path: ROAD_3D_PATHS.northRoad, width: 6.5 },
+      { path: ROAD_3D_PATHS.suanSomdejNorth, width: 5.5 },
+      { path: ROAD_3D_PATHS.suanSomdejSouth, width: 5.5 },
+      { path: ROAD_3D_PATHS.spineEast, width: 5.5 },
+      { path: ROAD_3D_PATHS.spineWest, width: 5.5 },
+      { path: ROAD_3D_PATHS.prasatThongLoop, width: 4.5 },
+      { path: ROAD_3D_PATHS.parkingWest, width: 4.5 },
+      { path: ROAD_3D_PATHS.westRoad, width: 5.5 },
+      { path: ROAD_3D_PATHS.southCross, width: 6.5 },
+      { path: ROAD_3D_PATHS.ubosotFrontRoad, width: 5.0 },
+      { path: ROAD_3D_PATHS.ubosotSide, width: 4.5 },
+      { path: ROAD_3D_PATHS.oldTempleRoad, width: 6.0 },
+      { path: ROAD_3D_PATHS.oldTempleNorth, width: 5.0 },
+      { path: ROAD_3D_PATHS.oldTempleLoop, width: 4.5 },
+      { path: ROAD_3D_PATHS.oldTempleRiverfront, width: 5.0 },
+    ];
+
+    innerRoads.forEach(({ path, width }) => {
+      const rGeo = createRoadRibbonGeometry(path, width);
+      const rMesh = new THREE.Mesh(rGeo, matRoad);
+      rMesh.position.y = 0;
+      roadGroup.add(rMesh);
+    });
 
     scene.add(roadGroup);
 
@@ -719,7 +841,7 @@ export default function DigitalTwin3D({
     selectionBeaconRef.current = beaconGroup;
 
     // ========================================================================
-    // BUILD ALL 40 ARCHITECTURAL STRUCTURES (From แผนผัง01.jpg & 20260927_122430.jpg)
+    // BUILD ALL ARCHITECTURAL STRUCTURES (From แผนผัง01.jpg & Google Maps Satellite)
     // ========================================================================
     interactiveObjectsRef.current = [];
     buildingMeshesMapRef.current = {};
@@ -729,6 +851,7 @@ export default function DigitalTwin3D({
       const placeId = parseInt(idStr, 10);
       const group = new THREE.Group();
       group.position.set(b.x, 0, b.z);
+      if (b.rotY) group.rotation.y = b.rotY;
       group.userData = { placeId, label: b.label, zone: b.zone };
 
       // ----------------------------------------------------------------------

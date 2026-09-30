@@ -1268,34 +1268,43 @@ body {
   color: var(--brown-deep);
 }
 
-/* ===== Explore Sub-Tabs (Segmented Control) ===== */
+/* ===== Explore Sub-Tabs & Prayer Tabs (Segmented Control / Horizontal Scrollable) ===== */
 .explore-tabs {
   display: flex;
   background: var(--cream-dark);
-  padding: 4px;
+  padding: 5px;
   border-radius: var(--radius-md);
-  gap: 4px;
+  gap: 6px;
   margin-bottom: var(--space-md);
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.explore-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .explore-tab {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 6px;
+  padding: 9px 14px;
   border: none;
   background: transparent;
   color: var(--brown);
   font-family: var(--font-primary);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .explore-tab:hover {
@@ -1364,11 +1373,13 @@ body {
 
 .zone-filter-scroll {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding: 2px 2px 8px 2px;
   margin-bottom: var(--space-md);
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .zone-filter-scroll::-webkit-scrollbar {
@@ -1376,15 +1387,16 @@ body {
 }
 
 .zone-pill {
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
   border: 1px solid var(--cream-dark);
   background: var(--white);
   color: var(--brown);
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
@@ -1396,7 +1408,7 @@ body {
   background: var(--gold-dark);
   color: var(--white);
   border-color: var(--gold-dark);
-  font-weight: 600;
+  font-weight: 700;
   box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
 }
 
@@ -1685,34 +1697,43 @@ body {
   border-radius: var(--radius-full);
 }
 
-/* ===== Map Mode Selector (Live GPS | 3D Digital Twin | ป้ายผังวัด) ===== */
+/* ===== Map Mode Selector (แผนผัง 3D | แผนผัง 2D) ===== */
 .map-mode-selector {
   display: flex;
   background: var(--cream-dark);
-  padding: 4px;
+  padding: 5px;
   border-radius: var(--radius-md);
-  gap: 4px;
+  gap: 6px;
   margin-bottom: var(--space-md);
   border: 1px solid rgba(212, 168, 67, 0.25);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.map-mode-selector::-webkit-scrollbar {
+  display: none;
 }
 
 .map-mode-btn {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 9px 4px;
+  padding: 9px 14px;
   border: none;
   background: transparent;
   color: var(--brown);
   font-family: var(--font-primary);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .map-mode-btn:hover {

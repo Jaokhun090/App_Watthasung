@@ -3566,3 +3566,32 @@ body {
   }
 }
 
+/* ===== Touch / Click Ripple Circle Effect (For Screen Recording) ===== */
+.touch-ripple-circle {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-top: -24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(217, 119, 6, 0.22) 65%, rgba(180, 83, 9, 0) 100%);
+  border: 2.5px solid rgba(251, 191, 36, 0.95);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.65), inset 0 0 8px rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  z-index: 9999999;
+  animation: touchRipplePulse 0.5s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+}
+
+@keyframes touchRipplePulse {
+  0% {
+    transform: scale(0.35);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}

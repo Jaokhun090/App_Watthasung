@@ -1527,6 +1527,25 @@ function App() {
   const [exploreSubView, setExploreSubView] = useState("places"); // "places", "map", "tour"
   const locationService = useUserLocation();
 
+  // Effect: วงกลมสัมผัส (Touch Ripple) ทุกครั้งที่คลิกหรือแตะหน้าจอ (เหมาะสำหรับอัด OBS แบบซ่อน Cursor)
+  useEffect(() => {
+    const handlePointerDown = (e) => {
+      // ทำงานเฉพาะคลิกซ้ายหรือการแตะหน้าจอสัมผัส
+      if (e.button !== undefined && e.button !== 0) return;
+      const ripple = document.createElement("div");
+      ripple.className = "touch-ripple-circle";
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      document.body.appendChild(ripple);
+      setTimeout(() => {
+        ripple.remove();
+      }, 550);
+    };
+
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    return () => window.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
+
   // ฟังก์ชันนำทางจากหน้า Home หรือปุ่มต่างๆ ไปยังแท็บและหน้าย่อยที่ต้องการ
   const handleNavigate = (tab, subView = null) => {
     setActiveTab(tab);
